@@ -2417,7 +2417,7 @@ IF_ACTION_POINT(45,PLAYER0)
                     PLAY_MESSAGE(PLAYER0,SOUND,496)
                 ENDIF
             ENDIF
-            QUICK_OBJECTIVE(81,"Now that you have an imp, clain territory and build yourself back up. Then crush the heroes in the base to the north and show them you are not to be trifled with.")
+            QUICK_OBJECTIVE(81,"Now that you have an imp, claim territory and build yourself back up. Then crush the heroes in the base to the north and show them you are not to be trifled with.")
         ENDIF
     ENDIF
 ENDIF
