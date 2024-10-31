@@ -1,0 +1,1348 @@
+[effect78]
+Name = "EFFECT_TINY_SPARKS"
+Health = 1
+GenerationType = 1
+GenerationAccelXYRange = [64,64]
+GenerationAccelZRange = [-128,128]
+GenerationKindRange = [115,115]
+AreaAffectType = 0
+HitType = 0
+Sound = 0
+AffectedByWind = 0
+LightRadius = 0
+LightIntensity = 0
+LightFlags = 0
+ElementsCount = 4
+AlwaysGenerate = 0
+
+[effect79]
+Name = "EFFECT_COIN_FOUNTAIN"
+Sound = 79
+
+[effect80]
+Name = "effect80"
+
+[effect81]
+Name = "effect81"
+
+[effect82]
+Name = "effect82"
+
+[effect83]
+Name = "effect83"
+
+[effect84]
+Name = "effect84"
+
+[effect85]
+Name = "effect85"
+
+[effect86]
+Name = "effect86"
+
+[effect87]
+Name = "effect87"
+
+[effect88]
+Name = "effect88"
+
+[effect89]
+Name = "effect89"
+
+[effect90]
+Name = "effect90"
+
+[effect91]
+Name = "effect91"
+
+[effect92]
+Name = "effect92"
+
+[effect93]
+Name = "effect93"
+
+[effect94]
+Name = "effect94"
+
+[effect95]
+Name = "effect95"
+
+[effect96]
+Name = "effect96"
+
+[effect97]
+Name = "effect97"
+
+[effect98]
+Name = "effect98"
+
+[effect99]
+Name = "effect99"
+
+[effect100]
+Name = "effect100"
+
+[effect101]
+Name = "effect101"
+
+[effect102]
+Name = "effect102"
+
+[effect103]
+Name = "effect103"
+
+[effect104]
+Name = "effect104"
+
+[effect105]
+Name = "effect105"
+
+[effect106]
+Name = "effect106"
+
+[effect107]
+Name = "effect107"
+
+[effect108]
+Name = "effect108"
+
+[effect109]
+Name = "effect109"
+
+[effect110]
+Name = "effect110"
+
+[effect111]
+Name = "effect111"
+
+[effect112]
+Name = "effect112"
+
+[effect113]
+Name = "effect113"
+
+[effect114]
+Name = "effect114"
+
+[effect115]
+Name = "effect115"
+
+[effect116]
+Name = "effect116"
+
+[effect117]
+Name = "effect117"
+
+[effect118]
+Name = "effect118"
+
+[effect119]
+Name = "effect119"
+
+[effect120]
+Name = "effect120"
+
+[effect121]
+Name = "effect121"
+
+[effect122]
+Name = "effect122"
+
+[effect123]
+Name = "effect123"
+
+[effect124]
+Name = "effect124"
+
+[effect125]
+Name = "effect125"
+
+[effect126]
+Name = "effect126"
+
+[effect127]
+Name = "effect127"
+
+[effect128]
+Name = "effect128"
+
+[effect129]
+Name = "effect129"
+
+[effect130]
+Name = "effect130"
+
+[effect131]
+Name = "effect131"
+
+[effect132]
+Name = "effect132"
+
+[effect133]
+Name = "effect133"
+
+[effect134]
+Name = "effect134"
+
+[effect135]
+Name = "effect135"
+
+[effect136]
+Name = "effect136"
+
+[effect137]
+Name = "effect137"
+
+[effect138]
+Name = "effect138"
+
+[effect139]
+Name = "effect139"
+
+[effect140]
+Name = "effect140"
+
+[effect141]
+Name = "effect141"
+
+[effect142]
+Name = "effect142"
+
+[effect143]
+Name = "effect143"
+
+[effect144]
+Name = "effect144"
+
+[effect145]
+Name = "effect145"
+
+[effect146]
+Name = "effect146"
+
+[effect147]
+Name = "effect147"
+
+[effect148]
+Name = "effect148"
+
+[effect149]
+Name = "effect149"
+
+[effect150]
+Name = "effect150"
+
+[effect151]
+Name = "effect151"
+
+[effect152]
+Name = "effect152"
+
+[effect153]
+Name = "effect153"
+
+[effect154]
+Name = "effect154"
+
+[effect155]
+Name = "effect155"
+
+[effect156]
+Name = "effect156"
+
+[effect157]
+Name = "effect157"
+
+[effect158]
+Name = "effect158"
+
+[effect159]
+Name = "effect159"
+
+[effect160]
+Name = "effect160"
+
+[effect161]
+Name = "effect161"
+
+[effect162]
+Name = "effect162"
+
+[effect163]
+Name = "effect163"
+
+[effect164]
+Name = "effect164"
+
+[effect165]
+Name = "effect165"
+
+[effect166]
+Name = "effect166"
+
+[effect167]
+Name = "effect167"
+
+[effect168]
+Name = "effect168"
+
+[effect169]
+Name = "effect169"
+
+[effect170]
+Name = "effect170"
+
+[effect171]
+Name = "effect171"
+
+[effect172]
+Name = "effect172"
+
+[effect173]
+Name = "effect173"
+
+[effect174]
+Name = "effect174"
+
+[effect175]
+Name = "effect175"
+
+[effect176]
+Name = "effect176"
+
+[effect177]
+Name = "effect177"
+
+[effect178]
+Name = "effect178"
+
+[effect179]
+Name = "effect179"
+
+[effect180]
+Name = "effect180"
+
+[effect181]
+Name = "effect181"
+
+[effect182]
+Name = "effect182"
+
+[effect183]
+Name = "effect183"
+
+[effect184]
+Name = "effect184"
+
+[effect185]
+Name = "effect185"
+
+[effect186]
+Name = "effect186"
+
+[effect187]
+Name = "effect187"
+
+[effect188]
+Name = "effect188"
+
+[effect189]
+Name = "effect189"
+
+[effect190]
+Name = "effect190"
+
+[effect191]
+Name = "effect191"
+
+[effect192]
+Name = "effect192"
+
+[effect193]
+Name = "effect193"
+
+[effect194]
+Name = "effect194"
+
+[effect195]
+Name = "effect195"
+
+[effect196]
+Name = "effect196"
+
+[effect197]
+Name = "effect197"
+
+[effect198]
+Name = "effect198"
+
+[effect199]
+Name = "effect199"
+
+[effect200]
+Name = "effect200"
+
+[effect201]
+Name = "EFFECT_NOVA"
+Health = 10
+GenerationType = 1
+GenerationAccelXYRange = [100,100]
+GenerationAccelZRange = [1,1]
+GenerationKindRange = [30,30]
+AreaAffectType = 4
+HitType = 4
+Sound = 972
+AffectedByWind = 1
+ElementsCount = 8
+AlwaysGenerate = 0
+
+[effectGenerator6]
+Name = "effectGenerator6"
+
+[effectGenerator7]
+Name = "effectGenerator7"
+
+[effectGenerator8]
+Name = "effectGenerator8"
+
+[effectGenerator9]
+Name = "effectGenerator9"
+
+[effectGenerator10]
+Name = "effectGenerator10"
+
+[effectGenerator11]
+Name = "effectGenerator11"
+
+[effectGenerator12]
+Name = "effectGenerator12"
+
+[effectGenerator13]
+Name = "effectGenerator13"
+
+[effectGenerator14]
+Name = "effectGenerator14"
+
+[effectGenerator15]
+Name = "effectGenerator15"
+
+[effectGenerator16]
+Name = "effectGenerator16"
+
+[effectGenerator17]
+Name = "effectGenerator17"
+
+[effectGenerator18]
+Name = "effectGenerator18"
+
+[effectGenerator19]
+Name = "effectGenerator19"
+
+[effectGenerator20]
+Name = "effectGenerator20"
+
+[effectGenerator21]
+Name = "effectGenerator21"
+
+[effectGenerator22]
+Name = "effectGenerator22"
+
+[effectGenerator23]
+Name = "effectGenerator23"
+
+[effectGenerator24]
+Name = "effectGenerator24"
+
+[effectGenerator25]
+Name = "effectGenerator25"
+
+[effectGenerator26]
+Name = "effectGenerator26"
+
+[effectGenerator27]
+Name = "effectGenerator27"
+
+[effectGenerator28]
+Name = "effectGenerator28"
+
+[effectGenerator29]
+Name = "effectGenerator29"
+
+[effectGenerator30]
+Name = "effectGenerator30"
+
+[effectGenerator31]
+Name = "effectGenerator31"
+
+[effectGenerator32]
+Name = "effectGenerator32"
+
+[effectGenerator33]
+Name = "effectGenerator33"
+
+[effectGenerator34]
+Name = "effectGenerator34"
+
+[effectGenerator35]
+Name = "effectGenerator35"
+
+[effectGenerator36]
+Name = "effectGenerator36"
+
+[effectGenerator37]
+Name = "effectGenerator37"
+
+[effectGenerator38]
+Name = "effectGenerator38"
+
+[effectGenerator39]
+Name = "effectGenerator39"
+
+[effectGenerator40]
+Name = "effectGenerator40"
+
+[effectGenerator41]
+Name = "effectGenerator41"
+
+[effectGenerator42]
+Name = "effectGenerator42"
+
+[effectGenerator43]
+Name = "effectGenerator43"
+
+[effectGenerator44]
+Name = "effectGenerator44"
+
+[effectGenerator45]
+Name = "effectGenerator45"
+
+[effectGenerator46]
+Name = "effectGenerator46"
+
+[effectGenerator47]
+Name = "effectGenerator47"
+
+[effectGenerator48]
+Name = "effectGenerator48"
+
+[effectGenerator49]
+Name = "effectGenerator49"
+
+[effectGenerator50]
+Name = "effectGenerator50"
+
+[effectGenerator51]
+Name = "effectGenerator51"
+
+[effectGenerator52]
+Name = "effectGenerator52"
+
+[effectGenerator53]
+Name = "effectGenerator53"
+
+[effectGenerator54]
+Name = "effectGenerator54"
+
+[effectGenerator55]
+Name = "effectGenerator55"
+
+[effectGenerator56]
+Name = "effectGenerator56"
+
+[effectGenerator57]
+Name = "effectGenerator57"
+
+[effectGenerator58]
+Name = "effectGenerator58"
+
+[effectGenerator59]
+Name = "effectGenerator59"
+
+[effectGenerator60]
+Name = "effectGenerator60"
+
+[effectGenerator61]
+Name = "effectGenerator61"
+
+[effectGenerator62]
+Name = "effectGenerator62"
+
+[effectGenerator63]
+Name = "effectGenerator63"
+
+[effectGenerator64]
+Name = "effectGenerator64"
+
+[effectGenerator65]
+Name = "effectGenerator65"
+
+[effectGenerator66]
+Name = "effectGenerator66"
+
+[effectGenerator67]
+Name = "effectGenerator67"
+
+[effectGenerator68]
+Name = "effectGenerator68"
+
+[effectGenerator69]
+Name = "effectGenerator69"
+
+[effectGenerator70]
+Name = "effectGenerator70"
+
+[effectGenerator71]
+Name = "effectGenerator71"
+
+[effectGenerator72]
+Name = "effectGenerator72"
+
+[effectGenerator73]
+Name = "effectGenerator73"
+
+[effectGenerator74]
+Name = "effectGenerator74"
+
+[effectGenerator75]
+Name = "effectGenerator75"
+
+[effectGenerator76]
+Name = "effectGenerator76"
+
+[effectGenerator77]
+Name = "effectGenerator77"
+
+[effectGenerator78]
+Name = "effectGenerator78"
+
+[effectGenerator79]
+Name = "effectGenerator79"
+
+[effectGenerator80]
+Name = "effectGenerator80"
+
+[effectGenerator81]
+Name = "effectGenerator81"
+
+[effectGenerator82]
+Name = "effectGenerator82"
+
+[effectGenerator83]
+Name = "effectGenerator83"
+
+[effectGenerator84]
+Name = "effectGenerator84"
+
+[effectGenerator85]
+Name = "effectGenerator85"
+
+[effectGenerator86]
+Name = "effectGenerator86"
+
+[effectGenerator87]
+Name = "effectGenerator87"
+
+[effectGenerator88]
+Name = "effectGenerator88"
+
+[effectGenerator89]
+Name = "effectGenerator89"
+
+[effectGenerator90]
+Name = "effectGenerator90"
+
+[effectGenerator91]
+Name = "effectGenerator91"
+
+[effectGenerator92]
+Name = "effectGenerator92"
+
+[effectGenerator93]
+Name = "effectGenerator93"
+
+[effectGenerator94]
+Name = "effectGenerator94"
+
+[effectGenerator95]
+Name = "effectGenerator95"
+
+[effectGenerator96]
+Name = "effectGenerator96"
+
+[effectGenerator97]
+Name = "effectGenerator97"
+
+[effectGenerator98]
+Name = "effectGenerator98"
+
+[effectGenerator99]
+Name = "effectGenerator99"
+
+[effectGenerator100]
+Name = "effectGenerator100"
+
+[effectGenerator101]
+Name = "effectGenerator101"
+
+[effectGenerator102]
+Name = "effectGenerator102"
+
+[effectGenerator103]
+Name = "effectGenerator103"
+
+[effectGenerator104]
+Name = "effectGenerator104"
+
+[effectGenerator105]
+Name = "effectGenerator105"
+
+[effectGenerator106]
+Name = "effectGenerator106"
+
+[effectGenerator107]
+Name = "effectGenerator107"
+
+[effectGenerator108]
+Name = "effectGenerator108"
+
+[effectGenerator109]
+Name = "effectGenerator109"
+
+[effectGenerator110]
+Name = "effectGenerator110"
+
+[effectGenerator111]
+Name = "effectGenerator111"
+
+[effectGenerator112]
+Name = "effectGenerator112"
+
+[effectGenerator113]
+Name = "effectGenerator113"
+
+[effectGenerator114]
+Name = "effectGenerator114"
+
+[effectGenerator115]
+Name = "effectGenerator115"
+
+[effectGenerator116]
+Name = "effectGenerator116"
+
+[effectGenerator117]
+Name = "effectGenerator117"
+
+[effectGenerator118]
+Name = "effectGenerator118"
+
+[effectGenerator119]
+Name = "effectGenerator119"
+
+[effectGenerator120]
+Name = "effectGenerator120"
+
+[effectGenerator121]
+Name = "effectGenerator121"
+
+[effectGenerator122]
+Name = "effectGenerator122"
+
+[effectGenerator123]
+Name = "effectGenerator123"
+
+[effectGenerator124]
+Name = "effectGenerator124"
+
+[effectGenerator125]
+Name = "effectGenerator125"
+
+[effectGenerator126]
+Name = "effectGenerator126"
+
+[effectGenerator127]
+Name = "effectGenerator127"
+
+[effectGenerator128]
+Name = "effectGenerator128"
+
+[effectGenerator129]
+Name = "effectGenerator129"
+
+[effectGenerator130]
+Name = "effectGenerator130"
+
+[effectGenerator131]
+Name = "effectGenerator131"
+
+[effectGenerator132]
+Name = "effectGenerator132"
+
+[effectGenerator133]
+Name = "effectGenerator133"
+
+[effectGenerator134]
+Name = "effectGenerator134"
+
+[effectGenerator135]
+Name = "effectGenerator135"
+
+[effectGenerator136]
+Name = "effectGenerator136"
+
+[effectGenerator137]
+Name = "effectGenerator137"
+
+[effectGenerator138]
+Name = "effectGenerator138"
+
+[effectGenerator139]
+Name = "effectGenerator139"
+
+[effectGenerator140]
+Name = "effectGenerator140"
+
+[effectGenerator141]
+Name = "effectGenerator141"
+
+[effectGenerator142]
+Name = "effectGenerator142"
+
+[effectGenerator143]
+Name = "effectGenerator143"
+
+[effectGenerator144]
+Name = "effectGenerator144"
+
+[effectGenerator145]
+Name = "effectGenerator145"
+
+[effectGenerator146]
+Name = "effectGenerator146"
+
+[effectGenerator147]
+Name = "effectGenerator147"
+
+[effectGenerator148]
+Name = "effectGenerator148"
+
+[effectGenerator149]
+Name = "effectGenerator149"
+
+[effectGenerator150]
+Name = "effectGenerator150"
+
+[effectGenerator151]
+Name = "effectGenerator151"
+
+[effectGenerator152]
+Name = "effectGenerator152"
+
+[effectGenerator153]
+Name = "effectGenerator153"
+
+[effectGenerator154]
+Name = "effectGenerator154"
+
+[effectGenerator155]
+Name = "effectGenerator155"
+
+[effectGenerator156]
+Name = "effectGenerator156"
+
+[effectGenerator157]
+Name = "effectGenerator157"
+
+[effectGenerator158]
+Name = "effectGenerator158"
+
+[effectGenerator159]
+Name = "effectGenerator159"
+
+[effectGenerator160]
+Name = "effectGenerator160"
+
+[effectGenerator161]
+Name = "effectGenerator161"
+
+[effectGenerator162]
+Name = "effectGenerator162"
+
+[effectGenerator163]
+Name = "effectGenerator163"
+
+[effectGenerator164]
+Name = "effectGenerator164"
+
+[effectGenerator165]
+Name = "effectGenerator165"
+
+[effectGenerator166]
+Name = "effectGenerator166"
+
+[effectGenerator167]
+Name = "effectGenerator167"
+
+[effectGenerator168]
+Name = "effectGenerator168"
+
+[effectGenerator169]
+Name = "effectGenerator169"
+
+[effectGenerator170]
+Name = "effectGenerator170"
+
+[effectGenerator171]
+Name = "effectGenerator171"
+
+[effectGenerator172]
+Name = "effectGenerator172"
+
+[effectGenerator173]
+Name = "effectGenerator173"
+
+[effectGenerator174]
+Name = "effectGenerator174"
+
+[effectGenerator175]
+Name = "effectGenerator175"
+
+[effectGenerator176]
+Name = "effectGenerator176"
+
+[effectGenerator177]
+Name = "effectGenerator177"
+
+[effectGenerator178]
+Name = "effectGenerator178"
+
+[effectGenerator179]
+Name = "effectGenerator179"
+
+[effectGenerator180]
+Name = "effectGenerator180"
+
+[effectGenerator181]
+Name = "effectGenerator181"
+
+[effectGenerator182]
+Name = "effectGenerator182"
+
+[effectGenerator183]
+Name = "effectGenerator183"
+
+[effectGenerator184]
+Name = "effectGenerator184"
+
+[effectGenerator185]
+Name = "effectGenerator185"
+
+[effectGenerator186]
+Name = "effectGenerator186"
+
+[effectGenerator187]
+Name = "effectGenerator187"
+
+[effectGenerator188]
+Name = "effectGenerator188"
+
+[effectGenerator189]
+Name = "effectGenerator189"
+
+[effectGenerator190]
+Name = "effectGenerator190"
+
+[effectGenerator191]
+Name = "effectGenerator191"
+
+[effectGenerator192]
+Name = "effectGenerator192"
+
+[effectGenerator193]
+Name = "effectGenerator193"
+
+[effectGenerator194]
+Name = "effectGenerator194"
+
+[effectGenerator195]
+Name = "effectGenerator195"
+
+[effectGenerator196]
+Name = "effectGenerator196"
+
+[effectGenerator197]
+Name = "effectGenerator197"
+
+[effectGenerator198]
+Name = "effectGenerator198"
+
+[effectGenerator199]
+Name = "effectGenerator199"
+
+[effectGenerator200]
+Name = "effectGenerator200"
+
+[effectGenerator201]
+Name = "EFFECTGENERATOR_FOUNTAIN"
+GenerationDelayMin = 10
+GenerationDelayMax = 20
+GenerationAmount = 1
+EffectModel = "EFFECTELEMENT_WATERDROP"
+IgnoreTerrain = 0
+SpawnHeight = -1
+AccelerationMin = [0,0,0]
+AccelerationMax = [0,0,0]
+Sound = [21,4]
+
+[effectGenerator202]
+Name = "EFFECTGENERATOR_BLOOD_RAIN"
+GenerationDelayMin = 0
+GenerationDelayMax = 0
+GenerationAmount = 5
+EffectModel = "EFFECT_BLOOD_HIT"
+IgnoreTerrain = 0
+SpawnHeight = -1
+AccelerationMin = [0,0,0]
+AccelerationMax = [0,0,0]
+Sound = [0,0]
+
+[effectElement115]
+Name = "EFFECTELEMENT_TINY_FLASH3"
+DrawClass = 2
+MoveType = 1
+Unanimated = 0
+Lifespan = [2,3]
+AnimationId = 964
+SpriteSize = [16,32]
+RenderFlags = 0
+SpriteSpeed = [256,512]
+AnimateOnFloor = true
+Unshaded = true
+Transparent = 3
+MovementFlags = 0
+SizeChange = 0
+FallAcceleration = 2
+InertiaFloor = 0
+InertiaAir = 0
+SubeffectModel = 0
+SubeffectDelay = 0
+Movable = false
+Impacts = false
+TransformModel = 0
+LightRadius = 0
+LightIntensity = 0
+LightFlags = 0
+AffectedByWind = 0
+
+[effectElement122]
+Name = "effectElement122"
+
+[effectElement123]
+Name = "effectElement123"
+
+[effectElement124]
+Name = "effectElement124"
+
+[effectElement125]
+Name = "effectElement125"
+
+[effectElement126]
+Name = "effectElement126"
+
+[effectElement127]
+Name = "effectElement127"
+
+[effectElement128]
+Name = "effectElement128"
+
+[effectElement129]
+Name = "effectElement129"
+
+[effectElement130]
+Name = "effectElement130"
+
+[effectElement131]
+Name = "effectElement131"
+
+[effectElement132]
+Name = "effectElement132"
+
+[effectElement133]
+Name = "effectElement133"
+
+[effectElement134]
+Name = "effectElement134"
+
+[effectElement135]
+Name = "effectElement135"
+
+[effectElement136]
+Name = "effectElement136"
+
+[effectElement137]
+Name = "effectElement137"
+
+[effectElement138]
+Name = "effectElement138"
+
+[effectElement139]
+Name = "effectElement139"
+
+[effectElement140]
+Name = "effectElement140"
+
+[effectElement141]
+Name = "effectElement141"
+
+[effectElement142]
+Name = "effectElement142"
+
+[effectElement143]
+Name = "effectElement143"
+
+[effectElement144]
+Name = "effectElement144"
+
+[effectElement145]
+Name = "effectElement145"
+
+[effectElement146]
+Name = "effectElement146"
+
+[effectElement147]
+Name = "effectElement147"
+
+[effectElement148]
+Name = "effectElement148"
+
+[effectElement149]
+Name = "effectElement149"
+
+[effectElement150]
+Name = "effectElement150"
+
+[effectElement151]
+Name = "effectElement151"
+
+[effectElement152]
+Name = "effectElement152"
+
+[effectElement153]
+Name = "effectElement153"
+
+[effectElement154]
+Name = "effectElement154"
+
+[effectElement155]
+Name = "effectElement155"
+
+[effectElement156]
+Name = "effectElement156"
+
+[effectElement157]
+Name = "effectElement157"
+
+[effectElement158]
+Name = "effectElement158"
+
+[effectElement159]
+Name = "effectElement159"
+
+[effectElement160]
+Name = "effectElement160"
+
+[effectElement161]
+Name = "effectElement161"
+
+[effectElement162]
+Name = "effectElement162"
+
+[effectElement163]
+Name = "effectElement163"
+
+[effectElement164]
+Name = "effectElement164"
+
+[effectElement165]
+Name = "effectElement165"
+
+[effectElement166]
+Name = "effectElement166"
+
+[effectElement167]
+Name = "effectElement167"
+
+[effectElement168]
+Name = "effectElement168"
+
+[effectElement169]
+Name = "effectElement169"
+
+[effectElement170]
+Name = "effectElement170"
+
+[effectElement171]
+Name = "effectElement171"
+
+[effectElement172]
+Name = "effectElement172"
+
+[effectElement173]
+Name = "effectElement173"
+
+[effectElement174]
+Name = "effectElement174"
+
+[effectElement175]
+Name = "effectElement175"
+
+[effectElement176]
+Name = "effectElement176"
+
+[effectElement177]
+Name = "effectElement177"
+
+[effectElement178]
+Name = "effectElement178"
+
+[effectElement179]
+Name = "effectElement179"
+
+[effectElement180]
+Name = "effectElement180"
+
+[effectElement181]
+Name = "effectElement181"
+
+[effectElement182]
+Name = "effectElement182"
+
+[effectElement183]
+Name = "effectElement183"
+
+[effectElement184]
+Name = "effectElement184"
+
+[effectElement185]
+Name = "effectElement185"
+
+[effectElement186]
+Name = "effectElement186"
+
+[effectElement187]
+Name = "effectElement187"
+
+[effectElement188]
+Name = "effectElement188"
+
+[effectElement189]
+Name = "effectElement189"
+
+[effectElement190]
+Name = "effectElement190"
+
+[effectElement191]
+Name = "effectElement191"
+
+[effectElement192]
+Name = "effectElement192"
+
+[effectElement193]
+Name = "effectElement193"
+
+[effectElement194]
+Name = "effectElement194"
+
+[effectElement195]
+Name = "effectElement195"
+
+[effectElement196]
+Name = "effectElement196"
+
+[effectElement197]
+Name = "effectElement197"
+
+[effectElement198]
+Name = "effectElement198"
+
+[effectElement199]
+Name = "effectElement199"
+
+[effectElement200]
+Name = "effectElement200"
+
+[effectElement201]
+Name = "EFFECTELEMENT_EARTH_POWER"
+
+[effectElement202]
+Name = "EFFECTELEMENT_FLAMETHROWER"
+DrawClass = 2
+MoveType = 1
+Unanimated = 0
+Lifespan = [5,5]
+AnimationId = 927
+SpriteSize = [96,160]
+RenderFlags = 1
+SpriteSpeed = [85,85]
+AnimateOnFloor = true
+Unshaded = true
+Transparent = 2
+MovementFlags = 0
+SizeChange = 0
+FallAcceleration = 2
+InertiaFloor = 0
+InertiaAir = 0
+SubeffectModel = 0
+SubeffectDelay = 0
+Movable = false
+Impacts = false
+TransformModel = 0
+LightRadius = 0
+LightIntensity = 0
+LightFlags = 0
+AffectedByWind = 0
+
+[effectElement203]
+Name = "EFFECTELEMENT_ICE_BEAM"
+DrawClass = 2
+MoveType = 1
+Unanimated = 0
+Lifespan = [5,5]
+AnimationId = 857
+SpriteSize = [96,160]
+RenderFlags = 1
+SpriteSpeed = [85,85]
+AnimateOnFloor = true
+Unshaded = true
+Transparent = 3
+MovementFlags = 0
+SizeChange = 0
+FallAcceleration = 2
+InertiaFloor = 0
+InertiaAir = 0
+SubeffectModel = 0
+SubeffectDelay = 0
+Movable = false
+Impacts = false
+TransformModel = 0
+LightRadius = 0
+LightIntensity = 0
+LightFlags = 0
+AffectedByWind = 0
+
+[effectElement204]
+Name = "EFFECTELEMENT_PLAGUE"
+
+[effectElement205]
+Name = "EFFECTELEMENT_HOOKCHAIN"
+
+[effectElement206]
+Name = "EFFECTELEMENT_RED_BEAM"
+
+[effectElement207]
+Name = "EFFECTELEMENT_BLUE_BEAM"
+
+[effectElement208]
+Name = "EFFECTELEMENT_GREEN_BEAM"
+
+[effectElement209]
+Name = "EFFECTELEMENT_YELLOW_BEAM"
