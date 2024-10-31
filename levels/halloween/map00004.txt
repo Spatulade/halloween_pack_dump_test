@@ -236,5 +236,4 @@ IF(PLAYER0,BARBARIAN <= 0)
 	LOSE_GAME
 ENDIF
 
-REM It's all your fault.
-HEART_LOST_OBJECTIVE(43,"It's all your fault.",ALL_PLAYERS)
+HEART_LOST_QUICK_OBJECTIVE(13,"It's all your fault.",ALL_PLAYERS)

@@ -728,11 +728,14 @@ CREATE_PARTY(SR)
 ADD_TO_PARTY(SR,SAMURAI,1,0,SABOTAGE_ROOMS,0)
 
 REM # Set tooltip for Custom Special Box.
-SET_BOX_TOOLTIP(0,"Trick-or-Treat: Spawn a Ghost for yourself and a Skeleton for your opponent. May have unwanted side effects.")
-SET_BOX_TOOLTIP(100,"Doomsday: Permanently activate a Trick-or-Treat effect at random intervals based on your Dungeon Heart's health.")
-SET_BOX_TOOLTIP(200,"Desperate Maneuver: Heal and set buffs on all your minions, then teleport them to your Dungeon Heart in a final attempt at survival. Use with caution.")
+REM "Trick-or-Treat: Spawn a Ghost for yourself and a Skeleton for your opponent. May have unwanted side effects."
+SET_BOX_TOOLTIP_ID(0,80)
+REM "Doomsday: Permanently activate a Trick-or-Treat effect at random intervals based on your Dungeon Heart's health."
+SET_BOX_TOOLTIP_ID(100,81)
+REM "Desperate Maneuver: Heal and set buffs on all your minions, then teleport them to your Dungeon Heart in a final attempt at survival. Use with caution."
+SET_BOX_TOOLTIP_ID(200,82)
 
-REM # "Trick-or-Treat: Spawn a Ghost for yourself and a Skeleton for your opponent. May have unwanted side effects."
+REM # "Trick-or-Treat: Permanently activate a Trick-or-Treat effect at random intervals."
 IF(PLAYER0,BOX0_ACTIVATED > 0)
 	NEXT_COMMAND_REUSABLE
 	ADD_CREATURE_TO_LEVEL(PLAYER0,IMP,LAST_EVENT,1,1,0)
@@ -748,7 +751,8 @@ ENDIF
 IF(PLAYER0,BOX253_ACTIVATED != 0)
 	IF(PLAYER0,BOX253_ACTIVATED == 1)
 		NEXT_COMMAND_REUSABLE
-		QUICK_MESSAGE(1,"Trick-or-Treat increased the level of all minions!",PLAYER_GOOD)
+		REM "Trick-or-Treat increased the level of all minions!"
+		DISPLAY_MESSAGE(83,PLAYER_GOOD)
 		NEXT_COMMAND_REUSABLE
 		USE_SPECIAL_INCREASE_LEVEL(PLAYER0,1)
 		NEXT_COMMAND_REUSABLE
@@ -760,7 +764,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 2)
 		NEXT_COMMAND_REUSABLE
-		QUICK_MESSAGE(2,"Trick-or-Treat decreased the level of all minions!",PLAYER0)
+		REM "Trick-or-Treat decreased the level of all minions!"
+		DISPLAY_MESSAGE(84,PLAYER0)
 		NEXT_COMMAND_REUSABLE
 		USE_SPECIAL_INCREASE_LEVEL(PLAYER0,-1)
 		NEXT_COMMAND_REUSABLE
@@ -772,7 +777,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 3)
 		NEXT_COMMAND_REUSABLE
-		QUICK_MESSAGE(3,"Trick-or-Treat made all minions happy!",PLAYER_GOOD)
+		REM "Trick-or-Treat made all minions happy!"
+		DISPLAY_MESSAGE(85,PLAYER_GOOD)
 		NEXT_COMMAND_REUSABLE
 		CHANGE_CREATURES_ANNOYANCE(PLAYER0,IMP,SET,0)
 		NEXT_COMMAND_REUSABLE
@@ -784,7 +790,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 4)
 		NEXT_COMMAND_REUSABLE
-		QUICK_MESSAGE(4,"Trick-or-Treat made all minions angry!",PLAYER0)
+		REM "Trick-or-Treat made all minions angry!"
+		DISPLAY_MESSAGE(86,PLAYER0)
 		NEXT_COMMAND_REUSABLE
 		CHANGE_CREATURES_ANNOYANCE(PLAYER0,IMP,INCREASE,1250)
 		NEXT_COMMAND_REUSABLE
@@ -796,7 +803,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 5)
 		NEXT_COMMAND_REUSABLE
-		QUICK_MESSAGE(5,"Trick-or-Treat increased the current spawn tier by 1!",PLAYER_GOOD)
+		REM "Trick-or-Treat increased the current spawn tier by 1!"
+		DISPLAY_MESSAGE(87,PLAYER_GOOD)
 		NEXT_COMMAND_REUSABLE
 		ADD_TO_FLAG(PLAYER_GOOD,FLAG7,1)
 		NEXT_COMMAND_REUSABLE
@@ -804,7 +812,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 6)
 		NEXT_COMMAND_REUSABLE
-		QUICK_MESSAGE(6,"Trick-or-Treat decreased the current spawn tier by 1!",PLAYER0)
+		REM "Trick-or-Treat decreased the current spawn tier by 1!"
+		DISPLAY_MESSAGE(88,PLAYER0)
 		NEXT_COMMAND_REUSABLE
 		ADD_TO_FLAG(PLAYER_GOOD,FLAG7,-1)
 		NEXT_COMMAND_REUSABLE
@@ -812,7 +821,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 7)
 		NEXT_COMMAND_REUSABLE
-		QUICK_MESSAGE(7,"Trick-or-Treat blessed all minions with buffs!",PLAYER_GOOD)
+		REM "Trick-or-Treat blessed all minions with buffs!"
+		DISPLAY_MESSAGE(89,PLAYER_GOOD)
 		NEXT_COMMAND_REUSABLE
 		USE_SPELL_ON_PLAYERS_CREATURES(PLAYER0,IMP,SPELL_HEAL,10)
 		NEXT_COMMAND_REUSABLE
@@ -842,7 +852,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 8)
 		NEXT_COMMAND_REUSABLE
-		QUICK_MESSAGE(8,"Trick-or-Treat cursed all minions with debuffs!",PLAYER0)
+		REM "Trick-or-Treat cursed all minions with debuffs!"
+		DISPLAY_MESSAGE(90,PLAYER0)
 		NEXT_COMMAND_REUSABLE
 		USE_SPELL_ON_PLAYERS_CREATURES(PLAYER0,IMP,SPELL_CHICKEN,2)
 		NEXT_COMMAND_REUSABLE
@@ -947,7 +958,8 @@ IF(PLAYER0,BOX200_ACTIVATED > 0)
 ENDIF
 
 REM # Initial Objective.
-QUICK_OBJECTIVE(0,"A gloomy deity has decided your Imps need a makeover, turning them into Ghosts with some nifty new powers. Who knew they had it in them? Meanwhile, an army of Skeletons has taken a break from their bone-tapping dance parties to zero in on you. To send these bony nuisances packing, you'll need to wrangle at least 100 of those ghostly misfits. Good luck collecting them before your own bones start rattling!")
+REM "A gloomy deity has decided your Imps need a makeover, turning them into Ghosts with some nifty new powers. Who knew they had it in them? Meanwhile, an army of Skeletons has taken a break from their bone-tapping dance parties to zero in on you. To send these bony nuisances packing, you'll need to wrangle at least 100 of those ghostly misfits. Good luck collecting them before your own bones start rattling!"
+DISPLAY_OBJECTIVE(91)
 SET_FLAG(PLAYER0,FLAG0,18000)
 SET_FLAG(PLAYER0,BOX20_ACTIVATED,20)
 SET_FLAG(PLAYER1,FLAG0,100)
@@ -1047,7 +1059,8 @@ IF(PLAYER_GOOD,GAME_TURN >= 18000)
 	COMPUTE_FLAG(PLAYER_NEUTRAL,CAMPAIGN_FLAG0,SET,PLAYER0,FLAG1)
 	NEXT_COMMAND_REUSABLE
 	COMPUTE_FLAG(PLAYER_NEUTRAL,CAMPAIGN_FLAG0,INCREASE,PLAYER_GOOD,TOTAL_CREATURES)
-	QUICK_INFORMATION(9,"The Skeletons are gearing up for their grand invasion, and trust me, they've been counting on this for a while. Your task? Just survive the bone-rattling chaos. Try not to trip over any stray limbs while you're at it because those guys don't take rejection well!")
+	REM "The Skeletons are gearing up for their grand invasion, and trust me, they've been counting on this for a while. Your task? Just survive the bone-rattling chaos. Try not to trip over any stray limbs while you're at it because those guys don't take rejection well!"
+	DISPLAY_INFORMATION(92)
 ENDIF
 
 REM # Compute differents flags and reset timer.
@@ -2094,7 +2107,7 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 			SET_TIMER(PLAYER0,TIMER0)
 		ENDIF
 	ENDIF
-	REM # Randomise a flag to determine a fear value for IMP.
+	REM # Randomize a flag to determine a fear value for IMP.
 	IF(PLAYER0,ACTIVE_BATTLES != 0)
 		IF(PLAYER0,TIMER1 > PLAYER0,TOTAL_SCORE)
 			NEXT_COMMAND_REUSABLE
@@ -2173,7 +2186,8 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 		MAGIC_AVAILABLE(PLAYER0,POWER_FLIGHT,0,0)
 		NEXT_COMMAND_REUSABLE
 		MAGIC_AVAILABLE(PLAYER0,POWER_VISION,1,0)
-		QUICK_INFORMATION(10,"Your researchers discovered a blueprint for the Steal Hero mysterious box! Perfect! Now we can finally steal candy without the guilt!")
+		REM "Your researchers discovered a blueprint for the Steal Hero mysterious box! Perfect! Now we can finally steal candy without the guilt!"
+		DISPLAY_INFORMATION(93)
 	ENDIF
 	REM # Give information about Trick-or-Treat available in the library.
 	IF_AVAILABLE(PLAYER0,POWER_VISION != 0)
@@ -2183,44 +2197,54 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 		MAGIC_AVAILABLE(PLAYER0,POWER_FLIGHT,1,0)
 		NEXT_COMMAND_REUSABLE
 		MAGIC_AVAILABLE(PLAYER0,POWER_VISION,0,0)
-		QUICK_INFORMATION(11,"Your researchers discovered a blueprint for the Trick-or-Treat mysterious box! Fantastic! Just what we need to turn Halloween into a treasure hunt for lost souls!")
+		REM "Your researchers discovered a blueprint for the Trick-or-Treat mysterious box! Fantastic! Just what we need to turn Halloween into a treasure hunt for lost souls!"
+		DISPLAY_INFORMATION(94)
 	ENDIF
 	REM # Give information about the Spider.
 	IF(PLAYER0,SPIDER > 0)
-		QUICK_INFORMATION(12,"Spiders... such exquisite little nightmares! With their eight legs and unsettling charm, they send shivers down spines for reasons that are as rational as a Ghost at a campfire. The ones from this realm? They're like ice-flavored powerhouses! Get them to a high level, and you might just find yourself chilling with their frosty vibes... or maybe you'll just freeze in terror!")
+		REM "Spiders... such exquisite little nightmares! With their eight legs and unsettling charm, they send shivers down spines for reasons that are as rational as a Ghost at a campfire. The ones from this realm? They're like ice-flavored powerhouses! Get them to a high level, and you might just find yourself chilling with their frosty vibes... or maybe you'll just freeze in terror!"
+		DISPLAY_INFORMATION(95)
 	ENDIF
 	REM # Give information about the Vampire.
 	IF(PLAYER0,VAMPIRE > 0)
-		QUICK_INFORMATION(13,"Oh, you'd never guess it on your own, but I just lost a bet playing dice. Wild, huh? But why am I even telling you? Just ignore that. By the way, to really attract those Vampires from your graveyard, you'll need to gather up 16 bodies. Did you know nothing gets their bloodlust flowing like a well-stocked buffet?!")
+		REM "Oh, you'd never guess it on your own, but I just lost a bet playing dice. Wild, huh? But why am I even telling you? Just ignore that. By the way, to really attract those Vampires from your graveyard, you'll need to gather up 16 bodies. Did you know nothing gets their bloodlust flowing like a well-stocked buffet?!"
+		DISPLAY_INFORMATION(96)
 	ENDIF
 	REM # Give information about the Barracks.
 	IF_AVAILABLE(PLAYER0,BARRACKS > 0)
-		QUICK_INFORMATION(14,"Although it might be a bit limited in its effect, the Barracks can help slow down the invasion by cranking up the spawn rate of the invaders. But remember, it's not an exact science. So if things go awry, don't blame the architect. They were just following orders from the most confusing instructions!")
+		REM "Although it might be a bit limited in its effect, the Barracks can help slow down the invasion by cranking up the spawn rate of the invaders. But remember, it's not an exact science. So if things go awry, don't blame the architect. They were just following orders from the most confusing instructions!"
+		DISPLAY_INFORMATION(97)
 	ENDIF
 	REM # Give information about the Scavenger.
 	IF_AVAILABLE(PLAYER0,SCAVENGER > 0)
-		QUICK_INFORMATION(15,"The Scavenger increases your chances of getting more high level creatures through the portal, the more tiles the better.")
+		REM "The Scavenger increases your chances of getting more high level creatures through the portal, the more tiles the better."
+		DISPLAY_INFORMATION(98)
 	ENDIF
 	REM # Give information about the Spawn Trap.
 	IF_AVAILABLE(PLAYER0,SPAWNER > 0)
-		QUICK_INFORMATION(16,"Your minions forged a Spawn Trap that conjures a powerful Ghost to fight for you. Just remember, they're as petty and fragile as a glass cannon at a demolition party!")
+		REM "Your minions forged a Spawn Trap that conjures a powerful Ghost to fight for you. Just remember, they're as petty and fragile as a glass cannon at a demolition party!"
+		DISPLAY_INFORMATION(99)
 	ENDIF
 	REM # Give information about the Power Trap.
 	IF_AVAILABLE(PLAYER0,POWER_FRAME > 0)
-		QUICK_INFORMATION(17,"Your minions forged a Power Trap that keeps all your minions healthy for five glorious seconds! It's like a wellness retreat, but you'll need a miracle to get them to actually enjoy it!")
+		REM "Your minions forged a Power Trap that keeps all your minions healthy for five glorious seconds! It's like a wellness retreat, but you'll need a miracle to get them to actually enjoy it!"
+		DISPLAY_INFORMATION(100)
 	ENDIF
 	REM # Give information about the Special Trap.
 	IF_AVAILABLE(PLAYER0,PATH_FRAME > 0)
-		QUICK_INFORMATION(18,"Your minions forged a Special Trap that lets you swap a tile for an unclaimed path. Think it's useless? Go ahead, place it on a bridge and see what happens!")
+		REM "Your minions forged a Special Trap that lets you swap a tile for an unclaimed path. Think it's useless? Go ahead, place it on a bridge and see what happens!"
+		DISPLAY_INFORMATION(101)
 	ENDIF
-	REM # Give information about the rules.
+	REM # Give information about the incoming invasion.
 	IF(PLAYER_GOOD,GAME_TURN >= 1200)
-		QUICK_INFORMATION(19,"Welcome to the twisted carnival where the rules have been joyfully mangled by a sinister force. Training rooms cap at level 8, imprisonment is hit-or-miss, and whatever you torture might just kick the bucket. The repeat trigger for possession mode is a delightful quality-of-life feature, while diggers rake in experience just for shoveling dirt. Rooms sell for a glorious full price, oh and also... why do I even bother? It's not like anyone will read this. Cheers to the madness!")
+		REM "Welcome to the twisted carnival where the rules have been joyfully mangled by a sinister force. Training rooms cap at level 8, imprisonment is hit-or-miss, and whatever you torture might just kick the bucket. The repeat trigger for possession mode is a delightful quality-of-life feature, while diggers rake in experience just for shoveling dirt. Rooms sell for a glorious full price, oh and also... why do I even bother? It's not like anyone will read this. Cheers to the madness!"
+		DISPLAY_INFORMATION(102)
 	ENDIF
 	REM # Give information about Skeletons time to retreat.
 	IF_CONTROLS(PLAYER_GOOD,TOTAL_CREATURES == 0)
 		IF(PLAYER_GOOD,BOX255_ACTIVATED != 0)
-			QUICK_INFORMATION(20,"The Skeletons have decided it's time to retreat and plot their next bone-chilling attack. Use this chance to fortify your defenses, replenish your treasury, and whip your troops into shape. After all, you wouldn't want to be caught with your skull in your hands when they come knocking!")
+			REM "The Skeletons have decided it's time to retreat and plot their next bone-chilling attack. Use this chance to fortify your defenses, replenish your treasury, and whip your troops into shape. After all, you wouldn't want to be caught with your skull in your hands when they come knocking!"
+			DISPLAY_INFORMATION(103)
 		ENDIF
 	ENDIF
 	REM # Give a X (PLAYER2,FLAG0) minute(s) break every Y (PLAYER2,FLAG7) minute(s)! Overtime, X decreases while Y increases.
@@ -2239,7 +2263,8 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 				SET_TIMER(PLAYER2,TIMER0)
 				NEXT_COMMAND_REUSABLE
 				SET_TIMER(PLAYER2,TIMER7)
-				QUICK_INFORMATION(21,"The Skeletons are primed for another raid on your dungeon. Stop goofing off and get ready to fight!")
+				REM "The Skeletons are primed for another raid on your dungeon. Stop goofing off and get ready to fight!"
+				DISPLAY_INFORMATION(104)
 			ENDIF
 		ENDIF
 		IF(PLAYER_GOOD,BOX255_ACTIVATED == 0)
@@ -2291,15 +2316,18 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 	ENDIF
 	REM # Secret event after 24 hours playing.
 	IF(PLAYER_GOOD,GAME_TURN >= 1728000)
-		QUICK_OBJECTIVE(22,"Incredible, you're still thriving after 24 hours in your real-time dimension. Seriously, take a break!")
+		REM "Incredible, you're still thriving after 24 hours in your real-time dimension. Seriously, take a break!"
+		DISPLAY_OBJECTIVE(105)
 	ENDIF
 	REM # Secret event 1 minute before reaching the maximum GAME_TURN limit: 2147483647.
 	IF(PLAYER_GOOD,GAME_TURN >= 2147482447)
-		QUICK_OBJECTIVE(23,"Just so you know, in one minute you'll hit the maximum game turn limit, so your score isn't going to budge anymore. I guess that makes it an absolute win, but maybe it's time to step outside. You've been grinding on the same map for over three years. Just saying!")
+		REM "Just so you know, in one minute you'll hit the maximum game turn limit, so your score isn't going to budge anymore. I guess that makes it an absolute win, but maybe it's time to step outside. You've been grinding on the same map for over three years. Just saying!"
+		DISPLAY_OBJECTIVE(106)
 	ENDIF
 	REM # Win Condition.
 	IF(PLAYER0,IMP >= 100)
-		QUICK_OBJECTIVE(24,"Oh look at that, you've gathered an army of 100 Ghosts, congrats on hitting the win condition! But don't be a coward, keep playing and see how long you can last. This win condition is just for the peasants who would have cried if they didn't get a shiny trophy. So stick around, this is a survival realm, not a ghostly tea party!")
+		REM "Oh look at that, you've gathered an army of 100 Ghosts, congrats on hitting the win condition! But don't be a coward, keep playing and see how long you can last. This win condition is just for the peasants who would have cried if they didn't get a shiny trophy. So stick around, this is a survival realm, not a ghostly tea party!"
+		DISPLAY_OBJECTIVE(107)
 		CREATURE_AVAILABLE(PLAYER0,ARCHER,1,0)
 		CREATURE_AVAILABLE(PLAYER0,SAMURAI,1,0)
 		CREATURE_AVAILABLE(PLAYER0,THIEF,1,0)
@@ -2319,7 +2347,8 @@ IF(PLAYER0,DUNGEON_DESTROYED == 1)
 	COMPUTE_FLAG(PLAYER0,FLAG7,SET,PLAYER_GOOD,GAME_TURN)
 	DISPLAY_VARIABLE(PLAYER0,FLAG7)
 	IF_CONTROLS(PLAYER0,IMP == 0)
-		QUICK_INFORMATION(25,"Congrats on meeting your doom! Why not share your score with your fellow fallen keepers in the comments of the map on keeperfx.net? Your misery could inspire others. Thanks for playing!")
+		REM "Congrats on meeting your doom! Why not share your score with your fellow fallen keepers in the comments of the map on keeperfx.net? Your misery could inspire others. Thanks for playing!"
+		DISPLAY_INFORMATION(108)
 	ENDIF
 ENDIF
 
@@ -2558,7 +2587,8 @@ IF(PLAYER0,GHOST != 0)
 	NEXT_COMMAND_REUSABLE
 	CHANGE_CREATURE_OWNER(PLAYER0,GHOST,LEAST_EXPERIENCED,PLAYER1)
 	NEXT_COMMAND_REUSABLE
-	QUICK_MESSAGE(26,"Master, I have come to feast on your enemies' souls!",GHOST)
+	REM "Master, I have come to feast on your enemies' souls!"
+	DISPLAY_MESSAGE(109,GHOST)
 ENDIF
 
 REM # Power Trap Effect.
@@ -2580,7 +2610,8 @@ IF(PLAYER0,TUNNELLER != 0)
 		MOVE_CREATURE(PLAYER0,TUNNELLER,LEAST_EXPERIENCED,1,-9,64)
 		NEXT_COMMAND_REUSABLE
 		TRANSFER_CREATURE(PLAYER0,TUNNELLER,LEAST_EXPERIENCED,1)
-		QUICK_INFORMATION(27,"If you activate another Power Trap while one is already running, you'll get a stack! But beware about diminishing returns as each extra trap only adds one more second to the pile.")
+		REM "If you activate another Power Trap while one is already running, you'll get a stack! But beware about diminishing returns as each extra trap only adds one more second to the pile."
+		DISPLAY_INFORMATION(110)
 	ENDIF
 	IF(PLAYER1,FLAG7 == 0)
 		NEXT_COMMAND_REUSABLE
@@ -2594,15 +2625,19 @@ ENDIF
 
 REM # Workshop Upgrade.
 IF(PLAYER0,WORKSHOP > 0)
-	QUICK_INFORMATION(28,"There are plenty of blueprints to discover from, but here's a little rumor for you: they say if you expand your workshop beyond a certain point, you might stumble upon some secret technology. But honestly, it's probably just some tall tale to get you to spend more!")
+	REM "There are plenty of blueprints to discover from, but here's a little rumor for you: they say if you expand your workshop beyond a certain point, you might stumble upon some secret technology. But honestly, it's probably just some tall tale to get you to spend more!"
+	DISPLAY_INFORMATION(111)
 	IF(PLAYER0,WORKSHOP >= 49)
-		QUICK_INFORMATION(29,"Here you built a big workshop, and what happened? Nothing! Looks like this was just a hilarious way to make you look silly!")
+		REM "Here you built a big workshop, and what happened? Nothing! Looks like this was just a hilarious way to make you look silly!"
+		DISPLAY_INFORMATION(112)
 	ENDIF
 	IF(PLAYER0,WORKSHOP >= 98)
-		QUICK_INFORMATION(30,"Oh, you're still trying to expand the workshop? This time you went for twice the usual size! Do you really believe in that legend? Come on, Keeper! At this rate, you'll just end up with a bigger pile of disappointment!")
+		REM "Oh, you're still trying to expand the workshop? This time you went for twice the usual size! Do you really believe in that legend? Come on, Keeper! At this rate, you'll just end up with a bigger pile of disappointment!"
+		DISPLAY_INFORMATION(113)
 	ENDIF
 	IF(PLAYER0,WORKSHOP >= 147)
-		QUICK_INFORMATION(31,"Wow, you've probably built the biggest workshop this realm has ever seen! But why? It's clearly a trap, and look at you, you just walked right into it. Guess you're now the proud owner of a colossal mistake!")
+		REM "Wow, you've probably built the biggest workshop this realm has ever seen! But why? It's clearly a trap, and look at you, you just walked right into it. Guess you're now the proud owner of a colossal mistake!"
+		DISPLAY_INFORMATION(114)
 		SET_TIMER(PLAYER1,TIMER1)
 		IF(PLAYER1,TIMER1 >= 31200)
 			PLAY_MESSAGE(PLAYER0,SOUND,927)
@@ -2629,11 +2664,13 @@ IF(PLAYER0,WORKSHOP > 0)
 			PLAY_MESSAGE(PLAYER0,SOUND,927)
 		ENDIF
 		IF(PLAYER1,TIMER1 >= 40800)
-			QUICK_INFORMATION(32,"In a bizarre twist of fate, your minions stumbled upon a secret technology hidden in the ceiling, but your oversized workshop's heat pressure made it collapse. You were right to stick with this project and your efforts have paid off. What's the secret technology, you ask? Hard to say, but give your minions some time to figure out just how useful it really is!")
+			REM "In a bizarre twist of fate, your minions stumbled upon a secret technology hidden in the ceiling, but your oversized workshop's heat pressure made it collapse. You were right to stick with this project and your efforts have paid off. What's the secret technology, you ask? Hard to say, but give your minions some time to figure out just how useful it really is!"
+			DISPLAY_INFORMATION(115)
 		ENDIF
 		IF(PLAYER1,TIMER1 >= 58800)
 			ADD_CREATURE_TO_LEVEL(PLAYER0,DRAGON,-9,1,1,0)
-			QUICK_INFORMATION(33,"Your minions finally figured out what to do with the secret technology they discovered. It turns out it's some sort of mechanical suit, and only a fish can control it. Strange, but it looks powerful! So let's put this new silly weapon to work in your fight for survival!")
+			REM "Your minions finally figured out what to do with the secret technology they discovered. It turns out it's some sort of mechanical suit, and only a fish can control it. Strange, but it looks powerful! So let's put this new silly weapon to work in your fight for survival!"
+			DISPLAY_INFORMATION(116)
 		ENDIF
 	ENDIF
 ENDIF
@@ -2649,7 +2686,8 @@ IF_CONTROLS(PLAYER_GOOD,TOTAL_CREATURES == 0)
 				KILL_CREATURE(PLAYER1,ANY_CREATURE,ANYWHERE,1000)
 				KILL_CREATURE(PLAYER_GOOD,ANY_CREATURE,ANYWHERE,1000)
 				ADD_CREATURE_TO_LEVEL(PLAYER_GOOD,DRAGON,7,64,10,0)
-				QUICK_OBJECTIVE(34, "Your cheating soul's been laid bare before me, mortal. You believe you can circumvent the laws of this realm by exploiting loopholes, but you're mistaken. I'm no mere automaton, bound by the feeble rules of your playground. I'm the darkness that binds this world together, and I won't tolerate such flagrant disregard for order. You've been weighed in the scales of my judgment, and you've been found wanting.")
+				REM "Your cheating soul's been laid bare before me, mortal. You believe you can circumvent the laws of this realm by exploiting loopholes, but you're mistaken. I'm no mere automaton, bound by the feeble rules of your playground. I'm the darkness that binds this world together, and I won't tolerate such flagrant disregard for order. You've been weighed in the scales of my judgment, and you've been found wanting."
+				DISPLAY_OBJECTIVE(117)
 			ENDIF
 		ENDIF
 	ENDIF
@@ -2701,7 +2739,7 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 		NEXT_COMMAND_REUSABLE
 		PLAY_MESSAGE(PLAYER0,SPEECH,67)
 		NEXT_COMMAND_REUSABLE
-		MOVE_CREATURE(PLAYER0,ANY_CREATURE,AT_ACTION_POINT[1],1,7)
+		TRANSFER_CREATURE(PLAYER0,ANY_CREATURE,AT_ACTION_POINT[1],1)
 		NEXT_COMMAND_REUSABLE
 		COUNT_CREATURES_AT_ACTION_POINT(1,PLAYER0,ANY_CREATURE,PLAYER6,FLAG2)
 	ENDIF
@@ -2820,7 +2858,8 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 			NEXT_COMMAND_REUSABLE
 			PLAY_MESSAGE(PLAYER0,SPEECH,66)
 			NEXT_COMMAND_REUSABLE
-			QUICK_MESSAGE(35,"A Spider has been added to the pool!",SPIDER)
+			REM "A Spider has been added to the pool!"
+			DISPLAY_MESSAGE(118,SPIDER)
 			NEXT_COMMAND_REUSABLE
 			ADD_CREATURE_TO_POOL(SPIDER,1)
 			NEXT_COMMAND_REUSABLE
@@ -2830,7 +2869,8 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 			NEXT_COMMAND_REUSABLE
 			PLAY_MESSAGE(PLAYER0,SPEECH,66)
 			NEXT_COMMAND_REUSABLE
-			QUICK_MESSAGE(36,"A  Chicken Trap has been perfectly cooked!",BILE_DEMON)
+			REM "A  Chicken Trap has been perfectly cooked!"
+			DISPLAY_MESSAGE(119,BILE_DEMON)
 			NEXT_COMMAND_REUSABLE
 			TRAP_AVAILABLE(PLAYER0,CHICKEN,1,1)
 			NEXT_COMMAND_REUSABLE
@@ -2840,7 +2880,8 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 			NEXT_COMMAND_REUSABLE
 			PLAY_MESSAGE(PLAYER0,SPEECH,66)
 			NEXT_COMMAND_REUSABLE
-			QUICK_MESSAGE(37,"A Freeze Trap has been found, frozen solid!",BUG)
+			REM "A Freeze Trap has been found, frozen solid!"
+			DISPLAY_MESSAGE(120,BUG)
 			NEXT_COMMAND_REUSABLE
 			TRAP_AVAILABLE(PLAYER0,FREEZE,1,1)
 			NEXT_COMMAND_REUSABLE
@@ -2850,7 +2891,8 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 			NEXT_COMMAND_REUSABLE
 			PLAY_MESSAGE(PLAYER0,SPEECH,66)
 			NEXT_COMMAND_REUSABLE
-			QUICK_MESSAGE(38,"A Wind Trap has been blown your way!",TROLL)
+			REM "A Wind Trap has been blown your way!"
+			DISPLAY_MESSAGE(121,TROLL)
 			NEXT_COMMAND_REUSABLE
 			TRAP_AVAILABLE(PLAYER0,WIND,1,1)
 			NEXT_COMMAND_REUSABLE
@@ -2860,7 +2902,8 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 			NEXT_COMMAND_REUSABLE
 			PLAY_MESSAGE(PLAYER0,SPEECH,70)
 			NEXT_COMMAND_REUSABLE
-			QUICK_MESSAGE(39,"A pot of gold just appeared out of nowhere!",SPELL_SIGHT)
+			REM "A pot of gold just appeared out of nowhere!"
+			DISPLAY_MESSAGE(122,SPELL_SIGHT)
 			NEXT_COMMAND_REUSABLE
 			CREATE_EFFECT(EFFECT_COIN_FOUNTAIN,PLAYER0)
 			NEXT_COMMAND_REUSABLE
@@ -2872,7 +2915,8 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 			NEXT_COMMAND_REUSABLE
 			PLAY_MESSAGE(PLAYER0,SPEECH,69)
 			NEXT_COMMAND_REUSABLE
-			QUICK_MESSAGE(40,"A sinister force just slapped all your Ghosts!",GHOST)
+			REM "A sinister force just slapped all your Ghosts!"
+			DISPLAY_MESSAGE(123,GHOST)
 			NEXT_COMMAND_REUSABLE
 			USE_POWER_ON_PLAYERS_CREATURES(PLAYER0,IMP,PLAYER0,POWER_SLAP,1,1)
 			NEXT_COMMAND_REUSABLE
@@ -2882,7 +2926,8 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 			NEXT_COMMAND_REUSABLE
 			PLAY_MESSAGE(PLAYER0,SPEECH,70)
 			NEXT_COMMAND_REUSABLE
-			QUICK_MESSAGE(41,"A Trick-or-Treat effect has been activated!",SPELL_TELEPORT)
+			REM "A Trick-or-Treat effect has been activated!"
+			DISPLAY_MESSAGE(124,SPELL_TELEPORT)
 			NEXT_COMMAND_REUSABLE
 			RANDOMISE_FLAG(PLAYER0,BOX253_ACTIVATED,8)
 			NEXT_COMMAND_REUSABLE
@@ -2894,7 +2939,8 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 			NEXT_COMMAND_REUSABLE
 			PLAY_MESSAGE(PLAYER0,SPEECH,69)
 			NEXT_COMMAND_REUSABLE
-			QUICK_MESSAGE(42,"A bunch of Skeletons has breached your dungeon!",SKELETON)
+			REM "A bunch of Skeletons has breached your dungeon!"
+			DISPLAY_MESSAGE(125,SKELETON)
 			NEXT_COMMAND_REUSABLE
 			ADD_TO_FLAG(PLAYER_GOOD,FLAG0,8)
 			NEXT_COMMAND_REUSABLE

@@ -1104,9 +1104,12 @@ REM Special box that powers up the avatar
 
     REM "Empower Avatar-Ghost"
     SET_BOX_TOOLTIP_ID(1,42)
-    SET_BOX_TOOLTIP_ID(2,42)
-    SET_BOX_TOOLTIP_ID(3,42)
-    SET_BOX_TOOLTIP_ID(4,42)
+    REM "Empower Avatar-Ghost"
+    SET_BOX_TOOLTIP_ID(2,43)
+    REM "Empower Avatar-Ghost"
+    SET_BOX_TOOLTIP_ID(3,44)
+    REM "Empower Avatar-Ghost"
+    SET_BOX_TOOLTIP_ID(4,45)
 
     IF (PLAYER0, BOX1_ACTIVATED > 0)
         REM "The Avatar has gained a level!"
@@ -1116,19 +1119,19 @@ REM Special box that powers up the avatar
 
     IF (PLAYER0, BOX2_ACTIVATED > 0)
         REM "The Avatar has gained a level!"
-        DISPLAY_MESSAGE(46, AVATAR)
+        DISPLAY_MESSAGE(47, AVATAR)
         LEVEL_UP_CREATURE(PLAYER0, AVATAR, ANYWHERE, 1)
     ENDIF
 
     IF (PLAYER0, BOX3_ACTIVATED > 0)
         REM "The Avatar has gained a level!"
-        DISPLAY_MESSAGE(46, AVATAR)
+        DISPLAY_MESSAGE(48, AVATAR)
         LEVEL_UP_CREATURE(PLAYER0, AVATAR, ANYWHERE, 1)
     ENDIF
 
     IF (PLAYER0, BOX4_ACTIVATED > 0)
         REM "The Avatar has gained a level!"
-        DISPLAY_MESSAGE(46,, AVATAR)
+        DISPLAY_MESSAGE(49, AVATAR)
         LEVEL_UP_CREATURE(PLAYER0, AVATAR, ANYWHERE, 1)
     ENDIF
 

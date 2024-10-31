@@ -34,7 +34,7 @@ AccelerationMin = [0,0,0]
 AccelerationMax = [0,0,0]
 Sound = [0,0]
 
-[effectElement121]
+[effectElement119]
 Name = "EFFECTELEMENT_ICE_BEAM"
 DrawClass = 2
 MoveType = 1
