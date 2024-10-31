@@ -863,7 +863,7 @@ IF_ACTION_POINT(13,PLAYER0)
         ENDIF
         IF(PLAYER0,TIMER3>150)
             QUICK_MESSAGE(18,"Bring three insects to the temple you just visited.",VAMPIRE)
-            QUICK_OBJECTIVE(18,"Bring three insects to the temple you just visited.")
+            QUICK_OBJECTIVE(123,"Sacrifice three insects in the temple you just visited, then see the vampire again.")
         ENDIF
         IF(PLAYER0,TIMER3>200)
             QUICK_MESSAGE(19,"This will unlock a vault not seen in millennia.",VAMPIRE)
@@ -1127,6 +1127,7 @@ IF_ACTION_POINT(20,PLAYER0)
             ADD_CREATURE_TO_LEVEL(PLAYER_GOOD,SKELEMAGE,17,1,1,0)
             QUICK_MESSAGE(27,"Turn back now!",SKELE)
             QUICK_MESSAGE(28,"You have no idea of the power this holds!",SKELEMAGE)
+            QUICK_OBJECTIVE(124,"Kill the skeletons guarding the vault.")
             SET_FLAG(PLAYER0,FLAG5,7)
         ENDIF
         IF(PLAYER0,FLAG5 == 7)
@@ -2232,6 +2233,7 @@ IF(PLAYER0,CAMPAIGN_FLAG7 == 2)
             CONCEAL_MAP_RECT(PLAYER0,58,64,9,27)
             CONCEAL_MAP_RECT(PLAYER0,43,79,27,9)
             CONCEAL_MAP_RECT(PLAYER0,49,73,3,3)
+            CONCEAL_MAP_RECT(PLAYER0,57,79,36,30)     
         ENDIF
     ENDIF
 ENDIF
@@ -2244,6 +2246,7 @@ IF_ACTION_POINT(39,PLAYER0)
     ENDIF
     IF(PLAYER0,TIMER3>100)
         QUICK_MESSAGE(66,"There is a skeleton key in a storeroom to the south.",TROLL)
+        REVEAL_MAP_RECT(PLAYER0,124,196,15,15)
     ENDIF
     IF(PLAYER0,TIMER3>150)
         QUICK_MESSAGE(67,"I've no need of it, so you can just take it.",TROLL)
@@ -2409,6 +2412,8 @@ IF_ACTION_POINT(45,PLAYER0)
             QUICK_MESSAGE(78,"Hooray! I'm finally free!",IMP2)
             PLAY_MESSAGE(PLAYER0,SOUND,496)
             CHANGE_SLAB_TYPE(34,53,DIRT)
+            CONCEAL_MAP_RECT(PLAYER0,82,94,86,128)
+            CONCEAL_MAP_RECT(PLAYER0,187,61,123,85)
             IF(PLAYER2,FLAG2 == 0)
                 IF(PLAYER0,IMP2 < 1)
                     NEXT_COMMAND_REUSABLE
@@ -2837,6 +2842,8 @@ IF(PLAYER2,FLAG2 > 5)
             ENDIF
             IF(PLAYER6,STATUE < 6)
                 QUICK_MESSAGE(108,"We've survived everything so far. Let's storm his base.",VAMPIRE)
+                QUICK_ONJECTIVE(108,"We've survived everything so far. Let's storm his base.",77)
+                REVEAL_MAP_RECT(PLAYER0,160,175,9,9)
                 CHANGE_SLAB_TYPE(53,60,PATH)
                 CHANGE_SLAB_TYPE(52,61,PATH)
                 CHANGE_SLAB_TYPE(51,62,PATH)
@@ -2858,12 +2865,18 @@ IF(PLAYER2,FLAG2 > 5)
                 CHANGE_SLAB_OWNER(24,65,PLAYER0)
                 CHANGE_SLAB_OWNER(22,67,PLAYER0)
                 CHANGE_SLAB_OWNER(24,67,PLAYER0)
+
+                CHANGE_SLAB_TYPE(20,65,PRETTY_PATH)
+                CHANGE_SLAB_TYPE(20,67,PRETTY_PATH)
+                CHANGE_SLAB_OWNER(20,65,PLAYER0)
+                CHANGE_SLAB_OWNER(20,67,PLAYER0)
+
                 SET_TIMER(PLAYER2,TIMER4)
                 IF(PLAYER2,TIMER4 > 300)
                     ADD_CREATURE_TO_LEVEL(PLAYER6,STATUE,61,2,8,0)
                 ENDIF
                 IF_ACTION_POINT(61,PLAYER0)
-                    QUICK_MESSAGE(109,"That thing mis spawning abominations. Destroy it",VAMPIRE)
+                    QUICK_MESSAGE(109,"That thing is spawning abominations. Destroy it",VAMPIRE)
                     ADD_CREATURE_TO_LEVEL(PLAYER6,CFLY,61,4,7,0)
                     ADD_CREATURE_TO_LEVEL(PLAYER6,STATUE,61,6,8,0)
                     IF_SLAB_TYPE(57,58,VOID)
@@ -2889,10 +2902,11 @@ IF_ACTION_POINT(62,PLAYER0)
     SET_MUSIC("this_is_halloween_loop_final.mp3")
     REVEAL_MAP_RECT(PLAYER0,199,208,9,9)
     SET_TIMER(PLAYER2,TIMER6)
+    SET_TIMER(PLAYER3,TIMER1)
     CREATURE_ENTRANCE_LEVEL(PLAYER0,7)
     SET_CREATURE_INSTANCE(SPIDER,7,DRAIN,7)
     SET_CREATURE_INSTANCE(BUG,7,ARMOUR,7)
-    SET_CREATURE_INSTANCE(FLY2,7,SPEED,7)
+    SET_CREATURE_INSTANCE(FLY2,7,INVISIBILITY,7)
     IF(PLAYER2,TIMER6 > 0)
         NEXT_COMMAND_REUSABLE
         SET_OBJECT_CONFIGURATION(SOUL_CONTAINER2,AnimationID,1)
@@ -2922,8 +2936,15 @@ IF_ACTION_POINT(62,PLAYER0)
         NEXT_COMMAND_REUSABLE
         SET_CREATURE_CONFIGURATION(NECROVATAR,HandSymbol,CBOSS_PORTRAIT5)
         QUICK_MESSAGE(112,"Destroy the spawners to get at his heart!",VAMPIRE)
+        QUICK_OBJECTIVE(112,"Destroy the spawners to get at his heart!",64)
         NEXT_COMMAND_REUSABLE
         SET_TIMER(PLAYER2,TIMER6)
+    ENDIF
+    IF(PLAYER3,TIMER2 > 2000)
+        IF(PLAYER3,FLAG1 <= 1)
+            QUICK_MESSAGE(122,"Carve a path through! Destroy the spawner with a creature!",VAMPIRE)
+            QUICK_INFORMATION(122,"Carve a path through! Destroy the spawner with a creature!",64)
+        ENDIF
     ENDIF
     SET_TIMER(PLAYER2,TIMER5)
     ADD_CREATURE_TO_LEVEL(PLAYER6,CFLY,63,1,8,0)
@@ -2949,13 +2970,18 @@ IF_ACTION_POINT(62,PLAYER0)
         SET_TIMER(PLAYER2,TIMER5)
     ENDIF
     IF_SLAB_TYPE(62,54,LAVA)
-        IF_SLAB_TYPE(65,56,LAVA)
-            IF_SLAB_TYPE(70,56,LAVA)
-                USE_POWER_AT_POS(PLAYER0,205,178,POWER_DESTROY_WALLS,3,1)
-                QUICK_MESSAGE(113,"The spawners are destroyed! The wall is open!",VAMPIRE)
-                QUICK_OBJECTIVE(113,"The spawners are destroyed! The wall is open!")    
-            ENDIF
-        ENDIF
+        ADD_TO_FLAG(PLAYER3,FLAG1,1)
+    ENDIF
+    IF_SLAB_TYPE(65,56,LAVA)
+        ADD_TO_FLAG(PLAYER3,FLAG1,1)
+    ENDIF
+    IF_SLAB_TYPE(70,56,LAVA)
+        ADD_TO_FLAG(PLAYER3,FLAG1,1)
+    ENDIF
+    IF(PLAYER3,FLAG1 >= 3)
+        USE_POWER_AT_POS(PLAYER0,205,178,POWER_DESTROY_WALLS,3,1)
+        QUICK_MESSAGE(113,"The spawners are destroyed! The wall is open!",VAMPIRE)
+        QUICK_OBJECTIVE(113,"The spawners are destroyed! The wall is open!",66)    
     ENDIF
 ENDIF
 
@@ -3054,6 +3080,22 @@ IF_ACTION_POINT(66,PLAYER0)
         SET_CREATURE_CONFIGURATION(TENTACLE,HungerRate,0)
         SET_CREATURE_CONFIGURATION(ORC,HungerRate,0)
         SET_CREATURE_CONFIGURATION(DRUID,HungerRate,0)
+
+        REM Hoping this fixes issues with possible thing limit and CTA not working!
+        SET_CREATURE_PROPERTY(SPIDER,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(BUG,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(FLY2,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(DRAGON,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(DEMONSPAWN,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(DARK_MISTRESS,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(SORCEROR,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(BILE_DEMON,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(SKELETON,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(TROLL,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(HELL_HOUND,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(TENTACLE,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(ORC,NO_CORPSE_ROTTING,1)
+        SET_CREATURE_PROPERTY(DRUID,NO_CORPSE_ROTTING,1)
 
         CREATURE_AVAILABLE(PLAYER0,DRAGON,1,99)
         CREATURE_AVAILABLE(PLAYER0,DEMONSPAWN,1,99)
