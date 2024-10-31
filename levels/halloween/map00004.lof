@@ -1,0 +1,15 @@
+; KeeperFX Level Overview File (LOF)
+MAP_FORMAT_VERSION = 1.06
+NAME_TEXT = Alone in the Dark
+NAME_ID = 
+KIND = FREE
+ENSIGN_POS = 
+ENSIGN_ZOOM = 
+PLAYERS = 
+OPTIONS = 
+SPEECH = 
+LAND_VIEW = 
+AUTHOR = Loobinex
+DESCRIPTION = Spiderweb Halloween map
+DATE = 2024-10-23
+MAPSIZE = 85 85

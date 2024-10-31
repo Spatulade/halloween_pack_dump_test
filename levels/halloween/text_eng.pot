@@ -1,0 +1,371 @@
+#: guitext:1
+msgctxt "In-game message"
+msgid "Ghosts have hidden Spooky things in this realm. Destroy them all."
+msgstr ""
+
+#: guitext:2
+msgctxt "In-game message"
+msgid "You have the powers of halloween jesus and can resurrect on death. But on this hallowed eve there are limits to how often you can do so. Carefull."
+msgstr ""
+
+#: guitext:3
+msgctxt "In-game message"
+msgid "You have destroyed the first of the Spooky Objects. This is like Ancient Keeper, do the same thing several more times to win. But you are stronger now so this should be easy."
+msgstr ""
+
+#: guitext:4
+msgctxt "In-game message"
+msgid "You have destroyed a few Spooky Objects. More remain. Destroy them."
+msgstr ""
+
+#: guitext:5
+msgctxt "In-game message"
+msgid "I will hunt you down and kill you."
+msgstr ""
+
+#: guitext:6
+msgctxt "In-game message"
+msgid "Not even death can save you from me"
+msgstr ""
+
+#: guitext:7
+msgctxt "In-game message"
+msgid "This is nothing less than your birthright!"
+msgstr ""
+
+#: guitext:8
+msgctxt "In-game message"
+msgid "You...all humans...are the spawn of our coupling!"
+msgstr ""
+
+#: guitext:9
+msgctxt "In-game message"
+msgid "Only a few Spooky Objects remain. You're doomed if you stay here! This place is cursed."
+msgstr ""
+
+#: guitext:10
+msgctxt "In-game message"
+msgid "Only one remains. Nothing can stand in your way."
+msgstr ""
+
+#: guitext:11
+msgctxt "In-game message"
+msgid "Happy Halloween."
+msgstr ""
+
+#: guitext:12
+msgctxt "In-game message"
+msgid "The worst part of being dead is knowing that you were never alive."
+msgstr ""
+
+#: guitext:13
+msgctxt "In-game message"
+msgid "A thief rests alone in his hideout on All Hallow's Eve. His coffers of treasure and his hatchery are both almost empty... not much longer, and he will starve. The lonely thief sets out to the burial site of the Avatar, who had been slain by an evil keeper long ago. Who knows, if he went for guidance, or to steal some coin from the grave's treasury. What will he find there?"
+msgstr ""
+
+#: guitext:14
+msgctxt "In-game message"
+msgid "W-what's going on here?"
+msgstr ""
+
+#: guitext:15
+msgctxt "In-game message"
+msgid "An evil rises in this realm. We must act."
+msgstr ""
+
+#: guitext:16
+msgctxt "In-game message"
+msgid "Well uh, kind of lives..."
+msgstr ""
+
+#: guitext:17
+msgctxt "In-game message"
+msgid "The avatar yet lives!?"
+msgstr ""
+
+#: guitext:18
+msgctxt "In-game message"
+msgid "I, the Avatar, rise from the dead..."
+msgstr ""
+
+#: guitext:19
+msgctxt "In-game message"
+msgid "Together with the ghost of the resurrected Avatar, the Thief set out to destroy the undead evil. The sanctity of All Hallow's Eve was at risk, and the whole realm could be murdered by the Black Knight and his Vampire lords. Defeat them to save All Hallow's Eve! The Thief and the Avatar swore a pact, and both must remain alive to see it through!"
+msgstr ""
+
+#: guitext:20
+msgctxt "In-game message"
+msgid "This ghost may not look like much, but it is the real Avatar and plenty powerful! Train him well, you will need his help to withstand the undead hordes. Advance on the enemy before they overrun you, and defeat the Black Knight!"
+msgstr ""
+
+#: guitext:21
+msgctxt "In-game message"
+msgid "Your work is done. Rest now... forever..."
+msgstr ""
+
+#: guitext:22
+msgctxt "In-game message"
+msgid "Defeat all Vampire Lords to get in..."
+msgstr ""
+
+#: guitext:23
+msgctxt "In-game message"
+msgid "and the path is open!"
+msgstr ""
+
+#: guitext:24
+msgctxt "In-game message"
+msgid "The vampire lords are defeated"
+msgstr ""
+
+#: guitext:25
+msgctxt "In-game message"
+msgid "Make your way to the lair of the black knight and defeat him!"
+msgstr ""
+
+#: guitext:26
+msgctxt "In-game message"
+msgid "or did none of this ever happen?"
+msgstr ""
+
+#: guitext:27
+msgctxt "In-game message"
+msgid "Did he really help the ghost of the avatar,"
+msgstr ""
+
+#: guitext:28
+msgctxt "In-game message"
+msgid "And thus, the thief's story came to a close."
+msgstr ""
+
+#: guitext:29
+msgctxt "In-game message"
+msgid "Your thief has died! All Hallow's Eve can't be saved..."
+msgstr ""
+
+#: guitext:30
+msgctxt "In-game message"
+msgid "Your thief has died! All Hallow's Eve can't be saved..."
+msgstr ""
+
+#: guitext:31
+msgctxt "In-game message"
+msgid "The Avatar has died... again? Without him, All Hallow's Eve can't be saved!"
+msgstr ""
+
+#: guitext:32
+msgctxt "In-game message"
+msgid "The Avatar's final resting place..."
+msgstr ""
+
+#: guitext:33
+msgctxt "In-game message"
+msgid "The vampire lords and their master have become aware of your presence. Be careful and destroy them before they destroy you!"
+msgstr ""
+
+#: guitext:34
+msgctxt "In-game message"
+msgid "The haunt begins, be on your guard!"
+msgstr ""
+
+#: guitext:35
+msgctxt "In-game message"
+msgid "The next attack is here, near our base!"
+msgstr ""
+
+#: guitext:36
+msgctxt "In-game message"
+msgid "The undead wait in their fortress. Be warned... it's guarded. Destroy the vampire lords hiding there!"
+msgstr ""
+
+#: guitext:37
+msgctxt "In-game message"
+msgid "Careful, another wave approaches!"
+msgstr ""
+
+#: guitext:38
+msgctxt "In-game message"
+msgid "An attack coming from the golden finger!"
+msgstr ""
+
+#: guitext:39
+msgctxt "In-game message"
+msgid "Be wary, this vampire is powerful."
+msgstr ""
+
+#: guitext:40
+msgctxt "In-game message"
+msgid "The final wave is here!"
+msgstr ""
+
+#: guitext:41
+msgctxt "In-game message"
+msgid "Murky darkness has this land tight in its grip. Thankfully the dwarves came prepared, and carried torches into the fight with the undead to brighten these pitch-black caverns."
+msgstr ""
+
+#: guitext:42
+msgctxt "In-game message"
+msgid "Empower Avatar-Ghost"
+msgstr ""
+
+#: guitext:43
+msgctxt "In-game message"
+msgid "It's all your fault."
+msgstr ""
+
+#: guitext:46
+msgctxt "In-game message"
+msgid "The Avatar has gained a level!"
+msgstr ""
+
+#: guitext:44 guitext:45 guitext:47 guitext:48 guitext:49
+msgctxt "Placeholder String"
+msgid "Moo"
+msgstr ""
+
+#: guitext:50
+msgctxt "In-game message"
+msgid "The final fight begins! Pull your weight!"
+msgstr ""
+
+#: guitext:51
+msgctxt "In-game message"
+msgid "The Avatar and the Thief noticed that the fortress of the black knight was guarded. Ghosts and skeletons patrolled the halls. Not knowing what lies ahead, they resolved to come prepared for a fight. But they thought it best not to wait too long. The undead horde was only growing with time..."
+msgstr ""
+
+#: guitext:52
+msgctxt "In-game message"
+msgid "Welcome to the Halloween special, trick or treat, keeper!"
+msgstr ""
+
+#: guitext:53
+msgctxt "In-game message"
+msgid "Prepare for the arriving evil."
+msgstr ""
+
+#: guitext:54 guitext:55 guitext:56 guitext:57 guitext:58 guitext:59
+#: guitext:60 guitext:61 guitext:63 guitext:63 guitext:64 guitext:65 guitext:66 guitext:67 guitext:68 guitext:69
+#: guitext:70 guitext:71 guitext:73 guitext:73 guitext:74 guitext:75 guitext:76 guitext:77 guitext:78 guitext:79
+#: guitext:80 guitext:81 guitext:83 guitext:83 guitext:84 guitext:85 guitext:86 guitext:87 guitext:88 guitext:89
+#: guitext:90 guitext:91 guitext:93 guitext:93 guitext:94 guitext:95 guitext:96 guitext:97 guitext:98 guitext:99
+msgctxt "Placeholder String"
+msgid "Moo2"
+msgstr ""
+
+#: guitext:100
+msgctxt "Creature name"
+msgid "Arachnogourd"
+msgstr ""
+
+#: guitext:101
+msgctxt "Creature name"
+msgid "Dark Angel"
+msgstr ""
+
+#: guitext:102
+msgctxt "Creature name"
+msgid "Cat"
+msgstr ""
+
+#: guitext:103
+msgctxt "Creature name"
+msgid "Black Knight"
+msgstr ""
+
+#: guitext:104
+msgctxt "Creature name"
+msgid "Dark Maiden"
+msgstr ""
+
+#: guitext:105
+msgctxt "Creature name"
+msgid "Flying Terror"
+msgstr ""
+
+#: guitext:106
+msgctxt "Creature name"
+msgid "Specter"
+msgstr ""
+
+#: guitext:107
+msgctxt "Creature name"
+msgid "Skeleton Warrior"
+msgstr ""
+
+#: guitext:108
+msgctxt "Creature name"
+msgid "Skeleton Mage"
+msgstr ""
+
+#: guitext:109
+msgctxt "Creature name"
+msgid "Necromancer"
+msgstr ""
+
+#: guitext:110
+msgctxt "Creature name"
+msgid "Zombie"
+msgstr ""
+
+#: guitext:111
+msgctxt "Creature name"
+msgid "Wisp"
+msgstr ""
+
+#: guitext:112
+msgctxt "Creature name"
+msgid "Priestess"
+msgstr ""
+
+#: guitext:120
+msgctxt "Creature spell"
+msgid "Bone Spirit: Releases a spirit of the restless undead that tracks its target or finds one of its own."
+msgstr ""
+
+#: guitext:121
+msgctxt "Creature spell"
+msgid "Pumpkin Grenade: A delightful vegetable with some extra kick."
+msgstr ""
+
+#: guitext:122
+msgctxt "Creature spell"
+msgid "Kimpikazee: Hello, Goodbye, Boom."
+msgstr ""
+
+#: guitext:123
+msgctxt "Creature spell"
+msgid "Ice Beam: Basically it's like lightning but ice flavoured."
+msgstr ""
+
+#: guitext:124
+msgctxt "Creature spell"
+msgid "Ice Beam: Basically it's like lightning but ice flavoured."
+msgstr "Summon Skeletons: Raises the fallen to aid in battle."
+
+#: guitext:125 guitext:126 guitext:127 guitext:128 guitext:129
+#: guitext:130 guitext:131 guitext:133 guitext:133 guitext:134 guitext:135 guitext:136 guitext:137 guitext:138 guitext:139
+#: guitext:140 guitext:141 guitext:143 guitext:143 guitext:144 guitext:145 guitext:146 guitext:147 guitext:148 guitext:149
+#: guitext:150 guitext:151 guitext:153 guitext:153 guitext:154 guitext:155 guitext:156 guitext:157 guitext:158 guitext:159
+#: guitext:160 guitext:161 guitext:163 guitext:163 guitext:164 guitext:165 guitext:166 guitext:167 guitext:168 guitext:169
+#: guitext:170 guitext:171 guitext:173 guitext:173 guitext:174 guitext:175 guitext:176 guitext:177 guitext:178 guitext:179
+#: guitext:180 guitext:181 guitext:183 guitext:183 guitext:184 guitext:185 guitext:186 guitext:187 guitext:188 guitext:189
+#: guitext:190 guitext:191 guitext:193 guitext:193 guitext:194 guitext:195 guitext:196 guitext:197 guitext:198 guitext:199
+msgctxt "Placeholder String"
+msgid "Moo3"
+msgstr ""
+
+#: guitext:202
+msgctxt "Level name"
+msgid "Alone in the Dark"
+msgstr ""
+
+#: guitext:203
+msgctxt "Level name"
+msgid "Grave of the Avatar"
+msgstr ""
+
+#: guitext:204
+msgctxt "Level name"
+msgid "Belzebub"
+msgstr ""
+

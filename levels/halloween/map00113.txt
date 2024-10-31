@@ -1,0 +1,1250 @@
+REM Basics
+
+    LEVEL_VERSION(1)
+    SET_GENERATE_SPEED(400)
+    START_MONEY(ALL_PLAYERS,0)
+    MAX_CREATURES(ALL_PLAYERS,12)
+
+    SET_PLAYER_COLOR(PLAYER0, WHITE)
+    COMPUTER_PLAYER(PLAYER5, ROAMING)
+
+    ALLY_PLAYERS(PLAYER0, PLAYER_GOOD, 3)
+
+REM Creatures
+
+    ADD_CREATURE_TO_POOL(WIZARD, 4)
+    ADD_CREATURE_TO_POOL(BARBARIAN, 4)
+    ADD_CREATURE_TO_POOL(ARCHER, 4)
+    ADD_CREATURE_TO_POOL(MONK, 4)
+    ADD_CREATURE_TO_POOL(DWARFA, 4)
+
+    REM Force one of each to make sure the player has a balanced spread
+    CREATURE_AVAILABLE(ALL_PLAYERS,WIZARD,1,1)
+    CREATURE_AVAILABLE(ALL_PLAYERS,BARBARIAN,1,1)
+    CREATURE_AVAILABLE(ALL_PLAYERS,ARCHER,1,1)
+    CREATURE_AVAILABLE(ALL_PLAYERS,MONK,1,1)
+    CREATURE_AVAILABLE(ALL_PLAYERS,DWARFA,1,1)
+
+REM Initial magic - no hand
+
+    MAGIC_AVAILABLE(PLAYER0,POWER_HAND,0,0)
+    MAGIC_AVAILABLE(PLAYER0,POWER_SLAP,0,0)
+
+REM Level script
+
+REM Initial heart shifting shenanigans and intro - Conceal the heart and move camera to the thief
+
+    CONCEAL_MAP_RECT(PLAYER0, 40, 211, 12, 12, 1)
+    ZOOM_TO_LOCATION(PLAYER0, 1)
+    SET_MUSIC("hw_leptys_ambience.mp3")
+    REM "A thief rests alone in his hideout on All Hallow's Eve. His coffers of treasure and his hatchery are both almost empty... not much longer, and he will starve. The lonely thief sets out to the burial site of the Avatar, who had been slain by an evil keeper long ago. Who knows, if he went for guidance, or to steal some coin from the grave's treasury. What will he find there?"
+    DISPLAY_OBJECTIVE(13)
+    
+REM Avatar event
+
+    IF_ACTION_POINT(2, PLAYER0)
+        SET_FLAG(PLAYER0, FLAG2, 1)
+        SET_TIMER(PLAYER0, TIMER3)
+    ENDIF
+
+    IF (PLAYER0, FLAG2 == 1)
+
+        REM The event starts -> Set some parameters to make sure this doesn't become a problem during the event and let the thief tank lightnings
+        SET_CREATURE_CONFIGURATION(THIEF,Health,2000)
+        SET_CREATURE_HEALTH(THIEF, 2000)
+        SET_CREATURE_CONFIGURATION(THIEF,HungerRate,0)
+        SET_CREATURE_CONFIGURATION(THIEF,Pay,0)
+        REM Also block off the exit
+        CHANGE_SLAB_TYPE(42, 67, WOMAN_WALL, NONE)
+
+        REM Make sure the thief doesn't get killed by cave in during the event
+        IF (PLAYER0, TIMER3 > 0)
+            IF (PLAYER0, TIMER3 < 450)
+                NEXT_COMMAND_REUSABLE
+                SET_CREATURE_HEALTH(THIEF, 500)
+            ENDIF
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 1)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 16, POWER_CAVE_IN, 9, 1)
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 10)
+            REM "W-what's going on here?"
+            DISPLAY_MESSAGE(14, THIEF)
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 80)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 17, POWER_CAVE_IN, 9, 1)
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 120)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 18, POWER_CAVE_IN, 9, 1)
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 140)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 19, POWER_CAVE_IN, 9, 1)
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 200)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 16, POWER_LIGHTNING, 1, 1)
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 250)
+            PLAY_MESSAGE(PLAYER0, SOUND, 147)
+        ENDIF
+    
+        IF (PLAYER0, TIMER3 > 300)
+            PLAY_MESSAGE(PLAYER0, SOUND, 148)
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 200)
+            IF (PLAYER0, TIMER3 < 350)
+                NEXT_COMMAND_REUSABLE
+                CREATE_EFFECT(EFFECT_SPANGLE_WHITE, 16)
+            ENDIF
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 350)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 16, POWER_LIGHTNING, 3, 1)
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 380)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 16, POWER_LIGHTNING, 5, 1)
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 410)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 16, POWER_LIGHTNING, 7, 1)
+
+            REM As part of the event, remove the graveyard
+            CHANGE_SLAB_TYPE(42, 57, PATH, MATCH)
+        ENDIF
+
+        REM The event when the player is at the grave begins
+        IF (PLAYER0, TIMER3 > 430)
+
+            REM Play sound
+            PLAY_MESSAGE(PLAYER0, SOUND, 92)
+
+            CREATE_EFFECT(EFFECT_SPANGLE_WHITE, 20)
+
+            ADD_CREATURE_TO_LEVEL(PLAYER0, AVATAR, 3, 1, 1, 0)
+            
+            REM "An evil rises in this realm. We must act."
+            DISPLAY_MESSAGE(15, AVATAR)
+            REM "Well uh, kind of lives..."
+            DISPLAY_MESSAGE(16, THIEF)
+            REM "The avatar yet lives!?"
+            DISPLAY_MESSAGE(17, THIEF)
+            REM "I, the Avatar, rise from the dead..."
+            DISPLAY_MESSAGE(18, AVATAR)
+
+            REM "Together with the ghost of the resurrected Avatar, the Thief set out to destroy the undead evil. The sanctity of All Hallow's Eve was at risk, and the whole realm could be murdered by the Black Knight and his Vampire lords. Defeat them to save All Hallow's Eve! The Thief and the Avatar swore a pact, and both must remain alive to see it through!"
+            DISPLAY_OBJECTIVE(19)
+
+            REM Reset these parameters to normal since the event is done and the level begins
+            SET_CREATURE_HEALTH(THIEF, 500)
+            SET_CREATURE_CONFIGURATION(THIEF,Health,500)
+            SET_CREATURE_CONFIGURATION(THIEF,HungerRate,5000)
+            SET_CREATURE_CONFIGURATION(THIEF,Pay,57)
+            REM Open the exit again
+            CHANGE_SLAB_TYPE(42, 67, PATH, NONE)
+
+        ENDIF
+
+        REM Transform the grave dungeon
+        IF (PLAYER0, TIMER3 > 2)
+
+            REM Change some key areas to dirt so the rest can match easily
+            CHANGE_SLAB_TYPE(40, 68, DIRT, NONE)
+
+            CHANGE_SLAB_OWNER(43,66, PLAYER0, MATCH)
+            CHANGE_SLAB_OWNER(44,66, PLAYER0, MATCH)
+
+            CHANGE_SLAB_TYPE(44, 68, DIRT, NONE)
+            CHANGE_SLAB_TYPE(45, 67, DIRT, NONE)
+            CHANGE_SLAB_TYPE(45, 68, DIRT, NONE)
+            CHANGE_SLAB_TYPE(46, 66, DIRT, NONE)
+
+            REM Near the new heart
+
+            CHANGE_SLAB_TYPE(56, 66, DIRT, NONE)
+            CHANGE_SLAB_TYPE(56, 74, DIRT, NONE)
+
+            CHANGE_SLAB_TYPE(66, 68, DIRT, NONE)
+            CHANGE_SLAB_TYPE(66, 72, DIRT, NONE)
+
+            REM Make red the owner of some stuff
+            CHANGE_SLAB_OWNER(58, 66, PLAYER0, MATCH)
+            CHANGE_SLAB_OWNER(58, 67, PLAYER0, MATCH)
+            CHANGE_SLAB_OWNER(58, 74, PLAYER0, MATCH)
+            CHANGE_SLAB_TYPE(57, 70, PATH, NONE)
+            CHANGE_SLAB_TYPE(65, 70, PATH, NONE)
+
+            REM Change stuff to dirt and path
+            CHANGE_SLAB_TYPE(42, 68, PATH, NONE)
+            CHANGE_SLAB_TYPE(41, 69, PATH, MATCH)
+
+            REM Left room
+            CHANGE_SLAB_TYPE(35, 68, DIRT, MATCH)
+            CHANGE_SLAB_TYPE(38, 68, DIRT, MATCH)
+            CHANGE_SLAB_TYPE(35, 72, DIRT, MATCH)
+            CHANGE_SLAB_TYPE(39, 72, DIRT, MATCH)
+
+            REM These are the temple platforms
+            CHANGE_SLAB_TYPE(37, 68, DIRT, NONE)
+            CHANGE_SLAB_TYPE(37, 72, DIRT, NONE)
+            CHANGE_SLAB_TYPE(35, 70, DIRT, NONE)
+
+            CHANGE_SLAB_TYPE(37, 69, PATH, MATCH)
+
+            REM DOors
+            CHANGE_SLAB_TYPE(39, 70, PATH, NONE)
+            CHANGE_SLAB_TYPE(45, 70, PATH, NONE)
+            CHANGE_SLAB_TYPE(42, 73, PATH, NONE)
+
+            REM Other blocks in and near the water room
+            CHANGE_SLAB_TYPE(45, 69, DIRT, NONE)
+
+            CHANGE_SLAB_OWNER(42, 74, PLAYER_NEUTRAL, MATCH)
+
+            REM Water pit up and below
+            CHANGE_SLAB_TYPE(46, 67, DIRT, MATCH)
+            CHANGE_SLAB_TYPE(46, 72, DIRT, MATCH)
+            CHANGE_SLAB_TYPE(47, 66, DIRT, MATCH)
+
+            REM Blocks in water pit
+            CHANGE_SLAB_TYPE(47, 68, DIRT, NONE)
+            CHANGE_SLAB_TYPE(49, 68, DIRT, NONE)
+            CHANGE_SLAB_TYPE(51, 68, DIRT, NONE)
+            CHANGE_SLAB_TYPE(53, 68, DIRT, NONE)
+            CHANGE_SLAB_TYPE(55, 68, DIRT, NONE)
+
+            CHANGE_SLAB_TYPE(47, 72, DIRT, NONE)
+            CHANGE_SLAB_TYPE(49, 72, DIRT, NONE)
+            CHANGE_SLAB_TYPE(51, 72, DIRT, NONE)
+            CHANGE_SLAB_TYPE(53, 72, DIRT, NONE)
+            CHANGE_SLAB_TYPE(55, 72, DIRT, NONE)
+
+            CHANGE_SLAB_TYPE(46, 70, PATH, MATCH)
+
+            REM Entrance room on the right
+            CHANGE_SLAB_TYPE(67, 68, DIRT, MATCH)
+            CHANGE_SLAB_TYPE(67, 72, DIRT, MATCH)
+
+            CHANGE_SLAB_TYPE(68, 70, PATH, MATCH)
+            CHANGE_SLAB_TYPE(69, 70, DIRT, MATCH)
+            CHANGE_SLAB_TYPE(70, 70, PATH, MATCH)
+
+            CHANGE_SLAB_OWNER(71, 70, PLAYER_NEUTRAL, MATCH)
+
+        ENDIF
+
+        REM Move the dungeon heart
+        IF (PLAYER0, TIMER3 > 3)
+            
+            CHANGE_SLAB_TYPE(61, 69, HEART_PEDESTAL, MATCH)
+            CHANGE_SLAB_OWNER(61, 69, PLAYER0, MATCH)
+
+            SET_HEART_HEALTH(PLAYER0, 0)
+
+            SET_TIMER(PLAYER0, TIMER0)
+
+            REM Remove the old heart when it exploded
+            IF (PLAYER0, TIMER0 > 200)
+                CHANGE_SLAB_TYPE(13, 69, DIRT, MATCH)
+                REM Conceal that area
+                CONCEAL_MAP_RECT(PLAYER0, 40, 211, 12, 12, 1)
+            ENDIF
+
+            REM Add the heart flames
+            ADD_OBJECT_TO_LEVEL_AT_POS(HEARTFLAME_WHITE,181,208,1,PLAYER0)
+
+            ADD_OBJECT_TO_LEVEL_AT_POS(HEARTFLAME_WHITE,187,208,1,PLAYER0)
+            ADD_OBJECT_TO_LEVEL_AT_POS(HEARTFLAME_WHITE,181,214,1,PLAYER0)
+
+            ADD_OBJECT_TO_LEVEL_AT_POS(HEARTFLAME_WHITE,187,214,1,PLAYER0)
+
+            REM Add gold to player
+            ADD_GOLD_TO_PLAYER(PLAYER0, 5000)
+        ENDIF
+
+        REM Add an entrance
+        IF (PLAYER0, TIMER3 > 4)
+            
+
+            CHANGE_SLAB_TYPE(71, 56, ENTRANCE_ZONE, NONE)
+            CHANGE_SLAB_TYPE(72, 56, ENTRANCE_ZONE, NONE)
+            CHANGE_SLAB_TYPE(73, 56, ENTRANCE_ZONE, NONE)
+
+            CHANGE_SLAB_TYPE(71, 57, ENTRANCE_ZONE, NONE)
+            CHANGE_SLAB_TYPE(72, 57, ENTRANCE_ZONE, NONE)
+            CHANGE_SLAB_TYPE(73, 57, ENTRANCE_ZONE, NONE)
+
+            CHANGE_SLAB_TYPE(71, 58, ENTRANCE_ZONE, NONE)
+            CHANGE_SLAB_TYPE(72, 58, ENTRANCE_ZONE, NONE)
+            CHANGE_SLAB_TYPE(73, 58, ENTRANCE_ZONE, NONE)
+
+            REVEAL_MAP_LOCATION(PLAYER0, 4, -1)
+        ENDIF        
+
+        REM Conceal everything around the room - middle bit
+        IF (PLAYER0, TIMER3 > 5)
+
+            CONCEAL_MAP_RECT(PLAYER0, 156, 193, 100, 100, 1)
+            REM - re-reveal the concealed area as a workaround for now
+            REVEAL_MAP_RECT(PLAYER0, 127, 184, 21, 45)
+
+            CONCEAL_MAP_RECT(PLAYER0, 100, 211, 44, 44, 1)
+
+            CONCEAL_MAP_RECT(PLAYER0, 220, 211, 44, 44, 1)
+
+            REM Conceal the little water bits
+            CONCEAL_MAP_RECT(PLAYER0,142,247,1,1,1)
+            CONCEAL_MAP_RECT(PLAYER0,145,247,1,1,1)
+            CONCEAL_MAP_RECT(PLAYER0,175,247,1,1,1)
+            CONCEAL_MAP_RECT(PLAYER0,178,247,1,1,1)
+
+        ENDIF
+
+        REM Remove the thief's lair
+        IF (PLAYER0, TIMER3 > 6)
+
+            CHANGE_SLAB_TYPE(70, 80, HARD, MATCH)
+            CHANGE_SLAB_TYPE(73, 81, HARD, MATCH)
+            CHANGE_SLAB_TYPE(74, 80, HARD, MATCH)
+            CHANGE_SLAB_TYPE(74, 82, HARD, MATCH)
+            CHANGE_SLAB_TYPE(79, 81, HARD, MATCH)
+            CHANGE_SLAB_TYPE(74, 81, HARD, MATCH)
+            CHANGE_SLAB_TYPE(76, 80, HARD, MATCH)
+            CHANGE_SLAB_TYPE(79,72,HARD, NONE)
+            CHANGE_SLAB_TYPE(80,72,HARD, MATCH)
+            CHANGE_SLAB_TYPE(80,81,HARD, MATCH)
+
+        ENDIF
+
+        REM Remove the weird little water gaps where the hideout was
+        IF (PLAYER0, TIMER3 > 7)
+
+            CHANGE_SLAB_TYPE(75, 78, GEMS, NONE)
+            CHANGE_SLAB_TYPE(75, 78, GEMS, NONE)
+            CHANGE_SLAB_TYPE(77, 79, GEMS, NONE)
+            CHANGE_SLAB_TYPE(78, 78, GEMS, NONE)
+            CHANGE_SLAB_TYPE(76, 77, GEMS, NONE)
+            CHANGE_SLAB_TYPE(81, 77, GEMS, NONE)
+            CHANGE_SLAB_TYPE(82, 76, GEMS, NONE)
+            CHANGE_SLAB_TYPE(75, 78, GEMS, NONE)
+            CHANGE_SLAB_TYPE(79, 76, GEMS, NONE)
+            CHANGE_SLAB_TYPE(80, 75, GEMS, NONE)
+            CHANGE_SLAB_TYPE(81, 72, GEMS, NONE)
+            CHANGE_SLAB_TYPE(82, 73, GEMS, NONE)
+            CHANGE_SLAB_TYPE(79, 73, GEMS, NONE)
+            CHANGE_SLAB_TYPE(80, 74, GEMS, NONE)
+
+            CHANGE_SLAB_TYPE(75, 78, HARD, NONE)
+            CHANGE_SLAB_TYPE(75, 78, HARD, NONE)
+            CHANGE_SLAB_TYPE(77, 79, HARD, NONE)
+            CHANGE_SLAB_TYPE(78, 78, HARD, NONE)
+            CHANGE_SLAB_TYPE(76, 77, HARD, NONE)
+            CHANGE_SLAB_TYPE(81, 77, HARD, NONE)
+            CHANGE_SLAB_TYPE(82, 76, HARD, NONE)
+            CHANGE_SLAB_TYPE(75, 78, HARD, NONE)
+            CHANGE_SLAB_TYPE(79, 76, HARD, NONE)
+            CHANGE_SLAB_TYPE(80, 75, HARD, NONE)
+            CHANGE_SLAB_TYPE(81, 72, HARD, NONE)
+            CHANGE_SLAB_TYPE(82, 73, HARD, NONE)
+            CHANGE_SLAB_TYPE(79, 73, HARD, NONE)
+            CHANGE_SLAB_TYPE(80, 74, HARD, NONE)
+
+        ENDIF
+
+        REM Reveal the impenetrable rock Left side
+        IF (PLAYER0, TIMER3 > 8)
+
+            REVEAL_MAP_RECT(PLAYER0, 79, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 82, 232, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 79, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 82, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 85, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 88, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 91, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 94, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 97, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 100, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 103, 235, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 79, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 82, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 85, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 88, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 91, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 94, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 97, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 100, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 103, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 106, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 109, 238, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 79, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 82, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 85, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 88, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 91, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 94, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 97, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 100, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 103, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 106, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 109, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 112, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 115, 241, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 79, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 82, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 85, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 88, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 91, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 94, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 97, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 100, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 103, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 106, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 109, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 112, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 115, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 118, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 121, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 124, 244, 3, 3)
+
+        ENDIF
+
+        REM Reveal the impenetrable rock Right side
+        IF (PLAYER0, TIMER3 > 9)
+
+            REVEAL_MAP_RECT(PLAYER0, 196, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 199, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 202, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 205, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 208, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 211, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 214, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 217, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 220, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 223, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 226, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 229, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 232, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 235, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 238, 244, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 244, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 199, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 202, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 205, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 208, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 211, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 214, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 217, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 220, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 223, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 226, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 229, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 232, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 235, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 238, 241, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 241, 3, 3)
+        
+            REVEAL_MAP_RECT(PLAYER0, 205, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 208, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 211, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 214, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 217, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 220, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 223, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 226, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 229, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 232, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 235, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 238, 238, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 238, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 208, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 211, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 214, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 217, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 220, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 223, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 226, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 229, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 232, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 235, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 238, 235, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 235, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 211, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 214, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 217, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 220, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 223, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 226, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 229, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 232, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 235, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 238, 232, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 232, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 223, 229, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 226, 229, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 229, 229, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 232, 229, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 235, 229, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 238, 229, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 229, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 229, 226, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 232, 226, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 235, 226, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 238, 226, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 226, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 232, 223, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 235, 223, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 238, 223, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 223, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 235, 220, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 238, 220, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 220, 3, 3)
+
+
+
+
+            REVEAL_MAP_RECT(PLAYER0, 238, 217, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 217, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 238, 214, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 214, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 241, 211, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 238, 208, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 208, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 238, 208, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 208, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 238, 205, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 205, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 238, 202, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 202, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 238, 199, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 199, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 238, 196, 3, 3)
+            REVEAL_MAP_RECT(PLAYER0, 241, 196, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 241, 193, 3, 3)
+
+            REVEAL_MAP_RECT(PLAYER0, 241, 190, 3, 3)
+
+        ENDIF
+
+        REM After all that, remove the barrier of dirt around the dungeon
+        IF (PLAYER0, TIMER3 > 10)
+            CHANGE_SLAB_TYPE(42, 49, WATER, MATCH)
+        ENDIF
+
+        REM The level begins proper - change music
+        IF (PLAYER0, TIMER3 > 450)
+            SET_MUSIC("hw_combined.mp3")
+        ENDIF
+
+        REM Player gets stuff when the event is over and the level can begin
+        IF (PLAYER0, TIMER3 > 450)
+
+            REM Rooms
+
+                ROOM_AVAILABLE(ALL_PLAYERS,TREASURE,1,1)
+                ROOM_AVAILABLE(ALL_PLAYERS,LAIR,1,1)
+                ROOM_AVAILABLE(ALL_PLAYERS,GARDEN,1,1)
+                ROOM_AVAILABLE(ALL_PLAYERS,TRAINING,1,1)
+                ROOM_AVAILABLE(ALL_PLAYERS,RESEARCH,1,1)
+                ROOM_AVAILABLE(ALL_PLAYERS,BRIDGE,1,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,GUARD_POST,1,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,WORKSHOP,1,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,BARRACKS,1,0)
+
+            REM Magic
+
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_HAND,1,1)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_SLAP,1,1)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_POSSESS,1,1)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_IMP,1,1)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_SPEED,1,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_OBEY,1,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_CALL_TO_ARMS,1,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_CONCEAL,1,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_HOLD_AUDIENCE,1,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_CAVE_IN,1,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_HEAL_CREATURE,1,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_PROTECT,1,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_CHICKEN,1,0)
+
+            REM Workshop
+
+                TRAP_AVAILABLE(ALL_PLAYERS,WORD_OF_POWER,1,0)
+                TRAP_AVAILABLE(ALL_PLAYERS,LIGHTNING,1,0)
+
+                DOOR_AVAILABLE(ALL_PLAYERS,WOOD,1,0)
+                DOOR_AVAILABLE(ALL_PLAYERS,STEEL,1,0)
+
+        ENDIF
+
+        IF (PLAYER0, TIMER3 > 1300)
+            REM "This ghost may not look like much, but it is the real Avatar and plenty powerful! Train him well, you will need his help to withstand the undead hordes. Advance on the enemy before they overrun you, and defeat the Black Knight!"
+            DISPLAY_INFORMATION(20)
+        ENDIF
+
+    ENDIF
+
+REM The finale event
+
+    IF (PLAYER5, DUNGEON_DESTROYED == 1)
+        SET_TIMER(PLAYER0, TIMER2)
+    ENDIF
+
+    IF (PLAYER5, DUNGEON_DESTROYED == 1)
+
+        REM Steps of the finale event - Remove everything from the player
+        IF (PLAYER0, TIMER2 > 0)
+            REM Rooms
+                ROOM_AVAILABLE(ALL_PLAYERS,TREASURE,0,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,LAIR,0,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,GARDEN,0,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,TRAINING,0,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,RESEARCH,0,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,BRIDGE,0,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,GUARD_POST,0,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,WORKSHOP,0,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,BARRACKS,0,0)
+                ROOM_AVAILABLE(ALL_PLAYERS,TEMPLE,0,0)
+            REM Magic
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_HAND,0,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_SLAP,0,0)
+                REM Only leave possession
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_POSSESS,1,1)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_IMP,0,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_SPEED,0,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_OBEY,0,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_CALL_TO_ARMS,0,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_CONCEAL,0,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_HOLD_AUDIENCE,0,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_CAVE_IN,0,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_HEAL_CREATURE,0,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_PROTECT,0,0)
+                MAGIC_AVAILABLE(ALL_PLAYERS,POWER_CHICKEN,0,0)
+            REM Workshop
+                TRAP_AVAILABLE(ALL_PLAYERS,POISON_GAS,0,0)
+                TRAP_AVAILABLE(ALL_PLAYERS,LIGHTNING,0,0)
+                DOOR_AVAILABLE(ALL_PLAYERS,WOOD,0,0)
+                DOOR_AVAILABLE(ALL_PLAYERS,STEEL,0,0)
+            REM Remove gold
+                ADD_GOLD_TO_PLAYER(PLAYER0, -500000)
+        ENDIF
+
+        REM Kill and move everything
+        IF (PLAYER0, TIMER2 > 1)
+
+            REM Logic for moving and killing everyone
+            SET_MUSIC("hw_leptys_ambience.mp3")
+
+            ZOOM_TO_LOCATION(PLAYER0, 5)
+
+            REM Create the creature cage
+            CHANGE_SLAB_TYPE(15,13, HARD, NONE)
+            CHANGE_SLAB_TYPE(16,13, HARD, NONE)
+            CHANGE_SLAB_TYPE(17,13, HARD, NONE)
+
+            CHANGE_SLAB_TYPE(15,14, HARD, NONE)
+            CHANGE_SLAB_TYPE(17,14, HARD, NONE)
+
+            CHANGE_SLAB_TYPE(15,15, HARD, NONE)
+            CHANGE_SLAB_TYPE(16,15, HARD, NONE)
+            CHANGE_SLAB_TYPE(17,15, HARD, NONE)
+
+            MOVE_CREATURE(PLAYER5, ANY_CREATURE, ANYWHERE, 99, 6)
+
+            MOVE_CREATURE(PLAYER0, ANY_CREATURE, ANYWHERE, 99, 6)
+
+            MOVE_CREATURE(PLAYER0, THIEF, ANYWHERE, 1, 5)
+
+            NEXT_COMMAND_REUSABLE
+            KILL_CREATURE(PLAYER5, ANY_CREATURE, ANYWHERE, 99)
+
+            KILL_CREATURE(ALL_PLAYERS, VAMPIRE, ANYWHERE, 99)
+
+            KILL_CREATURE(PLAYER0, AVATAR, ANYWHERE, 99)
+            KILL_CREATURE(PLAYER0, WIZARD, ANYWHERE, 99)
+            KILL_CREATURE(PLAYER0, BARBARIAN, ANYWHERE, 99)
+            KILL_CREATURE(PLAYER0, ARCHER, ANYWHERE, 99)
+            KILL_CREATURE(PLAYER0, MONK, ANYWHERE, 99)
+            KILL_CREATURE(PLAYER0, DWARFA, ANYWHERE, 99)
+            KILL_CREATURE(PLAYER0, IMP, ANYWHERE, 99)
+
+            REM Reset action point for the message
+            RESET_ACTION_POINT(31, PLAYER0)
+
+            REM Reset action point for the disappearing path
+            RESET_ACTION_POINT(32, PLAYER0)
+
+            REM Reset action point to make sure the thief doesn't insta-die!
+            RESET_ACTION_POINT(8, PLAYER0)
+
+            REM To make sure the thief can still be dropped if he is in hand at the end, claim a tile
+            CHANGE_SLAB_OWNER(61,20, PLAYER0)
+
+            REM First conceal the whole map
+            CONCEAL_MAP_RECT(PLAYER0, 127,127, 255, 255, 1)
+
+            REM THen reveal the bit around the thief again
+            REVEAL_MAP_RECT(PLAYER0, 184, 61, 15, 15)
+
+        ENDIF
+
+        REM Create the grave corridor
+        IF (PLAYER0, TIMER2 > 2)
+
+            REM Make the area in front of the dungeon a graveyard
+
+            REM Player moves there, if thief ends up there he's dead
+            
+            REM Create the corridor
+
+            CHANGE_SLAB_TYPE(56,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(56,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(56,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(55,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(55,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(55,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(54,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(54,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(54,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(53,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(53,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(53,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(52,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(52,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(52,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(51,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(51,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(51,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(50,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(50,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(50,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(49,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(49,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(49,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(48,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(48,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(48,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(47,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(47,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(47,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(46,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(46,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(46,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(45,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(45,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(45,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(44,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(44,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(44,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(43,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(43,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(43,34, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(42,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(42,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(42,34, DAMAGED_WALL, NONE)
+
+            REM THe final graveyard
+
+            CHANGE_SLAB_TYPE(41,31, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(41,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(41,33, PRETTY_PATH, NONE)
+            CHANGE_SLAB_TYPE(41,34, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(41,35, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(40,31, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(40,32, GRAVE_AREA, NONE)
+            CHANGE_SLAB_TYPE(40,33, GRAVE_AREA, NONE)
+            CHANGE_SLAB_TYPE(40,34, GRAVE_AREA, NONE)
+            CHANGE_SLAB_TYPE(40,35, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(39,31, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(39,32, GRAVE_AREA, NONE)
+            CHANGE_SLAB_TYPE(39,33, GRAVE_AREA, NONE)
+            CHANGE_SLAB_TYPE(39,34, GRAVE_AREA, NONE)
+            CHANGE_SLAB_TYPE(39,35, DAMAGED_WALL, NONE)
+
+            CHANGE_SLAB_TYPE(38,31, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(38,32, GRAVE_AREA, NONE)
+            CHANGE_SLAB_TYPE(38,33, GRAVE_AREA, NONE)
+            CHANGE_SLAB_TYPE(38,34, GRAVE_AREA, NONE)
+            CHANGE_SLAB_TYPE(38,35, DAMAGED_WALL, NONE)
+
+            REM only walls - this is the end
+            CHANGE_SLAB_TYPE(37,31, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(37,32, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(37,33, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(37,34, DAMAGED_WALL, NONE)
+            CHANGE_SLAB_TYPE(37,35, DAMAGED_WALL, NONE)
+
+            REM Change owners to white
+            CHANGE_SLAB_OWNER(56,32,PLAYER_GOOD, MATCH)
+            CHANGE_SLAB_OWNER(56,33,PLAYER_GOOD, MATCH)
+            CHANGE_SLAB_OWNER(56,34,PLAYER_GOOD, MATCH)
+
+            CHANGE_SLAB_OWNER(38,33,PLAYER_GOOD, MATCH)
+
+        ENDIF
+
+        REM Some more minor stuff - add candle stick, set hunger, set flag
+        IF (PLAYER0, TIMER2 > 3)
+
+            REM This determines the player has almost won and disables certain loss conditions - ONLY AFTER MOVING!
+            SET_FLAG(PLAYER0, FLAG0, 2)
+
+            ADD_OBJECT_TO_LEVEL(CANDLESTCK, 9, 1, PLAYER0)
+            ADD_OBJECT_TO_LEVEL(CANDLESTCK, 10, 1, PLAYER0)
+
+            SET_CREATURE_CONFIGURATION(THIEF,HungerRate,0)
+            SET_CREATURE_CONFIGURATION(THIEF,Pay,0)
+        ENDIF
+
+        REM Cast spells for dramatic effect
+        IF (PLAYER0, TIMER2 > 4)
+            REM Make sure the thief doesn't die
+            NEXT_COMMAND_REUSABLE
+            SET_CREATURE_HEALTH(THIEF, 2000)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 7, POWER_CAVE_IN, 9, 1)
+        ENDIF
+
+        IF (PLAYER0, TIMER2 > 10)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 13, POWER_CAVE_IN, 9, 1)
+        ENDIF
+
+        IF (PLAYER0, TIMER2 > 20)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 14, POWER_CAVE_IN, 9, 1)
+        ENDIF
+
+        IF (PLAYER0, TIMER2 > 30)
+            USE_POWER_AT_LOCATION(PLAYER_GOOD, 15, POWER_LIGHTNING, 9, 1)
+        ENDIF
+
+    ENDIF
+
+    IF (PLAYER0, FLAG0 == 2)
+        IF_ACTION_POINT(31, PLAYER0)
+            REM "Your work is done. Rest now... forever..."
+            DISPLAY_MESSAGE(21, AVATAR)
+        ENDIF
+    ENDIF
+
+    IF (PLAYER0, FLAG0 == 2)
+        IF_ACTION_POINT(32, PLAYER0)
+            
+            NEXT_COMMAND_REUSABLE
+            CONCEAL_MAP_RECT(PLAYER0, 166, 100, 66, 96, 1)
+            CHANGE_SLAB_TYPE(43,33, DAMAGED_WALL, NONE)
+
+        ENDIF
+    ENDIF
+
+    IF (PLAYER0, FLAG0 == 2)
+        IF_ACTION_POINT(8, PLAYER0)
+            KILL_CREATURE(PLAYER0, THIEF, ANYWHERE, 1)
+        ENDIF
+    ENDIF
+
+    IF (PLAYER0, FLAG0 == 2)
+        IF_ACTION_POINT(23, PLAYER0)
+            NEXT_COMMAND_REUSABLE
+            CREATE_EFFECT(EFFECT_SPANGLE_BLACK, 21)
+
+            NEXT_COMMAND_REUSABLE
+            CREATE_EFFECT(EFFECT_SPANGLE_WHITE, 22)
+        ENDIF
+    ENDIF
+
+REM Final door condition
+
+    IF (PLAYER5, VAMPIRE > 0)
+        IF_ACTION_POINT(11, PLAYER0)
+            REM "Defeat all Vampire Lords to get in..."
+            DISPLAY_MESSAGE(22, VAMPIRE)
+        ENDIF
+    ENDIF
+
+    IF (PLAYER5, VAMPIRE == 0)
+        CHANGE_SLAB_TYPE(57,33, PRETTY_PATH, NONE)
+        CHANGE_SLAB_OWNER(57,33, PLAYER5, NONE)
+        CONCEAL_MAP_RECT(PLAYER0, 172,100, 1, 1, 1)
+        REM "and the path is open!"
+        DISPLAY_MESSAGE(23, VAMPIRE)
+        REM "The vampire lords are defeated"
+        DISPLAY_MESSAGE(24, VAMPIRE)
+        REM "Make your way to the lair of the black knight and defeat him!"
+        DISPLAY_OBJECTIVE(25, 15)
+    ENDIF
+
+REM Win condition
+
+    IF (PLAYER0, FLAG0 == 2)
+        IF (PLAYER0, THIEF == 0)
+            REM "or did none of this ever happen?"
+            DISPLAY_MESSAGE(26, AVATAR)
+            REM "Did he really help the ghost of the avatar,"
+            DISPLAY_MESSAGE(27, AVATAR)
+            REM "And thus, the thief's story came to a close."
+            DISPLAY_MESSAGE(28, AVATAR)
+            WIN_GAME
+        ENDIF
+    ENDIF
+
+REM Loss conditions
+
+    IF (PLAYER0, FLAG0 == 0)
+        IF (PLAYER0, THIEF == 0)
+            REM "Your thief has died! All Hallow's Eve can't be saved..."
+            DISPLAY_OBJECTIVE(29)
+            LOSE_GAME
+        ENDIF
+    ENDIF
+
+    IF (PLAYER0, FLAG0 == 1)
+        IF (PLAYER0, THIEF == 0)
+            REM "Your thief has died! All Hallow's Eve can't be saved..."
+            DISPLAY_OBJECTIVE(30)
+            LOSE_GAME
+        ENDIF
+
+        IF (PLAYER0, AVATAR == 0)
+            REM "The Avatar has died... again? Without him, All Hallow's Eve can't be saved!"
+            DISPLAY_OBJECTIVE(31)
+            LOSE_GAME
+        ENDIF
+
+    ENDIF
+
+REM Just some dialogue
+
+    IF_ACTION_POINT(12, PLAYER0)
+        REM "The Avatar's final resting place..."
+        DISPLAY_MESSAGE(32, THIEF)
+    ENDIF
+
+REM bridge logic
+
+    IF (PLAYER0, BRIDGE > 0)
+        ROOM_AVAILABLE(PLAYER0, BRIDGE, 1, 1)
+    ENDIF
+
+REM Timer - spawn waves when the player has 5 creatures
+
+     IF (PLAYER0, TOTAL_CREATURES > 4)
+        SET_TIMER(PLAYER0, TIMER1)
+        REM DEBUG!
+        REM DISPLAY_TIMER(PLAYER0, TIMER1, 0)
+     ENDIF
+
+REM Waves 
+
+    IF (PLAYER0, TIMER1 > 800)
+        REM "The vampire lords and their master have become aware of your presence. Be careful and destroy them before they destroy you!"
+        DISPLAY_INFORMATION(33)
+    ENDIF
+
+    REM Wave 1 - Thumb
+
+    CREATE_PARTY(finger1)
+        ADD_TO_PARTY(finger1, SKELETON, 2, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger1, SKELETON, 1, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger1, SKELETON, 1, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger1, SKELETON, 1, 0, ATTACK_DUNGEON_HEART, 0)
+
+    CREATE_PARTY(finger1_vampire)
+        ADD_TO_PARTY(finger1_vampire, VAMPIRE, 2, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger1_vampire, GHOST, 2, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger1_vampire, GHOST, 2, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger1_vampire, GHOST, 2, 0, ATTACK_DUNGEON_HEART, 0)
+
+    IF (PLAYER0, TIMER1 > 5000)
+        ADD_PARTY_TO_LEVEL(PLAYER5, finger1, -5, 1)
+        ADD_PARTY_TO_LEVEL(PLAYER5, finger1_vampire, -5, 1)
+        REM "The haunt begins, be on your guard!"
+        DISPLAY_MESSAGE(34, AVATAR)
+        HIDE_HERO_GATE(-5, 1)
+        CREATE_EFFECT_AT_POS(EFFECT_SPANGLE_WHITE, 160, 181)
+    ENDIF
+
+    REM Wave 2 - Index Finger
+
+    CREATE_PARTY(finger2)
+        ADD_TO_PARTY(finger2, SKELETON, 1, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger2, SKELETON, 2, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger2, SKELETON, 3, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger2, SKELETON, 4, 0, ATTACK_DUNGEON_HEART, 0)
+
+    IF (PLAYER0, TIMER1 > 15000)
+        ADD_PARTY_TO_LEVEL(PLAYER5, finger2, -4, 2)
+        REM "The next attack is here, near our base!"
+        DISPLAY_MESSAGE(35, AVATAR)
+        HIDE_HERO_GATE(-4, 1)
+        CREATE_EFFECT_AT_POS(EFFECT_SPANGLE_WHITE, 94, 181)
+    ENDIF
+
+    REM Between wave 2 and 3 - show main entrance
+
+    IF (PLAYER0, TIMER1 > 16500)
+        REM "The undead wait in their fortress. Be warned... it's guarded. Destroy the vampire lords hiding there!"
+        DISPLAY_OBJECTIVE(36, 24)
+    ENDIF
+
+    REM Wave 3 Middle finger
+
+    CREATE_PARTY(finger3)
+        ADD_TO_PARTY(finger3, SKELETON, 4, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger3, SKELETON, 4, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger3, SKELETON, 4, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger3, SKELETON, 4, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger3, GHOST, 4, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger3, GHOST, 4, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger3, GHOST, 4, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger3, GHOST, 4, 0, ATTACK_DUNGEON_HEART, 0)
+
+    CREATE_PARTY(finger3_vampire)
+        ADD_TO_PARTY(finger3_vampire, VAMPIRE, 6, 0, ATTACK_DUNGEON_HEART, 0)
+
+    IF (PLAYER0, TIMER1 > 26000)
+        ADD_PARTY_TO_LEVEL(PLAYER5, finger3, -3, 1)
+        ADD_PARTY_TO_LEVEL(PLAYER5, finger3_vampire, -3, 1)
+        REM "Careful, another wave approaches!"
+        DISPLAY_MESSAGE(37, AVATAR)
+        HIDE_HERO_GATE(-3, 1)
+        CREATE_EFFECT_AT_POS(EFFECT_SPANGLE_WHITE, 58, 157)
+    ENDIF
+
+    REM Wave 4 Ring finger
+
+    CREATE_PARTY(finger4)
+        ADD_TO_PARTY(finger4, GHOST, 10, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger4, GHOST, 10, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger4, GHOST, 10, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger4, GHOST, 10, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger4, GHOST, 10, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger4, GHOST, 10, 0, ATTACK_DUNGEON_HEART, 0)
+
+    IF (PLAYER0, TIMER1 > 47000)
+        ADD_PARTY_TO_LEVEL(PLAYER5, finger4, -2, 1)
+        REM "An attack coming from the golden finger!"
+        DISPLAY_MESSAGE(38, AVATAR)
+        HIDE_HERO_GATE(-2, 1)
+        CREATE_EFFECT_AT_POS(EFFECT_SPANGLE_WHITE, 94, 181)
+    ENDIF
+
+    REM Final wave - small finger
+
+    CREATE_PARTY(finger5)
+        ADD_TO_PARTY(finger5, SKELETON, 10, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger5, SKELETON, 10, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger5, SKELETON, 10, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger5, GHOST, 10, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger5, GHOST, 10, 0, ATTACK_DUNGEON_HEART, 0)
+        ADD_TO_PARTY(finger5, GHOST, 10, 0, ATTACK_DUNGEON_HEART, 0)
+
+    CREATE_PARTY(finger5_vampire)
+        ADD_TO_PARTY(finger5_vampire, VAMPIRE, 10, 0, ATTACK_DUNGEON_HEART, 0)
+
+    IF (PLAYER0, TIMER1 > 65000)
+        ADD_PARTY_TO_LEVEL(PLAYER5, finger5, -1, 1)
+        ADD_PARTY_TO_LEVEL(PLAYER5, finger5_vampire, -1, 1)
+        REM "Be wary, this vampire is powerful."
+        DISPLAY_MESSAGE(39, AVATAR)
+        REM "The final wave is here!"
+        DISPLAY_MESSAGE(40, AVATAR)
+        HIDE_HERO_GATE(-1, 1)
+        CREATE_EFFECT_AT_POS(EFFECT_SPANGLE_WHITE, 25, 88)
+    ENDIF
+
+REM Dwarves
+
+    IF (PLAYER0, DWARFA > 0)
+        REM "Murky darkness has this land tight in its grip. Thankfully the dwarves came prepared, and carried torches into the fight with the undead to brighten these pitch-black caverns."
+        DISPLAY_INFORMATION(41)
+    ENDIF
+
+REM Special box that powers up the avatar
+
+    REM "Empower Avatar-Ghost"
+    SET_BOX_TOOLTIP_ID(1,42)
+    SET_BOX_TOOLTIP_ID(2,42)
+    SET_BOX_TOOLTIP_ID(3,42)
+    SET_BOX_TOOLTIP_ID(4,42)
+
+    IF (PLAYER0, BOX1_ACTIVATED > 0)
+        REM "The Avatar has gained a level!"
+        DISPLAY_MESSAGE(46, AVATAR)
+        LEVEL_UP_CREATURE(PLAYER0, AVATAR, ANYWHERE, 1)
+    ENDIF
+
+    IF (PLAYER0, BOX2_ACTIVATED > 0)
+        REM "The Avatar has gained a level!"
+        DISPLAY_MESSAGE(46, AVATAR)
+        LEVEL_UP_CREATURE(PLAYER0, AVATAR, ANYWHERE, 1)
+    ENDIF
+
+    IF (PLAYER0, BOX3_ACTIVATED > 0)
+        REM "The Avatar has gained a level!"
+        DISPLAY_MESSAGE(46, AVATAR)
+        LEVEL_UP_CREATURE(PLAYER0, AVATAR, ANYWHERE, 1)
+    ENDIF
+
+    IF (PLAYER0, BOX4_ACTIVATED > 0)
+        REM "The Avatar has gained a level!"
+        DISPLAY_MESSAGE(46,, AVATAR)
+        LEVEL_UP_CREATURE(PLAYER0, AVATAR, ANYWHERE, 1)
+    ENDIF
+
+REM Add some creatures over the level
+
+    CREATE_PARTY(ghosts_graveyard_island)
+        ADD_TO_PARTY(ghosts_graveyard_island, GHOST, 5, 0, DEFEND_LOCATION, 0)
+        ADD_TO_PARTY(ghosts_graveyard_island, GHOST, 5, 0, DEFEND_LOCATION, 0)
+        ADD_TO_PARTY(ghosts_graveyard_island, GHOST, 5, 0, DEFEND_LOCATION, 0)
+        ADD_TO_PARTY(ghosts_graveyard_island, GHOST, 5, 0, DEFEND_LOCATION, 0)
+
+    ADD_PARTY_TO_LEVEL(PLAYER5, ghosts_graveyard_island, -6, 1)
+
+    HIDE_HERO_GATE(-6, 1)
+
+REM Add the skeletons top left
+
+    CREATE_PARTY(skeleton_trio)
+        ADD_TO_PARTY(skeleton_trio, SKELETON, 8, 0, DEFEND_LOCATION, 0)
+
+    ADD_PARTY_TO_LEVEL(PLAYER5, skeleton_trio, -7, 1)
+    ADD_PARTY_TO_LEVEL(PLAYER5, skeleton_trio, -8, 1)
+    ADD_PARTY_TO_LEVEL(PLAYER5, skeleton_trio, -9, 1)
+
+    HIDE_HERO_GATE(-7, 1)
+    HIDE_HERO_GATE(-8, 1)
+    HIDE_HERO_GATE(-9, 1)
+
+REM Left middle special protectors
+
+    CREATE_PARTY(cavern_protectors)
+        ADD_TO_PARTY(cavern_protectors, SKELETON, 5, 0, DEFEND_LOCATION, 0)
+        ADD_TO_PARTY(cavern_protectors, GHOST, 6, 0, DEFEND_LOCATION, 0)
+
+    ADD_PARTY_TO_LEVEL(PLAYER5, cavern_protectors, -10, 4)
+
+    HIDE_HERO_GATE(-10, 1)
+
+REM Top right lads
+
+    CREATE_PARTY(cove_skeletons)
+        ADD_TO_PARTY(cove_skeletons, SKELETON, 10, 0, DEFEND_LOCATION, 0)
+        ADD_TO_PARTY(cove_skeletons, SKELETON, 6, 0, DEFEND_LOCATION, 0)
+        ADD_TO_PARTY(cove_skeletons, SKELETON, 6, 0, DEFEND_LOCATION, 0)
+        ADD_TO_PARTY(cove_skeletons, SKELETON, 6, 0, DEFEND_LOCATION, 0)
+
+    ADD_PARTY_TO_LEVEL(PLAYER5, cove_skeletons, -11, 1)
+
+    HIDE_HERO_GATE(-11, 1)
+
+REM Show imp when available
+
+    IF_AVAILABLE(PLAYER0, POWER_IMP > 0)
+        TUTORIAL_FLASH_BUTTON(21, -1)
+    ENDIF
+
+REM Make temple available when claimed / same with workshop
+
+    IF (PLAYER0, TEMPLE > 0)
+        ROOM_AVAILABLE(PLAYER0, TEMPLE, 1, 1)
+    ENDIF
+
+    IF (PLAYER0, WORKSHOP > 0)
+        ROOM_AVAILABLE(PLAYER0, WORKSHOP, 1, 1)
+    ENDIF
+
+REM The final party
+
+    CREATE_PARTY(black_knight_support)
+        ADD_TO_PARTY(black_knight_support, GHOST, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, GHOST, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, GHOST, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, GHOST, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, GHOST, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, GHOST, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, GHOST, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, GHOST, 6, 0, ATTACK_ENEMIES, 0)
+
+        ADD_TO_PARTY(black_knight_support, SKELETON, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, SKELETON, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, SKELETON, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, SKELETON, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, SKELETON, 6, 0, ATTACK_ENEMIES, 0)
+        ADD_TO_PARTY(black_knight_support, SKELETON, 6, 0, ATTACK_ENEMIES, 0)
+
+    IF_SLAB_TYPE(61,23, PRETTY_PATH)
+        REM "The final fight begins! Pull your weight!"
+        DISPLAY_MESSAGE(50, AVATAR)
+        ADD_PARTY_TO_LEVEL(PLAYER5, black_knight_support, 13, 1)
+    ENDIF
+
+REM Note when entering the fortress
+
+    IF_ACTION_POINT(24, PLAYER0)
+        REM "The Avatar and the Thief noticed that the fortress of the black knight was guarded. Ghosts and skeletons patrolled the halls. Not knowing what lies ahead, they resolved to come prepared for a fight. But they thought it best not to wait too long. The undead horde was only growing with time..."
+        DISPLAY_OBJECTIVE(51, 24)
+    ENDIF
+
+REM Corridor of ghosts
+
+    IF_ACTION_POINT(25, PLAYER0)
+        ADD_CREATURE_TO_LEVEL(PLAYER5, GHOST, 26, 1, 6, 0)
+    ENDIF
+
+    IF_ACTION_POINT(26, PLAYER0)
+        ADD_CREATURE_TO_LEVEL(PLAYER5, GHOST, 27, 1, 7, 0)
+    ENDIF
+
+    IF_ACTION_POINT(27, PLAYER0)
+        ADD_CREATURE_TO_LEVEL(PLAYER5, GHOST, 28, 1, 8, 0)
+    ENDIF
+
+    IF_ACTION_POINT(28, PLAYER0)
+        ADD_CREATURE_TO_LEVEL(PLAYER5, GHOST, 29, 1, 9, 0)
+    ENDIF
+
+    IF_ACTION_POINT(29, PLAYER0)
+        ADD_CREATURE_TO_LEVEL(PLAYER5, GHOST, 30, 1, 10, 0)
+    ENDIF
