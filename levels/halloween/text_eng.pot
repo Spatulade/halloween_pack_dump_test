@@ -815,7 +815,7 @@ msgstr ""
 
 #: guitext:164
 msgctxt "In-game message"
-msgid "We're so close! Soon he will be free!"
+msgid " We're so close! Soon he will be free!"
 msgstr ""
 
 #: guitext:165
@@ -870,7 +870,7 @@ msgstr ""
 
 #: guitext:175
 msgctxt "In-game message"
-msgid "We finally have it! Activate the artefact!"
+msgid " We finally have it! Activate the artefact!"
 msgstr ""
 
 #: guitext:176
@@ -1120,12 +1120,12 @@ msgstr ""
 
 #: guitext:915
 msgctxt "In-game message"
-msgid "Now that you have an imp, claim territory and build yourself back up. Then crush the heroes in the base to the north and show them you are not to be trifled with."
+msgid " Now that you have an imp, claim territory and build yourself back up. Then crush the heroes in the base to the north and show them you are not to be trifled with."
 msgstr ""
 
 #: guitext:916
 msgctxt "In-game message"
-msgid "Why did you do that? We're going to have to find a new imp now."
+msgid " Why did you do that? We're going to have to find a new imp now."
 msgstr ""
 
 #: guitext:917
@@ -1145,7 +1145,7 @@ msgstr ""
 
 #: guitext:920
 msgctxt "In-game message"
-msgid "Now that the imp we rescued is dead, I reckon our next plan is to lay down and die like an animal. That will show them, Keeper."
+msgid " Now that the imp we rescued is dead, I reckon our next plan is to lay down and die like an animal. That will show them, Keeper."
 msgstr ""
 
 #: guitext:921
@@ -1165,7 +1165,7 @@ msgstr ""
 
 #: guitext:924
 msgctxt "In-game message"
-msgid "We've taken too long and now the lord of this realm has arrived. It's over."
+msgid " We've taken too long and now the lord of this realm has arrived. It's over."
 msgstr ""
 
 #: guitext:925
@@ -1185,17 +1185,17 @@ msgstr ""
 
 #: guitext:928
 msgctxt "In-game message"
-msgid "Don't do this. You will regret it."
+msgid " Don't do this. You will regret it."
 msgstr ""
 
 #: guitext:929
 msgctxt "In-game message"
-msgid "Don't do this. You will regret it."
+msgid " Don't do this. You will regret it."
 msgstr ""
 
 #: guitext:930
 msgctxt "In-game message"
-msgid "You should have listened..."
+msgid " You should have listened..."
 msgstr ""
 
 #: guitext:931
@@ -1310,12 +1310,12 @@ msgstr ""
 
 #: guitext:1085
 msgctxt "In-game message"
-msgid "!player.addgold PLAYER_GOOD -9999999999"
+msgid " "
 msgstr ""
 
 #: guitext:1086
 msgctxt "In-game message"
-msgid "I should have finished you a long time ago. No more games."
+msgid " I should have finished you a long time ago. No more games."
 msgstr ""
 
 #: guitext:1087
