@@ -40,12 +40,16 @@ SET_CREATURE_INSTANCE(SPIDKIN,2,SLOW,2)
 SET_CREATURE_INSTANCE(SPIDKIN,6,FREEZE,7)
 SET_CREATURE_CONFIGURATION(SKELEMAGE,PrimaryJobs,RESEARCH)
 SET_CREATURE_CONFIGURATION(SKELEMAGE,SecondaryJobs,TRAIN)
-SET_CREATURE_CONFIGURATION(NECROMANCER,Health,3000)
-SET_CREATURE_CONFIGURATION(NECROMANCER,Armour,80)
+SET_CREATURE_CONFIGURATION(NECROMANCER,Health,8500)
+SET_CREATURE_CONFIGURATION(NECROMANCER,Armour,100)
+SET_CREATURE_CONFIGURATION(NECROMANCER,Strength,125)
 SET_CREATURE_FEARSOME_FACTOR(MAIDEN,100)
 SET_CREATURE_CONFIGURATION(GHOST,FearStronger,1250)
 SET_CREATURE_CONFIGURATION(GHOST2,FearStronger,2000)
 SET_CREATURE_PROPERTY(MAIDEN,NO_CORPSE_ROTTING,1)
+SET_CREATURE_CONFIGURATION(NECROMANCER,HurtByLava,1)
+
+SET_MUSIC(3)
 
 SET_GAME_RULE(ImpWorkExperience,400)
 
@@ -69,8 +73,8 @@ ADD_CREATURE_TO_POOL(FLY,2)
 ADD_CREATURE_TO_POOL(DEMONSPAWN,5)
 ADD_CREATURE_TO_POOL(TROLL,3)
 ADD_CREATURE_TO_POOL(HELL_HOUND,10)
-ADD_CREATURE_TO_POOL(SORCEROR,4)
-ADD_CREATURE_TO_POOL(DRUID,4)
+ADD_CREATURE_TO_POOL(SORCEROR,3)
+ADD_CREATURE_TO_POOL(DRUID,3)
 ADD_CREATURE_TO_POOL(ORC,15)
 ADD_CREATURE_TO_POOL(BILE_DEMON,5)
 ADD_CREATURE_TO_POOL(DRAGON,3)
@@ -197,29 +201,32 @@ CREATE_PARTY(NECRO)
 ADD_TO_PARTY(NECRO,NECROMANCER,10,0,ATTACK_DUNGEON_HEART,0)
 ADD_TO_PARTY(NECRO,VAMPIRE,10,0,ATTACK_DUNGEON_HEART,0)
 ADD_TO_PARTY(NECRO,VAMPIRE,10,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO,VAMPIRE,10,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO,VAMPIRE,10,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO,SKELE,9,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO,SKELEMAGE,10,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
 
 CREATE_PARTY(NECRO_GUARD1)
-ADD_TO_PARTY(NECRO_GUARD1,SKELEMAGE,10,0,ATTACK_DUNGEON_HEART,0)
 ADD_TO_PARTY(NECRO_GUARD1,GHOST2,10,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO_GUARD1,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO_GUARD1,SKELE,9,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO_GUARD1,SKELE,9,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO_GUARD1,SKELE,9,0,ATTACK_DUNGEON_HEART,0)
 ADD_TO_PARTY(NECRO_GUARD1,GHOST2,10,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO_GUARD1,SKELE,9,0,ATTACK_DUNGEON_HEART,0)
 
 CREATE_PARTY(NECRO_GUARD2)
+ADD_TO_PARTY(NECRO_GUARD2,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO_GUARD2,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO_GUARD2,SKELEMAGE,10,0,ATTACK_DUNGEON_HEART,0)
 ADD_TO_PARTY(NECRO_GUARD2,SKELE,9,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO_GUARD2,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO_GUARD2,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO_GUARD2,SKELEMAGE,10,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO_GUARD2,SKELEMAGE,10,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO_GUARD2,SKELE,9,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO_GUARD2,SKELE,9,0,ATTACK_DUNGEON_HEART,0)
 
 CREATE_PARTY(NECRO_GUARD3)
 ADD_TO_PARTY(NECRO_GUARD3,GHOST2,10,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO_GUARD3,GHOST2,10,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO_GUARD3,SKELEMAGE,10,0,ATTACK_DUNGEON_HEART,0)
 ADD_TO_PARTY(NECRO_GUARD3,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO_GUARD3,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
-ADD_TO_PARTY(NECRO_GUARD3,SKELE,9,0,ATTACK_DUNGEON_HEART,0)
+ADD_TO_PARTY(NECRO_GUARD2,SKELE,10,0,ATTACK_DUNGEON_HEART,0)
 
 REM MAP SCRIPT
 REVEAL_MAP_RECT(PLAYER0,105,87,15,15)
@@ -229,28 +236,31 @@ CHANGE_SLAB_TYPE(43,47,HARD_FLOOR)
 CHANGE_SLAB_TYPE(42,47,HARD_FLOOR)
 CHANGE_SLAB_TYPE(41,47,HARD_FLOOR)
 
-REM "You came along these strange lands and met a Maiden who tells you the story of a Wizard who cured her after being poisoned by a powerfull Necromancer. She never recovered completely and somehow she turned half human, half spider due to the poison. Today the Necormancer is still here and is stronger than ever, even the Wizard became scared. Over the years he began hiding himself deep in a booby-trapped maze he build. Although the Maiden warnes you that strange, inexplicable things may happen here, self-confident as you are, you promise her to defeat the Necromancer and that you will protect her at all cost!"
-DISPLAY_OBJECTIVE(62,Player0)
+IF_SLAB_OWNER(61,59,PLAYER0) REM Makes Necromancers dungeon claimable when almost defeated
+    IF(PLAYER5,TOTAL_CREATURES<=15)
+        CHANGE_SLAB_TYPE(61,60,PATH)
+    ENDIF
+ENDIF
+
+QUICK_OBJECTIVE(1,"You came along these strange lands and met a Maiden who tells you the story of a Wizard who cured her after being poisoned by a powerfull Necromancer. She never recovered completely and somehow she turned half human, half spider due to the poison. Today the Necormancer is still here and is stronger than ever, even the Wizard became scared. Over the years he began hiding himself deep in a booby-trapped maze he build. Although the Maiden warnes you that strange, inexplicable things may happen here, self-confident as you are, you promise her to defeat the Necromancer and that you will protect her at all cost!",Player0)
 
 IF_ACTION_POINT(9,PLAYER0)
-    REM "This should be the Wizards maze right over there, the Maiden says he doesn't want visitors, but still you could use his magical help to get across that lava lake. After that is sorted, you can take care of that Necromancer once and for all!"
-    DISPLAY_OBJECTIVE(63)
-    REM "'The Wizards Maze' is often referred to as 'The Possession Maze' because many creatures did feel a presence in there and drove insane. Even Imps were caught doing things they normally can't do, so the explanation could only be some kind of Possession."
-    DISPLAY_INFORMATION(64)
+    QUICK_OBJECTIVE(2,"This should be the Wizards maze right over there, the Maiden says he doesn't want visitors, but still you could use his magical help to get across that lava lake. After that is sorted, you can take care of that Necromancer once and for all!")
+    QUICK_INFORMATION(18,"'The Wizards Maze' is often referred to as 'The Possession Maze' because many creatures did feel a presence in there and drove insane. Even Imps were caught doing things they normally can't do, so the explanation could only be some kind of Possession.")
 ENDIF
 
 IF_ACTION_POINT(7,PLAYER0)
     ALLY_PLAYERS(PLAYER0,PLAYER3,3)
+    CHANGE_SLAB_TYPE(72,33,PURPLE_PATH)
 ENDIF
 
 IF_ACTION_POINT(12,PLAYER0)
-    REM "You have found the Wizard and after some negotiations he will help you get accross, if only he knew the spell. After years of isolation, he doesn't remember. He will look it up in his books and let you know when he is ready to cast the spell. In the meantime he suggest you train up and warns you to not underestimate the Necromancer!"
-    DISPLAY_INFORMATION(65)
+    QUICK_INFORMATION(3,"You have found the Wizard and after some negotiations he will help you get accross, if only he knew the spell. After years of isolation, he doesn't remember. He will look it up in his books and let you know when he is ready to cast the spell. In the meantime he suggest you train up and warns you to not underestimate the Necromancer!")
     SET_TIMER(PLAYER0,TIMER0)
     SET_FLAG(PLAYER0,FLAG1,0) REM Stops the waves
 ENDIF
 
-IF(PLAYER0,TIMER0>3000)
+IF(PLAYER0,TIMER0>2250)
     IF(PLAYER_GOOD,HELL_HOUND==0)
         IF(PLAYER_GOOD,FLYING_TERROR==0)
             IF(PLAYER_GOOD,HORNY==0)
@@ -265,11 +275,10 @@ IF(PLAYER0,FLAG7==1)
     IF(PLAYER0,VIEW_TYPE==1)
         ZOOM_TO_LOCATION(PLAYER0,14)
     ENDIF
-    IF(PLAYER0,TIMER0>=50)
+    IF(PLAYER0,TIMER0>=30)
         CHANGE_SLAB_TYPE(42,15,PATH)
         REVEAL_MAP_LOCATION(PLAYER0,10,10)
-        REM "The Wizard has found the spell and is using it to drain the lava lake in the South, this process does take a few minutes. Although he helped you this time, he doesn't want to join you in your fight against the Necromancer and is not willing to give you access to his secrets!"
-        DISPLAY_INFORMATION(66)
+        QUICK_INFORMATION(4,"The Wizard has found the spell and is using it to drain the lava lake in the South, this process does take a few minutes. Although he helped you this time, he doesn't want to join you in your fight against the Necromancer and is not willing to give you access to his secrets!")
         CHANGE_SLAB_TYPE(36,47,PATH)
         CHANGE_SLAB_TYPE(37,48,PATH)
         CHANGE_SLAB_TYPE(37,49,PATH)
@@ -383,8 +392,7 @@ IF(PLAYER0,FLAG7==1)
         IF(PLAYER0,VIEW_TYPE==1)
             ZOOM_TO_LOCATION(PLAYER0,10)
         ENDIF
-        REM "Meanwhile you better search a solution to take those secrets! If there was only something to blow up those walls so we could steal those secrets! Oh wait didn't we saw something usefull? Can somebody go and pick that up?"
-        DISPLAY_OBJECTIVE(67,10)
+        QUICK_OBJECTIVE(5,"Meanwhile you better search a solution to take those secrets! If there was only something to blow up those walls so we could steal those secrets! Oh wait didn't we saw something usefull? Can somebody go and pick that up?",10)
     ENDIF
     IF_SLAB_OWNER(75,41,PLAYER3)
         IF(PLAYER0,TIMER0>4000)
@@ -544,14 +552,12 @@ IF(PLAYER0,FLAG7==1)
         CHANGE_SLAB_TYPE(68,52,LAVA)
         CHANGE_SLAB_TYPE(68,53,LAVA)
         CHANGE_SLAB_TYPE(68,54,LAVA)
-        REM "The lava lake is drained, now nothing stands in your way! If you are fully prepared, there is only one thing left to do: DEFEAT THE NECROMANCER!"
-        DISPLAY_OBJECTIVE(68)
+        QUICK_OBJECTIVE(12,"The lava lake is drained, now nothing stands in your way! If you are fully prepared, there is only one thing left to do: DEFEAT THE NECROMANCER!")
     ENDIF
 ENDIF
 
 IF_AVAILABLE(PLAYER0,TNT>0)
-    REM "Good job! Now blow up that wall and steal those secrets! But be carefull! We only have one chance!"
-    DISPLAY_OBJECTIVE(69,11)
+    QUICK_OBJECTIVE(6,"Good job! Now blow up that wall and steal those secrets! But be carefull! We only have one chance!",11)
     IF(PLAYER0,VIEW_TYPE==1)
         ZOOM_TO_LOCATION(PLAYER0,11)
     ENDIF
@@ -561,11 +567,35 @@ IF_AVAILABLE(PLAYER0,TNT>0)
     CHANGE_SLAB_TYPE(59,37,PRETTY_PATH)
     CHANGE_SLAB_OWNER(59,37,PLAYER3)
     CHANGE_SLAB_OWNER(59,36,PLAYER3)
+    CHANGE_SLAB_TYPE(65,38,PATH)
+    CHANGE_SLAB_TYPE(62,39,PATH)
+    CHANGE_SLAB_TYPE(59,35,PATH)
+    CHANGE_SLAB_TYPE(62,31,PATH)
+    CHANGE_SLAB_TYPE(62,29,PATH)
+    CHANGE_SLAB_TYPE(70,34,PATH)
+    CHANGE_SLAB_TYPE(72,33,PATH)
+ENDIF
+
+IF_ACTION_POINT(15,PLAYER0)
+    CHANGE_SLAB_TYPE(59,35,PURPLE_PATH)
+ENDIF
+
+IF_ACTION_POINT(16,PLAYER0)
+    CHANGE_SLAB_TYPE(62,31,PURPLE_PATH)
+    CHANGE_SLAB_TYPE(62,29,PURPLE_PATH)
+ENDIF
+
+IF_ACTION_POINT(17,PLAYER0)
+    CHANGE_SLAB_TYPE(65,38,PURPLE_PATH)
+    CHANGE_SLAB_TYPE(62,39,PURPLE_PATH)
+ENDIF
+
+IF_ACTION_POINT(18,PLAYER0)
+    CHANGE_SLAB_TYPE(70,34,PURPLE_PATH)
 ENDIF
 
 IF(PLAYER0,WIZARD>0)
-    REM "Alright, alright you can have it, take it! I'll do what you ask... please have mercy for an old Wizard like me..."
-    DISPLAY_INFORMATION(70)
+    QUICK_INFORMATION(8,"Alright, alright you can have it, take it! I'll do what you ask... please have mercy for an old Wizard like me...")
 ENDIF
 
 REM Makes sure waves aren't spawning while in possession, assuming player is busy in the maze
@@ -585,22 +615,20 @@ ENDIF
 
 REM CREEPY MUSIC IN POSSESSION DURING MAZE OBJECTIVE
 IF(PLAYER0,FLAG0==1)
-    SET_TIMER(PLAYER0,TIMER2)
-    PLAY_MESSAGE(PLAYER0,SOUND,"hw_leptys_ambience.mp3")
-    IF(PLAYER0,TIMER2>=2000)
-        NEXT_COMMAND_REUSABLE
-        PLAY_MESSAGE(PLAYER0,SOUND,"hw_leptys_ambience.mp3")
-        NEXT_COMMAND_REUSABLE
-        SET_TIMER(PLAYER0,TIMER2)
-    ENDIF
+    NEXT_COMMAND_REUSABLE
+    SET_MUSIC("hw_leptys_ambience.mp3")
+ENDIF
+
+IF(PLAYER0,FLAG0==0)
+    NEXT_COMMAND_REUSABLE
+    SET_MUSIC(3)
 ENDIF
 
 REM COLOUR CURSE
 IF_ACTION_POINT(6,PLAYER0)
     SET_FLAG(PLAYER0,FLAG5,0)
     IF(PLAYER0,FLAG5==0)
-        REM "What is that strange feeling, you start to see everything black! Are you cursed?... AAAAGHR! The Necromancer is messing with your head!"
-        DISPLAY_OBJECTIVE(71)
+        QUICK_OBJECTIVE(9,"What is that strange feeling, you start to see everything black! Are you cursed?... AAAAGHR! The Necromancer is messing with your head!")
         NEXT_COMMAND_REUSABLE
         PLAY_MESSAGE(PLAYER0,SOUND,"trickortreat.mp3")
         NEXT_COMMAND_REUSABLE
@@ -612,8 +640,7 @@ IF_ACTION_POINT(6,PLAYER0)
     ENDIF
     IF(PLAYER0,FLAG5==1)
         IF(PLAYER0,TIMER3>=900)
-            REM "You start to feel better, seems like the curse has worn off.."
-            DISPLAY_OBJECTIVE(72)
+            QUICK_OBJECTIVE(10,"You start to feel better, seems like the curse has worn off..")
             NEXT_COMMAND_REUSABLE
             RANDOMISE_FLAG(PLAYER0,FLAG4,7)
             IF(PLAYER0,FLAG4==1)
@@ -695,8 +722,7 @@ ENDIF
 
 IF(PLAYER0,FLAG1==1) REM Entrance and Workshop claimed, first waves begin
     IF(PLAYER0,FLAG0==0) REM not in position during the maze-objective
-        REM "Oh no! The Necromancer has heard about you and your reputation! He is dedicated to stop you! The war is on!"
-        DISPLAY_INFORMATION(73)
+        QUICK_INFORMATION(7,"Oh no! The Necromancer has heard about you and your reputation! He is dedicated to stop you! The war is on!")
         SET_TIMER(PLAYER0,TIMER1)
         IF(PLAYER0,TOTAL_CREATURES>=3)
             ADD_PARTY_TO_LEVEL(PLAYER_GOOD,WARMUP,1,1)
@@ -835,8 +861,7 @@ ENDIF
 IF(PLAYER0,TIMER0>800)
     IF(PLAYER0,VIEW_TYPE==1)
         SET_FLAG(PLAYER0,FLAG0,0) REM Stops the ambient sounds from the maze.
-        REM "The Necromancer has stolen your portal and summons creatures right from hell! Defend yourself!"
-        DISPLAY_OBJECTIVE(74,5)
+        QUICK_OBJECTIVE(11,"The Necromancer has stolen your portal and summons creatures right from hell! Defend yourself!",5)
         CHANGE_SLAB_TYPE(42,15,WATER)
         CHANGE_SLAB_OWNER(44,10,PLAYER_GOOD,MATCH)
         CHANGE_SLAB_OWNER(46,10,PLAYER_GOOD,MATCH)
@@ -845,13 +870,13 @@ IF(PLAYER0,TIMER0>800)
     ENDIF
 ENDIF
 
-IF(PLAYER0,TIMER0>1400)
+IF(PLAYER0,TIMER0>1200)
     IF(PLAYER_GOOD,FLYING_TERROR==0)
         ADD_PARTY_TO_LEVEL(PLAYER_GOOD,HELL1,5,1)
     ENDIF
 ENDIF
 
-IF(PLAYER0,TIMER0>2000)
+IF(PLAYER0,TIMER0>1800)
     IF(PLAYER_GOOD,FLYING_TERROR==0)
         ADD_PARTY_TO_LEVEL(PLAYER_GOOD,HELL2,5,1)
     ENDIF
@@ -859,8 +884,7 @@ ENDIF
 
 IF_ACTION_POINT(13,PLAYER0)
     SET_TIMER(PLAYER0,TIMER1)
-    REM "Look at them! What are they doing? WATCH OUT, they are summoning the Necromancer himself!"
-    DISPLAY_INFORMATION(75)
+    QUICK_OBJECTIVE(15,"Look at them! What are they doing? WATCH OUT, they are summoning the Necromancer himself!")
     IF(PLAYER0,TIMER1>50)
         CHANGE_SLAB_TYPE(51,73,HARD_FLOOR,MATCH)
         CHANGE_SLAB_TYPE(49,73,HARD_FLOOR,MATCH)
@@ -873,7 +897,7 @@ IF_ACTION_POINT(13,PLAYER0)
     ENDIF
     IF(PLAYER0,TIMER1>150)
         ADD_PARTY_TO_LEVEL(PLAYER_GOOD,NECRO,PLAYER5,1)
-        ADD_PARTY_TO_LEVEL(PLAYER_GOOD,NECRO_GUARD3,PLAYER5,2)
+        ADD_PARTY_TO_LEVEL(PLAYER_GOOD,NECRO_GUARD3,PLAYER5,1)
     ENDIF
 ENDIF
 
@@ -892,8 +916,7 @@ IF_SLAB_OWNER(80,25,PLAYER0)
 ENDIF
 
 IF(PLAYER0,CREATURES_FROM_SACRIFICE==2)
-    REM "It seems the Necromancer is strong and smart, there is a powerfull dark spell in this land preventing more then two summons through the temple. Looks like the Necromancer is scared for something after all. Maybe we could multiply our numbers in some other ways?"
-    DISPLAY_INFORMATION(76)
+    QUICK_INFORMATION(16,"It seems the Necromancer is strong and smart, there is a powerfull dark spell in this land preventing more then two summons through the temple. Looks like the Necromancer is scared for something after all. Maybe we could multiply our numbers in some other ways?")
     REMOVE_SACRIFICE_RECIPE(TROLL,DARK_MISTRESS,BILE_DEMON)
     REMOVE_SACRIFICE_RECIPE(BUG,SPIDER)
     REMOVE_SACRIFICE_RECIPE(SPIDER,SPIDER,SPIDER)
@@ -911,12 +934,10 @@ IF(PLAYER5,DUNGEON_DESTROYED==1)
             SET_TIMER(PLAYER0,TIMER0)
             IF(PLAYER0,TIMER0>=100)
                 IF(PLAYER0,WIZARD==1)
-                    REM "You did it, you defeated the Necromancer and all dark magic is gone. Thanks for playing! Made by Crokydriver"
-                    DISPLAY_OBJECTIVE(77)
+                    QUICK_OBJECTIVE(13,"You did it, you defeated the Necromancer and all dark magic is gone. Thanks for playing! Made by Crokydriver")
                 ENDIF
                 IF(PLAYER0,WIZARD==0)
-                    REM "You did it, you defeated the Necromancer and all dark magic is gone. Sadly you failed to protect the Wizard and so the Maiden is left behind all by herself."
-                    DISPLAY_OBJECTIVE(78)
+                    QUICK_OBJECTIVE(14,"You did it, you defeated the Necromancer and all dark magic is gone. Sadly you failed to protect the Wizard and so the Maiden is left behind all by herself.")
                 ENDIF
 
             ENDIF
@@ -934,8 +955,7 @@ ENDIF
 
 IF(PLAYER0,MAIDEN==0)
     IF(PLAYER0,GAME_TURN>50)
-        REM "The Maiden has been killed, you failed to protect her and broke your promise!"
-        DISPLAY_OBJECTIVE(79)
+        QUICK_OBJECTIVE(17,"The Maiden has been killed, you failed to protect her and broke your promise!")
         LOSE_GAME
     ENDIF
 ENDIF
