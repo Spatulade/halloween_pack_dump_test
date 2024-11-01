@@ -1,3 +1,12 @@
+# *****************************************************************************
+#  Free implementation of Bullfrog's Dungeon Keeper strategy game.
+# *****************************************************************************
+#   @file levels/halloween/text_ger.po
+#      KeeperFX Halloween Levels strings file and translation template
+#  @par Purpose:
+#      Holds english strings of the Halloween level pack.
+# *****************************************************************************
+
 #: guitext:1
 msgctxt "In-game message"
 msgid "Ghosts have hidden Spooky things in this realm. Destroy them all."
