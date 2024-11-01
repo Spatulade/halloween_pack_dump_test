@@ -735,7 +735,7 @@ SET_BOX_TOOLTIP_ID(100,81)
 REM "Desperate Maneuver: Heal and set buffs on all your minions, then teleport them to your Dungeon Heart in a final attempt at survival. Use with caution."
 SET_BOX_TOOLTIP_ID(200,82)
 
-REM # "Trick-or-Treat: Spawn a Ghost for yourself and a Skeleton for your opponent. May have unwanted side effects."
+REM # "Trick-or-Treat: Permanently activate a Trick-or-Treat effect at random intervals."
 IF(PLAYER0,BOX0_ACTIVATED > 0)
 	NEXT_COMMAND_REUSABLE
 	ADD_CREATURE_TO_LEVEL(PLAYER0,IMP,LAST_EVENT,1,1,0)
@@ -2107,7 +2107,7 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 			SET_TIMER(PLAYER0,TIMER0)
 		ENDIF
 	ENDIF
-	REM # Randomise a flag to determine a fear value for IMP.
+	REM # Randomize a flag to determine a fear value for IMP.
 	IF(PLAYER0,ACTIVE_BATTLES != 0)
 		IF(PLAYER0,TIMER1 > PLAYER0,TOTAL_SCORE)
 			NEXT_COMMAND_REUSABLE
@@ -2235,7 +2235,7 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 		REM "Your minions forged a Special Trap that lets you swap a tile for an unclaimed path. Think it's useless? Go ahead, place it on a bridge and see what happens!"
 		DISPLAY_INFORMATION(101)
 	ENDIF
-	REM # Give information about the rules.
+	REM # Give information about the incoming invasion.
 	IF(PLAYER_GOOD,GAME_TURN >= 1200)
 		REM "Welcome to the twisted carnival where the rules have been joyfully mangled by a sinister force. Training rooms cap at level 8, imprisonment is hit-or-miss, and whatever you torture might just kick the bucket. The repeat trigger for possession mode is a delightful quality-of-life feature, while diggers rake in experience just for shoveling dirt. Rooms sell for a glorious full price, oh and also... why do I even bother? It's not like anyone will read this. Cheers to the madness!"
 		DISPLAY_INFORMATION(102)
@@ -2739,7 +2739,7 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 		NEXT_COMMAND_REUSABLE
 		PLAY_MESSAGE(PLAYER0,SPEECH,67)
 		NEXT_COMMAND_REUSABLE
-		MOVE_CREATURE(PLAYER0,ANY_CREATURE,AT_ACTION_POINT[1],1,7)
+		TRANSFER_CREATURE(PLAYER0,ANY_CREATURE,AT_ACTION_POINT[1],1)
 		NEXT_COMMAND_REUSABLE
 		COUNT_CREATURES_AT_ACTION_POINT(1,PLAYER0,ANY_CREATURE,PLAYER6,FLAG2)
 	ENDIF

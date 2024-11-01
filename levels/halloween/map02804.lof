@@ -1,7 +1,7 @@
 ; KeeperFX Level Overview File (LOF)
 MAP_FORMAT_VERSION = 1.06
-NAME_TEXT = The Necromancer's Hold
-NAME_ID = 
+NAME_TEXT = The Necromancer's Hold
+NAME_ID = 205
 KIND = FREE
 ENSIGN_POS = 
 ENSIGN_ZOOM = 

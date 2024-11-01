@@ -40,7 +40,8 @@ START_MONEY(PLAYER0,1700)
 START_MONEY(PLAYER_NEUTRAL,1000000)
 START_MONEY(PLAYER6,1000)
 IF(PLAYER_NEUTRAL,MONEY < 999800)
-    QUICK_MESSAGE(42,"I don't think these will break any time soon...",PLAYER0)
+    REM "I don't think these will break any time soon..."
+    DISPLAY_MESSAGE(128,PLAYER0)
     NEXT_COMMAND_REUSABLE
     ADD_GOLD_TO_PLAYER(PLAYER_NEUTRAL,100000)
 ENDIF
@@ -335,7 +336,8 @@ IF(PLAYER0,TIMER0 > 100)
         RESET_ACTION_POINT(11,PLAYER0)
         SET_CREATURE_CONFIGURATION(IMP,HandSymbol,IMP_PORTRAIT)
 
-        QUICK_OBJECTIVE(52,"Your Imps have gone walkabout and your forces comprise of only a few weak insects. Salvage what you can from the abandoned dungeon to the northeast and pull yourself together, it's getting embarrassing.")
+        REM "Your Imps have gone walkabout and your forces comprise of only a few weak insects. Salvage what you can from the abandoned dungeon to the northeast and pull yourself together, it's getting embarrassing."
+        DISPLAY_OBJECTIVE(129)
     ENDIF
 ENDIF
 
@@ -355,13 +357,17 @@ REM PLAYER0,TIMER4 - ghostbustin'
 
 REM --------------------------------------------------------------------------------
 
-QUICK_OBJECTIVE(1,"Your Imps have gone walkabout and your forces comprise of only a few weak insects. Salvage what you can from the abandoned dungeon to the north and pull yourself together, it's getting embarrassing.")
+REM "Your Imps have gone walkabout and your forces comprise of only a few weak insects. Salvage what you can from the abandoned dungeon to the north and pull yourself together, it's getting embarrassing."
+DISPLAY_OBJECTIVE(130)
 
 IF(PLAYER0,GAME_TURN > 100)
     IF(PLAYER0,VIEW_TYPE == 2)
-        QUICK_INFORMATION(2,"I will communicate telepathically while you're in Possession. Hope you don't mind.")
-        QUICK_MESSAGE(5,"Hope you don't mind.",PLAYER0)
-        QUICK_MESSAGE(4,"I'll communicate like this during Possession.",PLAYER0)
+        REM "I will communicate telepathically while you're in Possession. Hope you don't mind."
+        DISPLAY_INFORMATION(131)
+        REM "Hope you don't mind."
+        DISPLAY_MESSAGE(132,PLAYER0)
+        REM "I'll communicate like this during Possession."
+        DISPLAY_MESSAGE(133,PLAYER0)
     ENDIF
 ENDIF
 
@@ -383,9 +389,9 @@ IF_SLAB_TYPE(19,50,DOOR_WOODEN)
         IF_SLAB_TYPE(16,45,PRETTY_PATH)
             IF_SLAB_TYPE(18,45,PRETTY_PATH)
                 CHANGE_SLAB_TYPE(20,50,TREASURY_AREA)
-                CHANGE_SLAB_TYPE(20,50,PRETTY_PATH)           
+                CHANGE_SLAB_TYPE(20,50,PRETTY_PATH)
                 CHANGE_SLAB_TYPE(21,50,PRETTY_PATH)
-                CHANGE_SLAB_TYPE(21,49,PRETTY_PATH)            
+                CHANGE_SLAB_TYPE(21,49,PRETTY_PATH)
             ENDIF
         ENDIF
     ENDIF
@@ -465,22 +471,23 @@ IF_SLAB_TYPE(12,42,PRETTY_PATH)
             IF_SLAB_TYPE(22,48,PRETTY_PATH)
                 IF(PLAYER_GOOD,FLAG3 == 1)
                     ADD_CREATURE_TO_LEVEL(PLAYER_GOOD,SKELETON,4,1,3,200)
-                    QUICK_MESSAGE(3,"Intruder! Stay away from the statues!",SKELETON)
+                    REM "Intruder! Stay away from the statues!"
+                    DISPLAY_MESSAGE(134,SKELETON)
                     SET_FLAG(PLAYER_GOOD,FLAG3,5)
                 ENDIF
                 IF(PLAYER_GOOD,FLAG3 == 2)
                     ADD_CREATURE_TO_LEVEL(PLAYER_GOOD,SKELETON,5,1,3,200)
-                    QUICK_MESSAGE(3,"Intruder! Stay away from the statues!",SKELETON)
+                    DISPLAY_MESSAGE(134,SKELETON)
                     SET_FLAG(PLAYER_GOOD,FLAG3,5)
                 ENDIF
                 IF(PLAYER_GOOD,FLAG3 == 3)
                     ADD_CREATURE_TO_LEVEL(PLAYER_GOOD,SKELETON,6,1,3,200)
-                    QUICK_MESSAGE(3,"Intruder! Stay away from the statues!",SKELETON)
+                    DISPLAY_MESSAGE(134,SKELETON)
                     SET_FLAG(PLAYER_GOOD,FLAG3,5)
                 ENDIF
                 IF(PLAYER_GOOD,FLAG3 == 4)
                     ADD_CREATURE_TO_LEVEL(PLAYER_GOOD,SKELETON,7,1,3,200)
-                    QUICK_MESSAGE(3,"Intruder! Stay away from the statues!",SKELETON)
+                    DISPLAY_MESSAGE(134,SKELETON)
                     SET_FLAG(PLAYER_GOOD,FLAG3,5)
                 ENDIF
             ENDIF
@@ -489,7 +496,8 @@ IF_SLAB_TYPE(12,42,PRETTY_PATH)
 ENDIF
 
 IF(PLAYER_GOOD,FLAG3 == 5)
-    QUICK_OBJECTIVE(25,"It seems we need to do something with the statues in the abandoned fortress...")
+    REM "It seems we need to do something with the statues in the abandoned fortress..."
+    DISPLAY_OBJECTIVE(135)
     RESET_ACTION_POINT(3,ALL_PLAYERS)
     RESET_ACTION_POINT(8,ALL_PLAYERS)
     RESET_ACTION_POINT(9,ALL_PLAYERS)
@@ -521,8 +529,10 @@ ENDIF
 
 
 IF_ACTION_POINT(10,PLAYER0)
-    QUICK_MESSAGE(6,"What a cruel joke. Find another way to break him out.",PLAYER0)
-    QUICK_OBJECTIVE(7,"What a cruel joke. Find another way to break him out.",10)
+    REM "What a cruel joke. Find another way to break him out."
+    DISPLAY_MESSAGE(136,PLAYER0)
+    REM "What a cruel joke. Find another way to break him out."
+    DISPLAY_OBJECTIVE(137,10)
 ENDIF
 
 IF(PLAYER0,CAMPAIGN_FLAG7 == 0)
@@ -537,8 +547,10 @@ ENDIF
 
 REM If the imp dies
 IF(PLAYER2,FLAG0 == 1)
-    QUICK_MESSAGE(31,"That's not good...we'll have to find a new plan.",PLAYER0)
-    QUICK_OBJECTIVE(31,"That's not good...we'll have to find a new plan.")
+    REM "That's not good...we'll have to find a new plan."
+    DISPLAY_MESSAGE(138,PLAYER0)
+    REM "That's not good...we'll have to find a new plan."
+    DISPLAY_OBJECTIVE(139)
 ENDIF
 
 IF(PLAYER5,VAMPIRE == 0)
@@ -548,30 +560,39 @@ ENDIF
 
 IF_ACTION_POINT(13,PLAYER0)
     SET_TIMER(PLAYER0,TIMER3)
-    QUICK_MESSAGE(8,"Be not afraid. I mean no harm.",VAMPIRE)
+    REM "Be not afraid. I mean no harm."
+    DISPLAY_MESSAGE(140,VAMPIRE)
     IF(PLAYER0,TIMER3>50)
-        QUICK_MESSAGE(9,"I see. You've come from that abandoned place.",VAMPIRE)
+        REM "I see. You've come from that abandoned place."
+        DISPLAY_MESSAGE(141,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>100)
         IF(PLAYER2,FLAG0 == 1)
-            QUICK_MESSAGE(37,"You wish to ressurect the one who was held there?",VAMPIRE)
+            REM "You wish to ressurect the one who was held there?"
+            DISPLAY_MESSAGE(142,VAMPIRE)
         ENDIF
         IF(PLAYER2,FLAG0 == 0)
-            QUICK_MESSAGE(10,"You wish to free the one trapped there?",VAMPIRE)
+            REM "You wish to free the one trapped there?"
+            DISPLAY_MESSAGE(143,VAMPIRE)
         ENDIF
     ENDIF
     IF(PLAYER0,TIMER3>150)
-        QUICK_MESSAGE(11,"...interesting.",VAMPIRE)
+        REM "...interesting."
+        DISPLAY_MESSAGE(144,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>200)
-        QUICK_MESSAGE(12,"Tell you what, I have a bit of a ghost problem.",VAMPIRE)
+        REM "Tell you what, I have a bit of a ghost problem."
+        DISPLAY_MESSAGE(145,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>250)
-        QUICK_MESSAGE(13,"Get rid of them, and I'll help you.",VAMPIRE)
+        REM "Get rid of them, and I'll help you."
+        DISPLAY_MESSAGE(146,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>300)
-        QUICK_MESSAGE(14,"Go through this door and defeat the ghosts in each area.",VAMPIRE)
-        QUICK_OBJECTIVE(14,"Go through this door and defeat the ghosts in each area.")
+        REM "Go through this door and defeat the ghosts in each area."
+        DISPLAY_MESSAGE(147,VAMPIRE)
+        REM "Go through this door and defeat the ghosts in each area."
+        DISPLAY_OBJECTIVE(148)
         PLAY_MESSAGE(PLAYER0,SOUND,91)
         SET_DOOR(UNLOCKED,13,26)
         SET_DOOR(UNLOCKED,11,28)
@@ -848,28 +869,36 @@ ENDIF
 IF_ACTION_POINT(13,PLAYER0)
     IF(PLAYER0,FLAG5 == 2)
         SET_TIMER(PLAYER0,TIMER3)
-        QUICK_MESSAGE(15,"You've defeated all nine ghosts?",VAMPIRE)
+        REM "You've defeated all nine ghosts?"
+        DISPLAY_MESSAGE(149,VAMPIRE)
         HIDE_VARIABLE
         IF(PLAYER0,TIMER3>50)
-            QUICK_MESSAGE(16,"Great! I'll help you.",VAMPIRE)
+            REM "Great! I'll help you."
+            DISPLAY_MESSAGE(150,VAMPIRE)
         ENDIF
         IF(PLAYER0,TIMER3>100)
             IF(PLAYER2,FLAG0 == 1)
-                QUICK_MESSAGE(38,"The ressurection spell requires a sacrifice.",VAMPIRE)
+                REM "The ressurection spell requires a sacrifice."
+                DISPLAY_MESSAGE(151,VAMPIRE)
             ENDIF
             IF(PLAYER2,FLAG0 == 0)
-                QUICK_MESSAGE(17,"The releasing spell requires a sacrifice.",VAMPIRE)
+                REM "The releasing spell requires a sacrifice."
+                DISPLAY_MESSAGE(152,VAMPIRE)
             ENDIF
         ENDIF
         IF(PLAYER0,TIMER3>150)
-            QUICK_MESSAGE(18,"Bring three insects to the temple you just visited.",VAMPIRE)
-            QUICK_OBJECTIVE(123,"Sacrifice three insects in the temple you just visited, then see the vampire again.")
+            REM "Bring three insects to the temple you just visited."
+            DISPLAY_MESSAGE(153,VAMPIRE)
+            REM "Sacrifice three insects in the temple you just visited, then see the vampire again."
+            DISPLAY_OBJECTIVE(154)
         ENDIF
         IF(PLAYER0,TIMER3>200)
-            QUICK_MESSAGE(19,"This will unlock a vault not seen in millennia.",VAMPIRE)
+            REM "This will unlock a vault not seen in millennia."
+            DISPLAY_MESSAGE(155,VAMPIRE)
         ENDIF
         IF(PLAYER0,TIMER3>250)
-            QUICK_MESSAGE(20,"Inside is a powerful artefact you will need.",VAMPIRE)
+            REM "Inside is a powerful artefact you will need."
+            DISPLAY_MESSAGE(156,VAMPIRE)
             RESET_ACTION_POINT(19,PLAYER0)
             SET_CREATURE_PROPERTY(SPIDER,NO_CORPSE_ROTTING,1)
             SET_CREATURE_PROPERTY(BUG,NO_CORPSE_ROTTING,1)
@@ -1026,7 +1055,8 @@ ENDIF
 IF(PLAYER0,FLAG5 == 5)
     RESET_ACTION_POINT(25,PLAYER0)
     IF_ACTION_POINT(25,PLAYER0)
-        QUICK_MESSAGE(45," One more sacrifice and the path is revealed.",PLAYER3)
+        REM " One more sacrifice and the path is revealed."
+        DISPLAY_MESSAGE(157,PLAYER3)
     ENDIF
     IF_ACTION_POINT(19,PLAYER0)
         KILL_CREATURE(PLAYER0,ANY_CREATURE,AT_ACTION_POINT[19],1)
@@ -1047,20 +1077,26 @@ IF(PLAYER0,FLAG5 == 6)
     SET_CREATURE_PROPERTY(FLY2,NO_CORPSE_ROTTING,0)
     IF_ACTION_POINT(13,PLAYER0)
         SET_TIMER(PLAYER0,TIMER3)
-        QUICK_MESSAGE(21,"You've done it! Look! The door has revealed itself!",VAMPIRE)
+        REM "You've done it! Look! The door has revealed itself!"
+        DISPLAY_MESSAGE(158,VAMPIRE)
         HIDE_VARIABLE
         IF(PLAYER0,TIMER3>50)
-            QUICK_MESSAGE(22,"The path to the vault is full of tricks and traps.",VAMPIRE)
+            REM "The path to the vault is full of tricks and traps."
+            DISPLAY_MESSAGE(159,VAMPIRE)
         ENDIF
         IF(PLAYER0,TIMER3>100)
-            QUICK_MESSAGE(23,"Keep your wits about you, and remember:",VAMPIRE)
+            REM "Keep your wits about you, and remember:"
+            DISPLAY_MESSAGE(160,VAMPIRE)
         ENDIF
         IF(PLAYER0,TIMER3>150)
-            QUICK_MESSAGE(24,"'When you hit a dead end, keep on going.'",VAMPIRE)
+            REM "'When you hit a dead end, keep on going.'"
+            DISPLAY_MESSAGE(161,VAMPIRE)
         ENDIF
         IF(PLAYER0,TIMER3>200)
-            QUICK_MESSAGE(26,"'And when your path in uncertain, follow the stars.'",VAMPIRE)
-            QUICK_OBJECTIVE(49,"The secret path is revealed! 'When you hit a dead end, keep on going, and when your path in uncertain, follow the stars.'")
+            REM "'And when your path in uncertain, follow the stars.'"
+            DISPLAY_MESSAGE(162,VAMPIRE)
+            REM "The secret path is revealed! 'When you hit a dead end, keep on going, and when your path in uncertain, follow the stars.'"
+            DISPLAY_OBJECTIVE(163)
         ENDIF
     ENDIF
 ENDIF
@@ -1121,13 +1157,17 @@ IF_ACTION_POINT(20,PLAYER0)
     CHANGE_SLAB_OWNER(12,15,PLAYER_GOOD)
     RESET_ACTION_POINT(17,PLAYER0)
     IF_ACTION_POINT(17,PLAYER0)
-        QUICK_MESSAGE(46," We're so close! soon he will be free!",PLAYER3)
+        REM "We're so close! Soon he will be free!"
+        DISPLAY_MESSAGE(164,PLAYER3)
         IF(PLAYER0,TIMER3>50)
             ADD_CREATURE_TO_LEVEL(PLAYER_GOOD,SKELE,17,1,1,0)
             ADD_CREATURE_TO_LEVEL(PLAYER_GOOD,SKELEMAGE,17,1,1,0)
-            QUICK_MESSAGE(27,"Turn back now!",SKELE)
-            QUICK_MESSAGE(28,"You have no idea of the power this holds!",SKELEMAGE)
-            QUICK_OBJECTIVE(124,"Kill the skeletons guarding the vault.")
+            REM "Turn back now!"
+            DISPLAY_MESSAGE(165,SKELE)
+            REM "You have no idea of the power this holds!"
+            DISPLAY_MESSAGE(166,SKELEMAGE)
+            REM "Kill the skeletons guarding the vault."
+            DISPLAY_OBJECTIVE(167)
             SET_FLAG(PLAYER0,FLAG5,7)
         ENDIF
         IF(PLAYER0,FLAG5 == 7)
@@ -1153,10 +1193,13 @@ IF_ACTION_POINT(20,PLAYER0)
                     ENDIF
                     IF_ACTION_POINT(13,PLAYER0)
                         SET_TIMER(PLAYER0,TIMER3)
-                        QUICK_MESSAGE(29,"By the dark gods, you've done it!",VAMPIRE)
+                        REM "By the dark gods, you've done it!"
+                        DISPLAY_MESSAGE(168,VAMPIRE)
                         IF(PLAYER0,TIMER3>50)
-                            QUICK_MESSAGE(30,"Meet me inside the vault.",VAMPIRE)
-                            QUICK_OBJECTIVE(44,"Return to the vault and meet with the vampire.")
+                            REM "Meet me inside the vault."
+                            DISPLAY_MESSAGE(169,VAMPIRE)
+                            REM "Return to the vault and meet with the vampire."
+                            DISPLAY_OBJECTIVE(170)
                             MOVE_CREATURE(PLAYER5,VAMPIRE,AT_ACTION_POINT[22],1,21,EFFECT_STRANGE_GAS_2)
                             CHANGE_SLAB_TYPE(16,17,HARD)
                             CHANGE_SLAB_TYPE(16,13,HARD)
@@ -1177,54 +1220,63 @@ ENDIF
 IF(PLAYER0,FLAG5 == 8)
     IF_ACTION_POINT(17,PLAYER0)
         IF(PLAYER0,BOX0_ACTIVATED == 0)
-            QUICK_MESSAGE(36,"After all this time...",VAMPIRE)
+            REM "After all this time..."
+            DISPLAY_MESSAGE(171,VAMPIRE)
             SET_TIMER(PLAYER0,TIMER3)
             IF(PLAYER0,TIMER3>50)
-                QUICK_MESSAGE(32,"...the spellbook I've been seeking.",VAMPIRE)
+                REM "...the spellbook I've been seeking."
+                DISPLAY_MESSAGE(172,VAMPIRE)
             ENDIF
             IF(PLAYER0,TIMER3>100)
-                QUICK_MESSAGE(33,"Oh, and your artefact!",VAMPIRE)
+                REM "Oh, and your artefact!"
+                DISPLAY_MESSAGE(173,VAMPIRE)
             ENDIF
             IF(PLAYER0,TIMER3>150)
-                QUICK_MESSAGE(34,"Here you go. I've kept my word.",VAMPIRE)
+                REM "Here you go. I've kept my word."
+                DISPLAY_MESSAGE(174,VAMPIRE)
                 CHANGE_SLAB_OWNER(11,15,PLAYER0,NONE)
                 CREATE_EFFECT_AT_POS(EFFECT_SPANGLE_ORANGE,34,46,2)
                 PLAY_MESSAGE(PLAYER0,SOUND,116)
             ENDIF
             IF(PLAYER0,TIMER3>200)
-                QUICK_MESSAGE(47," We finally have it! Activate the artefact!",PLAYER3)
+                REM "We finally have it! Activate the artefact!"
+                DISPLAY_MESSAGE(175,PLAYER3)
             ENDIF
             IF(PLAYER0,TIMER3>400)
-                QUICK_MESSAGE(35,"And one more thing...",VAMPIRE)
+                REM "And one more thing..."
+                DISPLAY_MESSAGE(176,VAMPIRE)
             ENDIF
             IF(PLAYER0,TIMER3>420)
-                QUICK_MESSAGE(48," Do it!",PLAYER3)
+                REM " Do it!"
+                DISPLAY_MESSAGE(177,PLAYER3)
             ENDIF
             IF(PLAYER0,TIMER3>450)
-                QUICK_MESSAGE(39,"...I hope you know what you're doing.",VAMPIRE)
+                REM "...I hope you know what you're doing."
+                DISPLAY_MESSAGE(178,VAMPIRE)
             ENDIF
             IF(PLAYER0,TIMER3>470)
-                QUICK_MESSAGE(51,"  Do it!",PLAYER3)
+                REM "  Do it!"
+                DISPLAY_MESSAGE(179,PLAYER3)
             ENDIF
             IF(PLAYER0,TIMER3>500)
-                QUICK_MESSAGE(48," Do it!",PLAYER3)
+                DISPLAY_MESSAGE(177,PLAYER3)
             ENDIF
             IF(PLAYER0,TIMER3>520)
-                QUICK_MESSAGE(51,"  Do it!",PLAYER3)
+                DISPLAY_MESSAGE(179,PLAYER3)
             ENDIF
             IF(PLAYER0,TIMER3>540)
-                QUICK_MESSAGE(48," Do it!",PLAYER3)
+                DISPLAY_MESSAGE(177,PLAYER3)
             ENDIF
             IF(PLAYER0,TIMER3>560)
                 IF(PLAYER0,TIMER3<=640)
                     SET_TIMER(PLAYER0,TIMER2)
                     IF(PLAYER0,TIMER2>0)
                         NEXT_COMMAND_REUSABLE
-                        QUICK_MESSAGE(51,"  Do it!",PLAYER3)
+                        DISPLAY_MESSAGE(179,PLAYER3)
                     ENDIF
                     IF(PLAYER0,TIMER2>10)
                         NEXT_COMMAND_REUSABLE
-                        QUICK_MESSAGE(48," Do it!",PLAYER3)
+                        DISPLAY_MESSAGE(177,PLAYER3)
                     ENDIF
                     IF(PLAYER0,TIMER2>20)
                         NEXT_COMMAND_REUSABLE
@@ -1237,11 +1289,11 @@ IF(PLAYER0,FLAG5 == 8)
                     SET_TIMER(PLAYER0,TIMER2)
                     IF(PLAYER0,TIMER2>0)
                         NEXT_COMMAND_REUSABLE
-                        QUICK_MESSAGE(48," Do it!",PLAYER3)
+                        DISPLAY_MESSAGE(177,PLAYER3)
                     ENDIF
                     IF(PLAYER0,TIMER2>2)
                         NEXT_COMMAND_REUSABLE
-                        QUICK_MESSAGE(51,"  Do it!",PLAYER3)
+                        DISPLAY_MESSAGE(179,PLAYER3)
                     ENDIF
                     IF(PLAYER0,TIMER2>4)
                         NEXT_COMMAND_REUSABLE
@@ -1262,7 +1314,8 @@ IF(PLAYER0,FLAG5 == 8)
             QUICK_MESSAGE(58," ",NONE)
             ENDIF
             IF(PLAYER0,TIMER3>840)
-                QUICK_MESSAGE(56," Fine. I'll do it.",PLAYER3)
+                REM " Fine. I'll do it."
+                DISPLAY_MESSAGE(181,PLAYER3)
             ENDIF
             IF(PLAYER0,TIMER3 > 890)
                 SET_FLAG(PLAYER0,BOX0_ACTIVATED,1)
@@ -1312,10 +1365,12 @@ IF(PLAYER0,BOX0_ACTIVATED > 0)
             SET_MUSIC("this_is_halloween_spookier.mp3")
             ZOOM_TO_LOCATION(PLAYER0,PLAYER0)
             CONCEAL_MAP_RECT(PLAYER0,115,93,220,123,0)
-            QUICK_OBJECTIVE(50,"By the gods...what have we done?")
+            REM "By the gods...what have we done?"
+            DISPLAY_OBJECTIVE(182)
         ENDIF
         IF(PLAYER1,TIMER2 > 240)
-            QUICK_OBJECTIVE(40," Great! Now we can finally grab that imp!")
+            REM " Great! Now we can finally grab that imp!"
+            DISPLAY_OBJECTIVE(183)
         ENDIF
     ENDIF
 ENDIF
@@ -1331,11 +1386,13 @@ IF(PLAYER0,CAMPAIGN_FLAG7 == 1)
     RESET_ACTION_POINT(29,PLAYER0)
     IF_ACTION_POINT(2,PLAYER0)
         IF(PLAYER0,VIEW_TYPE == 2)
-            QUICK_MESSAGE(41," We're almost there...don't stop now!",PLAYER3)
+            REM " We're almost there...don't stop now!"
+            DISPLAY_MESSAGE(184,PLAYER3)
         ENDIF
     ENDIF
     IF_ACTION_POINT(25,PLAYER0)
-        QUICK_MESSAGE(43," Just a few more steps, he's finally free.",PLAYER3)
+        REM " Just a few more steps, he's finally free."
+        DISPLAY_MESSAGE(185,PLAYER3)
         SET_TIMER(PLAYER1,TIMER3)
         SET_TIMER(PLAYER1,TIMER4)
         IF(PLAYER2,FLAG1 == 0)
@@ -1857,9 +1914,6 @@ IF(PLAYER0,CAMPAIGN_FLAG7 == 1)
             CONCEAL_MAP_RECT(PLAYER0,40,187,3,3)
             CONCEAL_MAP_RECT(PLAYER0,40,160,3,3)
 
-
-
-
             CHANGE_SLAB_TYPE(13,52,DIRT)
             CHANGE_SLAB_TYPE(14,52,DIRT)
             CHANGE_SLAB_TYPE(20,52,DIRT)
@@ -1963,7 +2017,7 @@ IF(PLAYER0,CAMPAIGN_FLAG7 == 1)
             ADD_OBJECT_TO_LEVEL_AT_POS(BARREL,65,176,1,PLAYER_NEUTRAL)
 
             ADD_OBJECT_TO_LEVEL_AT_POS(TORCH,65,169,1,PLAYER_NEUTRAL)
-            ADD_OBJECT_TO_LEVEL_AT_POS(BARREL,65,175,1,PLAYER_NEUTRAL)       
+            ADD_OBJECT_TO_LEVEL_AT_POS(BARREL,65,175,1,PLAYER_NEUTRAL)
 
             SET_OBJECT_CONFIGURATION(TORCH,AnimationID,962)
             SET_CREATURE_CONFIGURATION(IMP,HandSymbol,IMP_PORTRAIT)
@@ -2060,8 +2114,10 @@ IF_ACTION_POINT(31,PLAYER0)
     ADD_CREATURE_TO_LEVEL(PLAYER_GOOD,SKELEMAGE,34,1,2,0)
     SET_TIMER(PLAYER1,TIMER5)
     IF(PLAYER1,TIMER5 > 20)
-        QUICK_MESSAGE(53,"Intruder! Leave the prisoner alone!",SKELEMAGE)
-        QUICK_MESSAGE(27,"Turn back now!",SKELE)
+        REM "Intruder! Leave the prisoner alone!"
+        DISPLAY_MESSAGE(186,SKELEMAGE)
+        REM "Turn back now!"
+        DISPLAY_MESSAGE(187,SKELE)
         CHANGE_SLAB_TYPE(32,56,PRETTY_PATH)
         CHANGE_SLAB_TYPE(32,58,PRETTY_PATH)
         CHANGE_SLAB_TYPE(34,53,WATER)
@@ -2072,34 +2128,43 @@ IF_ACTION_POINT(31,PLAYER0)
 ENDIF
 
 IF_ACTION_POINT(35,PLAYER0)
-    QUICK_MESSAGE(6,"What a cruel joke. Find another way to break him out.",PLAYER0)
+    REM "What a cruel joke. Find another way to break him out."
+    DISPLAY_MESSAGE(188,PLAYER0)
     SET_TIMER(PLAYER0,TIMER3)   
     IF(PLAYER0,TIMER3>20)
-        QUICK_MESSAGE(59,"Help me! I've been trapped here for so long!",IMP2)
+        REM "Help me! I've been trapped here for so long!"
+        DISPLAY_MESSAGE(189,IMP2)
     ENDIF
     IF(PLAYER0,TIMER3>70)
-        QUICK_MESSAGE(60,"I'll do anything you wish if you free me!",IMP2)
+        REM "I'll do anything you wish if you free me!"
+        DISPLAY_MESSAGE(190,IMP2)
     ENDIF
     IF(PLAYER0,TIMER3>120)
-        QUICK_MESSAGE(61,"There is a troll to the north who knows how to free me.",IMP2)
-        QUICK_OBJECTIVE(61,"There is a troll to the north who knows how to free me.")
+        REM "There is a troll to the north who knows how to free me."
+        DISPLAY_MESSAGE(191,IMP2)
+        DISPLAY_OBJECTIVE(191)
     ENDIF
     IF(PLAYER0,TIMER3>170)
-        QUICK_MESSAGE(62,"But the last one who went to find him didn't come back...",IMP2)
+        REM "But the last one who went to find him didn't come back..."
+        DISPLAY_MESSAGE(192,IMP2)
     ENDIF
 ENDIF
 
 IF_ACTION_POINT(36,PLAYER0)
     SET_TIMER(PLAYER0,TIMER3)
-    QUICK_MESSAGE(63,"Thank the gods you're here! Something is horribly wrong.",SORCEROR)
+    REM "Thank the gods you're here! Something is horribly wrong."
+    DISPLAY_MESSAGE(193,SORCEROR)
     IF(PLAYER0,TIMER3>50)
-        QUICK_MESSAGE(54,"We don't have much time.",SORCEROR)
+        REM "We don't have much time."
+        DISPLAY_MESSAGE(194,SORCEROR)
     ENDIF
     IF(PLAYER0,TIMER3>100)
-        QUICK_MESSAGE(55,"There is a dark force corrupting this land.",SORCEROR)
+        REM "There is a dark force corrupting this land."
+        DISPLAY_MESSAGE(195,SORCEROR)
     ENDIF
     IF(PLAYER0,TIMER3>150)
-        QUICK_MESSAGE(57,"To defeat it, you have t",SORCEROR)
+        REM "To defeat it, you have t"
+        DISPLAY_MESSAGE(196,SORCEROR)
     ENDIF
     IF(PLAYER0,TIMER3>158)
         MOVE_CREATURE(PLAYER3,SORCEROR,ANYWHERE,5,24,NULL)
@@ -2239,26 +2304,33 @@ IF(PLAYER0,CAMPAIGN_FLAG7 == 2)
 ENDIF
 
 IF_ACTION_POINT(39,PLAYER0)
-    QUICK_MESSAGE(64,"Ah, welcome. It's been so long since I've had a visitor.",TROLL)
+    REM "Ah, welcome. It's been so long since I've had a visitor."
+    DISPLAY_MESSAGE(197,TROLL)
     SET_TIMER(PLAYER0,TIMER3)   
     IF(PLAYER0,TIMER3>50)
-        QUICK_MESSAGE(65,"A way to free your imp friend? I know just the thing.",TROLL)
+        REM "A way to free your imp friend? I know just the thing."
+        DISPLAY_MESSAGE(198,TROLL)
     ENDIF
     IF(PLAYER0,TIMER3>100)
-        QUICK_MESSAGE(66,"There is a skeleton key in a storeroom to the south.",TROLL)
+        REM "There is a skeleton key in a storeroom to the south."
+        DISPLAY_MESSAGE(199,TROLL)
         REVEAL_MAP_RECT(PLAYER0,124,196,15,15)
     ENDIF
     IF(PLAYER0,TIMER3>150)
-        QUICK_MESSAGE(67,"I've no need of it, so you can just take it.",TROLL)
+        REM "I've no need of it, so you can just take it."
+        DISPLAY_MESSAGE(200,TROLL)
     ENDIF
     IF(PLAYER0,TIMER3>200)
-        QUICK_MESSAGE(68,"Go through this secret passage. You'll find it before long.",TROLL)
+        REM "Go through this secret passage. You'll find it before long."
+        DISPLAY_MESSAGE(901,TROLL)
         SET_DOOR(UNLOCKED,64,17)
         CREATE_EFFECT_AT_POS(EFFECT_HARMLESS_GAS_1,193,50)
-        QUICK_OBJECTIVE(79,"Follow the secret path from the troll's workshop to the skeleton key.")
+        REM "Follow the secret path from the troll's workshop to the skeleton key."
+        DISPLAY_OBJECTIVE(902)
     ENDIF
     IF(PLAYER0,TIMER3>250)
-        QUICK_MESSAGE(69,"You might even be able to find a way out!",TROLL)
+        REM "You might even be able to find a way out!"
+        DISPLAY_MESSAGE(903,TROLL)
     ENDIF
 ENDIF
 
@@ -2292,7 +2364,8 @@ IF_ACTION_POINT(38,PLAYER0)
         SET_CREATURE_CONFIGURATION(SPIDER,BaseSpeed,56)
         SET_CREATURE_CONFIGURATION(BUG,BaseSpeed,56)
         SET_CREATURE_CONFIGURATION(FLY2,BaseSpeed,96)
-        QUICK_OBJECTIVE(80,"Follow the path from the skeleton's library to the troll key.")
+        REM "Follow the path from the skeleton's library to the troll key."
+        DISPLAY_OBJECTIVE(904)
         IF(PLAYER0,CAMPAIGN_FLAG0 == 4)
             SET_FLAG(PLAYER0,CAMPAIGN_FLAG0,7)
             SET_TEXTURE(ALL_PLAYERS,7)
@@ -2319,31 +2392,39 @@ IF_ACTION_POINT(43,PLAYER0)
     SET_CREATURE_CONFIGURATION(FLY2,BaseSpeed,0)
 
 
-    QUICK_MESSAGE(70,"Wait! Listen to me. We don't have long.",VAMPIRE)
+    REM "Wait! Listen to me. We don't have long."
+    DISPLAY_MESSAGE(905,VAMPIRE)
     SET_TIMER(PLAYER0,TIMER3)   
     IF(PLAYER0,TIMER3>40)
-        QUICK_MESSAGE(71,"We have to stop this before we can't.",VAMPIRE)
+        REM "We have to stop this before we can't."
+        DISPLAY_MESSAGE(906,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>80)
-        QUICK_MESSAGE(72,"I've cloaked my presence from his effects for now.",VAMPIRE)
+        REM "I've cloaked my presence from his effects for now."
+        DISPLAY_MESSAGE(907,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>120)
-        QUICK_MESSAGE(73,"We have no time for these pointless quests.",VAMPIRE)
+        REM "We have no time for these pointless quests."
+        DISPLAY_MESSAGE(908,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>160)
-        QUICK_MESSAGE(74,"I've made a shortcut to the south.",VAMPIRE)
+        REM "I've made a shortcut to the south."
+        DISPLAY_MESSAGE(909,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>200)
-        QUICK_MESSAGE(75,"Freeing your imp friend won't help. He will be useless.",VAMPIRE)
+        REM "Freeing your imp friend won't help. He will be useless."
+        DISPLAY_MESSAGE(910,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>240)
-        QUICK_MESSAGE(76,"Instead, sacrifice him in the temple south of here.",VAMPIRE)
+        REM "Instead, sacrifice him in the temple south of here."
+        DISPLAY_MESSAGE(911,VAMPIRE)
         REVEAL_MAP_RECT(PLAYER0,142,145,15,15)
         CHANGE_SLAB_TEXTURE(46,47,LAVA_CAVERN,MATCH)
         CHANGE_SLAB_TEXTURE(47,48,GYPSUM)
     ENDIF
     IF(PLAYER0,TIMER3>280)
-        QUICK_MESSAGE(77,"I'm sorry, we're in this together now.",VAMPIRE)
+        REM "I'm sorry, we're in this together now."
+        DISPLAY_MESSAGE(912,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>280)
         MOVE_CREATURE(PLAYER5,VAMPIRE,ANYWHERE,1,24,EFFECT_HARMLESS_GAS_1)
@@ -2400,8 +2481,9 @@ IF_ACTION_POINT(45,PLAYER0)
     PLAY_MESSAGE(PLAYER0,SOUND,116)
     SET_OBJECT_CONFIGURATION(KEY,MaximumSize,0)
     CREATE_EFFECT_AT_POS(EFFECT_SPANGLE_ORANGE,124,196)
-    QUICK_MESSAGE(84,"We have the key. Now to find the shortcut home.",PLAYER0)
-    QUICK_OBJECTIVE(84,"We have the key. Now to find the shortcut home.")
+    REM "We have the key. Now to find the shortcut home."
+    DISPLAY_MESSAGE(913,PLAYER0)
+    DISPLAY_OBJECTIVE("913")
     IF_SLAB_TYPE(35,63,LAVA)
         RESET_ACTION_POINT(35,PLAYER0)
         CHANGE_SLAB_TYPE(43,51,HARD)
@@ -2409,7 +2491,8 @@ IF_ACTION_POINT(45,PLAYER0)
             PLAY_MESSAGE(PLAYER0,SOUND,979)
             CHANGE_SLAB_OWNER(35,57,PLAYER3)
             CHANGE_CREATURE_OWNER(PLAYER3,IMP2,AT_ACTION_POINT[35],PLAYER0)
-            QUICK_MESSAGE(78,"Hooray! I'm finally free!",IMP2)
+            REM "Hooray! I'm finally free!"
+            DISPLAY_MESSAGE(914,IMP2)
             PLAY_MESSAGE(PLAYER0,SOUND,496)
             CHANGE_SLAB_TYPE(34,53,DIRT)
             CONCEAL_MAP_RECT(PLAYER0,82,94,86,128)
@@ -2422,7 +2505,8 @@ IF_ACTION_POINT(45,PLAYER0)
                     PLAY_MESSAGE(PLAYER0,SOUND,496)
                 ENDIF
             ENDIF
-            QUICK_OBJECTIVE(81,"Now that you have an imp, claim territory and build yourself back up. Then crush the heroes in the base to the north and show them you are not to be trifled with.")
+            REM "Now that you have an imp, claim territory and build yourself back up. Then crush the heroes in the base to the north and show them you are not to be trifled with."
+            DISPLAY_OBJECTIVE(915)
         ENDIF
     ENDIF
 ENDIF
@@ -2438,7 +2522,8 @@ IF_ACTION_POINT(46,PLAYER0)
         CREATE_EFFECT_AT_POS(38,142,145,2)
         CHANGE_SLAB_TEXTURE(47,48,LAVA_CAVERN)
         IF(PLAYER0,TIMER3 > 20)
-            QUICK_OBJECTIVE(82,"Why did you do that? We're going to have to find a new imp now.",ALL_PLAYERS)
+            REM "Why did you do that? We're going to have to find a new imp now."
+            DISPLAY_OBJECTIVE(916,ALL_PLAYERS)
         ENDIF
         IF(PLAYER0,TIMER3 > 39)
             QUICK_MESSAGE(58," ",NONE)
@@ -2451,16 +2536,17 @@ IF_ACTION_POINT(46,PLAYER0)
             QUICK_MESSAGE(58," ",NONE)
         ENDIF
         IF(PLAYER0,TIMER3 > 40)
-            QUICK_OBJECTIVE(83," I see you.",ALL_PLAYERS)
-            QUICK_INFORMATION(83," I see you.",ALL_PLAYERS)
-            QUICK_INFORMATION(83, "I see you.",ALL_PLAYERS)
-            QUICK_INFORMATION(83," I see you.",ALL_PLAYERS)
-            QUICK_INFORMATION(83," I see you.",ALL_PLAYERS)
-            QUICK_INFORMATION(83," I see you.",ALL_PLAYERS)
-            QUICK_INFORMATION(83," I see you.",ALL_PLAYERS)
-            QUICK_INFORMATION(83," I see you.",ALL_PLAYERS)
-            QUICK_INFORMATION(83," I see you.",ALL_PLAYERS)
-            QUICK_MESSAGE(83," I see you.",PLAYER3)
+            REM " I see you."
+            DISPLAY_OBJECTIVE(917,ALL_PLAYERS)
+            DISPLAY_INFORMATION(917,ALL_PLAYERS)
+            DISPLAY_INFORMATION(917,ALL_PLAYERS)
+            DISPLAY_INFORMATION(917,ALL_PLAYERS)
+            DISPLAY_INFORMATION(917,ALL_PLAYERS)
+            DISPLAY_INFORMATION(917,ALL_PLAYERS)
+            DISPLAY_INFORMATION(917,ALL_PLAYERS)
+            DISPLAY_INFORMATION(917,ALL_PLAYERS)
+            DISPLAY_INFORMATION(917,ALL_PLAYERS)
+            DISPLAY_MESSAGE(917,PLAYER3)
             PLAY_MESSAGE(PLAYER0,SOUND,8)
         ENDIF
         IF(PLAYER0,TIMER3 > 60)
@@ -2477,12 +2563,15 @@ IF_ACTION_POINT(46,PLAYER0)
             MOVE_CREATURE(PLAYER6,FLY2,ANYWHERE,4,49,NULL)
         ENDIF
         IF(PLAYER0,TIMER3 > 500)
-            QUICK_MESSAGE(85,"Now he's noticed what you're doing. We have to be quick.",VAMPIRE)
+            REM "Now he's noticed what you're doing. We have to be quick."
+            DISPLAY_MESSAGE(918,VAMPIRE)
         ENDIF
         IF(PLAYER0,TIMER3 > 550)
-            QUICK_MESSAGE(86,"One last time. Sacrifice three insects.",VAMPIRE)
+            REM "One last time. Sacrifice three insects."
+            DISPLAY_MESSAGE(919,VAMPIRE)
             TUTORIAL_FLASH_BUTTON(12,-1)
-            QUICK_OBJECTIVE(87,"Now that the imp we rescued is dead, I reckon our next plan is to lay down and die like an animal. That will show them, Keeper.")
+            REM "Now that the imp we rescued is dead, I reckon our next plan is to lay down and die like an animal. That will show them, Keeper."
+            DISPLAY_OBJECTIVE(920)
         ENDIF
         IF(PLAYER0,TIMER3 > 600)
             DISPLAY_VARIABLE(PLAYER2,FLAG2,5,0)
@@ -2510,7 +2599,8 @@ ENDIF
 
 IF(PLAYER2,FLAG2 == 2)
     IF_ACTION_POINT(54,PLAYER0)
-        QUICK_MESSAGE(88," Master, I think your creatures have lost faith in you...",PLAYER3)
+        REM " Master, I think your creatures have lost faith in you..."
+        DISPLAY_MESSAGE(921,PLAYER3)
         RESET_ACTION_POINT(50,PLAYER0)
         IF_ACTION_POINT(50,PLAYER0)
             CHANGE_CREATURES_ANNOYANCE(PLAYER0,ANY_CREATURE,INCREASE,10000)
@@ -2535,8 +2625,9 @@ IF(PLAYER2,FLAG2 == 2)
     ENDIF
 ENDIF
 IF(PLAYER2,FLAG2 == 3)
-    QUICK_MESSAGE(89," Stop this nonsense.",PLAYER3)
-    QUICK_OBJECTIVE(89," Stop this nonsense.")
+    REM " Stop this nonsense."
+    DISPLAY_MESSAGE(922,PLAYER3)
+    DISPLAY_OBJECTIVE(922)
     RESET_ACTION_POINT(54,PLAYER0)
     IF_ACTION_POINT(54,PLAYER0)
         CHANGE_SLAB_TYPE(41,64,LAVA,MATCH)
@@ -2582,8 +2673,10 @@ IF(PLAYER2,FLAG2 == 3)
         RESET_ACTION_POINT(46,PLAYER0)
         CHANGE_SLAB_TEXTURE(47,48,GYPSUM)
         ADD_TO_FLAG(PLAYER2,FLAG2,1)
-        QUICK_MESSAGE(90," Fine. I'll stop you by force.",PLAYER3)
-        QUICK_OBJECTIVE(91,"We've taken too long and now the lord of this realm has arrived. It's over.")
+        REM " Fine. I'll stop you by force."
+        DISPLAY_MESSAGE(923,PLAYER3)
+        REM "We've taken too long and now the lord of this realm has arrived. It's over."
+        DISPLAY_OBJECTIVE(924)
         HIDE_HERO_GATE(-1,0)
         ADD_PARTY_TO_LEVEL(PLAYER_GOOD,LANDLORD,-1,1)
         ADD_TUNNELLER_PARTY_TO_LEVEL(PLAYER_GOOD,LANDLORD,-2,DUNGEON_HEART,0,5,0)
@@ -2605,10 +2698,12 @@ IF(PLAYER2,FLAG2 == 4)
         PLAY_MESSAGE(PLAYER0,SOUND,"kktaunt01.mp3")
         SET_TIMER(PLAYER0,TIMER3)
         IF(PLAYER0,TIMER3 > 100)
-            QUICK_MESSAGE(92,"No...no...",VAMPIRE)
+            REM "No...no..."
+            DISPLAY_MESSAGE(925,VAMPIRE)
         ENDIF
         IF(PLAYER0,TIMER3 > 150)
-            QUICK_MESSAGE(101,"...quickly, Keeper. Make your own.",VAMPIRE)
+            REM "...quickly, Keeper. Make your own."
+            DISPLAY_MESSAGE(926,VAMPIRE)
             ROOM_AVAILABLE(PLAYER0,TEMPLE,1,1)
             TUTORIAL_FLASH_BUTTON(12,-1)
             IF(PLAYER0,MONEY < 3150)
@@ -2617,10 +2712,13 @@ IF(PLAYER2,FLAG2 == 4)
             ENDIF
         ENDIF
         IF(PLAYER0,TIMER3 > 200)
-            QUICK_MESSAGE(93," So there is another who would oppose me...",PLAYER3)
+            REM " So there is another who would oppose me..."
+            DISPLAY_MESSAGE(927,PLAYER3)
             IF(PLAYER0,TEMPLE > 0)
-                QUICK_MESSAGE(103,"Don't do this. You will regret it.",PLAYER3)
-                QUICK_OBJECTIVE(103,"Don't do this. You will regret it.")
+                REM "Don't do this. You will regret it."
+                DISPLAY_MESSAGE(928,PLAYER3)
+                REM "Don't do this. You will regret it."
+                DISPLAY_OBJECTIVE(929)
             ENDIF
         ENDIF
     ENDIF
@@ -2715,7 +2813,8 @@ ENDIF
 
 IF(PLAYER2,FLAG2 == 5)
     HIDE_VARIABLE
-    QUICK_MESSAGE(102,"You should have listened...",PLAYER3)
+    REM "You should have listened..."
+    DISPLAY_MESSAGE(930,PLAYER3)
     SET_TIMER(PLAYER0,TIMER3)
     IF(PLAYER0,TIMER3 > 50)
         PLAY_MESSAGE(PLAYER0,SPEECH,105)
@@ -2724,14 +2823,17 @@ IF(PLAYER2,FLAG2 == 5)
         CREATE_EFFECT(EFFECT_WORD_OF_POWER,PLAYER0)
     ENDIF
     IF(PLAYER0,TIMER3 > 150)
-        QUICK_MESSAGE(96,"...wait...nothing happened. You're still here.",VAMPIRE)
+        REM "...wait...nothing happened. You're still here."
+        DISPLAY_MESSAGE(931,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3 > 200)
-        QUICK_MESSAGE(94,"His power is weakening! He can't stop me now!",VAMPIRE)
+        REM "His power is weakening! He can't stop me now!"
+        DISPLAY_MESSAGE(932,VAMPIRE)
         CHANGE_SLAB_TYPE(43,62,PATH,MATCH)
     ENDIF
     IF(PLAYER0,TIMER3 > 250)
-        QUICK_MESSAGE(97,"Quickly, use these to destroy anything in the way.",VAMPIRE)
+        REM "Quickly, use these to destroy anything in the way."
+        DISPLAY_MESSAGE(933,VAMPIRE)
         PLAY_MESSAGE(PLAYER0,SPEECH,43)
         MAGIC_AVAILABLE(PLAYER0,POWER_CALL_TO_ARMS,1,1)
         MAGIC_AVAILABLE(PLAYER0,POWER_LIGHTNING,1,1)
@@ -2773,7 +2875,8 @@ IF(PLAYER2,FLAG2 == 5)
         ADD_GOLD_TO_PLAYER(PLAYER0,10)
     ENDIF
     IF(PLAYER0,TIMER3 > 300)
-        QUICK_MESSAGE(100,"Wipe out the heroes! I've strengthened your creatures too.",VAMPIRE)
+        REM "Wipe out the heroes! I've strengthened your creatures too."
+        DISPLAY_MESSAGE(934,VAMPIRE)
         USE_SPECIAL_INCREASE_LEVEL(PLAYER0,3)
         CREATURE_ENTRANCE_LEVEL(PLAYER0,6)
         SET_FLAG(PLAYER2,FLAG2,6)
@@ -2802,27 +2905,34 @@ IF(PLAYER2,FLAG2 > 5)
         ADD_GOLD_TO_PLAYER(PLAYER0,-1)
     ENDIF
     IF(PLAYER_GOOD,GOOD_CREATURES == 0)
-        QUICK_MESSAGE(95,"That's the heroes taken care of.",VAMPIRE)
+        REM "That's the heroes taken care of."
+        DISPLAY_MESSAGE(935,VAMPIRE)
         SET_TIMER(PLAYER0,TIMER3)
         IF(PLAYER0,TIMER3 > 50)
-            QUICK_MESSAGE(104,"The tunneller party has opened up their base.",VAMPIRE)
+            REM "The tunneller party has opened up their base."
+            DISPLAY_MESSAGE(936,VAMPIRE)
         ENDIF
         IF(PLAYER0,TIMER3 > 100)
-            QUICK_MESSAGE(105,"Destroy the heart inside, reveal his true base. End this!",VAMPIRE)
-            QUICK_OBJECTIVE(106,"Now, destroy the heart to the east before he can recover!")
+            REM "Destroy the heart inside, reveal his true base. End this!"
+            DISPLAY_MESSAGE(937,VAMPIRE)
+            REM "Now, destroy the heart to the east before he can recover!"
+            DISPLAY_OBJECTIVE(938)
         ENDIF
         IF_ACTION_POINT(57,PLAYER0)
-            QUICK_MESSAGE(98,"It won't break with the gold they have. Let me help.",VAMPIRE)
+            REM "It won't break with the gold they have. Let me help."
+            DISPLAY_MESSAGE(939,VAMPIRE)
             SET_TIMER(PLAYER0,TIMER3)
             IF(PLAYER0,TIMER3 > 50)
-                QUICK_MESSAGE(99,"!player.addgold PLAYER_GOOD -9999999999",NONE)
+                REM "!player.addgold PLAYER_GOOD -9999999999"
+                DISPLAY_MESSAGE(940,NONE)
                 ADD_GOLD_TO_PLAYER(PLAYER_GOOD,-99999999)
                 CHANGE_SLAB_TYPE(66,42,PRETTY_PATH)
                 CREATE_EFFECT_AT_POS(EFFECT_DIRT_RUBBLE_BIG,199,127)
             ENDIF
         ENDIF
         IF(PLAYER4,DUNGEON_DESTROYED==1)
-            QUICK_MESSAGE(107,"I should have finished you a long time ago. No more games.",PLAYER3)
+            REM "I should have finished you a long time ago. No more games."
+            DISPLAY_MESSAGE(941,PLAYER3)
             SET_TIMER(PLAYER0,TIMER3)
             SET_OBJECT_CONFIGURATION(STATUE2_3,UpdateFunction,UPDATE_POWER_LIGHTNING)
             SET_OBJECT_CONFIGURATION(STATUE2_3,MaximumSize,0)
@@ -2841,8 +2951,10 @@ IF(PLAYER2,FLAG2 > 5)
                 MAX_CREATURES(PLAYER0,5)
             ENDIF
             IF(PLAYER6,STATUE < 6)
-                QUICK_MESSAGE(108,"We've survived everything so far. Let's storm his base.",VAMPIRE)
-                QUICK_OBJECTIVE(108,"We've survived everything so far. Let's storm his base.",77)
+                REM "We've survived everything so far. Let's storm his base."
+                DISPLAY_MESSAGE(942,VAMPIRE)
+                REM "We've survived everything so far. Let's storm his base."
+                DISPLAY_OBJECTIVE(943,77)
                 REVEAL_MAP_RECT(PLAYER0,160,175,9,9)
                 CHANGE_SLAB_TYPE(53,60,PATH)
                 CHANGE_SLAB_TYPE(52,61,PATH)
@@ -2876,7 +2988,8 @@ IF(PLAYER2,FLAG2 > 5)
                     ADD_CREATURE_TO_LEVEL(PLAYER6,STATUE,61,2,8,0)
                 ENDIF
                 IF_ACTION_POINT(61,PLAYER0)
-                    QUICK_MESSAGE(109,"That thing is spawning abominations. Destroy it",VAMPIRE)
+                    REM "That thing is spawning abominations. Destroy it"
+                    DISPLAY_MESSAGE(944,VAMPIRE)
                     ADD_CREATURE_TO_LEVEL(PLAYER6,CFLY,61,4,7,0)
                     ADD_CREATURE_TO_LEVEL(PLAYER6,STATUE,61,6,8,0)
                     IF_SLAB_TYPE(57,58,VOID)
@@ -2886,7 +2999,8 @@ IF(PLAYER2,FLAG2 > 5)
                         ENDIF
                     ENDIF
                     IF_SLAB_TYPE(57,58,LAVA)
-                        QUICK_MESSAGE(110,"Don't question it. Keep moving.",VAMPIRE)
+                        REM "Don't question it. Keep moving."
+                        DISPLAY_MESSAGE(945,VAMPIRE)
                         MAX_CREATURES(PLAYER0,10)
                         CHANGE_SLAB_TYPE(23,66,LAIR_AREA,MATCH)
                         ROOM_AVAILABLE(PLAYER0,LAIR,1,1)
@@ -2898,7 +3012,8 @@ IF(PLAYER2,FLAG2 > 5)
 ENDIF
 
 IF_ACTION_POINT(62,PLAYER0)
-    QUICK_MESSAGE(111,"This is it. The source of his power is to the south.",VAMPIRE)
+    REM "This is it. The source of his power is to the south."
+    DISPLAY_MESSAGE(946,VAMPIRE)
     SET_MUSIC("this_is_halloween_loop_final.mp3")
     REVEAL_MAP_RECT(PLAYER0,199,208,9,9)
     SET_TIMER(PLAYER2,TIMER6)
@@ -2935,15 +3050,17 @@ IF_ACTION_POINT(62,PLAYER0)
         SET_OBJECT_CONFIGURATION(SOUL_CONTAINER2,AnimationID,1)
         NEXT_COMMAND_REUSABLE
         SET_CREATURE_CONFIGURATION(NECROVATAR,HandSymbol,CBOSS_PORTRAIT5)
-        QUICK_MESSAGE(112,"Destroy the spawners to get at his heart!",VAMPIRE)
-        QUICK_OBJECTIVE(112,"Destroy the spawners to get at his heart!",64)
+        REM "Destroy the spawners to get at his heart!"
+        DISPLAY_MESSAGE(947,VAMPIRE)
+        DISPLAY_OBJECTIVE(947,64)
         NEXT_COMMAND_REUSABLE
         SET_TIMER(PLAYER2,TIMER6)
     ENDIF
     IF(PLAYER3,TIMER2 > 2000)
         IF(PLAYER3,FLAG1 <= 1)
-            QUICK_MESSAGE(122,"Carve a path through! Destroy the spawner with a creature!",VAMPIRE)
-            QUICK_INFORMATION(122,"Carve a path through! Destroy the spawner with a creature!",64)
+            REM "Carve a path through! Destroy the spawner with a creature!"
+            DISPLAY_MESSAGE(948,VAMPIRE)
+            DISPLAY_INFORMATION(948,64)
         ENDIF
     ENDIF
     SET_TIMER(PLAYER2,TIMER5)
@@ -2980,8 +3097,9 @@ IF_ACTION_POINT(62,PLAYER0)
     ENDIF
     IF(PLAYER3,FLAG1 >= 3)
         USE_POWER_AT_POS(PLAYER0,205,178,POWER_DESTROY_WALLS,3,1)
-        QUICK_MESSAGE(113,"The spawners are destroyed! The wall is open!",VAMPIRE)
-        QUICK_OBJECTIVE(113,"The spawners are destroyed! The wall is open!",66)    
+        REM "The spawners are destroyed! The wall is open!"
+        DISPLAY_MESSAGE(949,VAMPIRE)
+        DISPLAY_OBJECTIVE(949,66)
     ENDIF
 ENDIF
 
@@ -3036,9 +3154,10 @@ IF_ACTION_POINT(66,PLAYER0)
         ENDIF
     ENDIF
     IF(PLAYER0,TIMER3 > 50)
-        QUICK_MESSAGE(114,"So many spawners...let's even it out.",VAMPIRE)
+        REM "So many spawners...let's even it out."
+        DISPLAY_MESSAGE(950,VAMPIRE)
         PLAY_MESSAGE(PLAYER0,SOUND,115)
-		MAGIC_AVAILABLE(PLAYER0,POWER_CONCEAL,1,1)
+        MAGIC_AVAILABLE(PLAYER0,POWER_CONCEAL,1,1)
         CHANGE_SLAB_TYPE(16,57,LAIR_AREA,MATCH)
         CHANGE_SLAB_TYPE(64,49,ENTRANCE_ZONE)
         CHANGE_SLAB_TYPE(65,49,ENTRANCE_ZONE)
@@ -3174,20 +3293,24 @@ IF_SLAB_TYPE(63,61,LAVA)
                                 IF_SLAB_TYPE(68,75,LAVA)
                                     SET_TIMER(PLAYER0,TIMER3)
                                     IF(PLAYER0,TIMER3>50)
-                                        QUICK_MESSAGE(115,"The walls aren't opening...",VAMPIRE)
+                                        REM "The walls aren't opening..."
+                                        DISPLAY_MESSAGE(951,VAMPIRE)
                                         ADD_PARTY_TO_LEVEL(PLAYER6,FINAL_BOSS,76,1)
                                         ADD_CREATURE_TO_LEVEL(PLAYER6,STATUE,76,3,8,0)
                                         PLAY_MESSAGE(PLAYER0,SOUND,"kktaunt08.mp3")
                                     ENDIF
                                     IF(PLAYER0,TIMER3>100)
-                                        QUICK_MESSAGE(116,"This creature must be the final hurdle...",VAMPIRE)
+                                        REM "This creature must be the final hurdle..."
+                                        DISPLAY_MESSAGE(952,VAMPIRE)
                                         IF(PLAYER6,NECROVATAR == 0)
                                             USE_POWER_AT_POS(PLAYER0,193,208,POWER_DESTROY_WALLS,8,1)
                                             USE_POWER_AT_POS(PLAYER0,199,202,POWER_DESTROY_WALLS,8,1)
                                             USE_POWER_AT_POS(PLAYER0,205,208,POWER_DESTROY_WALLS,8,1)
                                             USE_POWER_AT_POS(PLAYER0,199,214,POWER_DESTROY_WALLS,8,1)
-                                            QUICK_MESSAGE(117,"Go! Destroy it!",VAMPIRE)
-                                            QUICK_OBJECTIVE(117,"Go! Destroy it!")
+                                            REM "Go! Destroy it!"
+                                            DISPLAY_MESSAGE(953,VAMPIRE)
+                                            REM "Go! Destroy it!"
+                                            DISPLAY_OBJECTIVE(954)
                                         ENDIF
                                     ENDIF
 
@@ -3224,17 +3347,22 @@ IF(PLAYER6,DUNGEON_DESTROYED == 1)
     MAGIC_AVAILABLE(PLAYER0,POWER_HAND,1,1)
 
     IF(PLAYER0,TIMER3>50)
-        QUICK_MESSAGE(118,"It is done...but you're still stuck here...",VAMPIRE)
+        REM "It is done...but you're still stuck here..."
+        DISPLAY_MESSAGE(955,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>100)
-        QUICK_MESSAGE(119,"Of course, you have to complete the objective.",VAMPIRE)
+        REM "Of course, you have to complete the objective."
+        DISPLAY_MESSAGE(956,VAMPIRE)
     ENDIF
     IF(PLAYER0,TIMER3>150)
-        QUICK_MESSAGE(120,"Claim your imp and destroy the heroes to the north.",VAMPIRE)
-        QUICK_OBJECTIVE(120,"Claim your imp and destroy the heroes to the north.")  
+        REM "Claim your imp and destroy the heroes to the north."
+        DISPLAY_MESSAGE(957,VAMPIRE)
+        REM "Claim your imp and destroy the heroes to the north."
+        DISPLAY_OBJECTIVE(958)
     ENDIF
     IF(PLAYER0,TIMER3>200)
-        QUICK_MESSAGE(121,"Good luck, and good bye.",VAMPIRE)
+        REM "Good luck, and good bye."
+        DISPLAY_MESSAGE(959,VAMPIRE)
         CONCEAL_MAP_RECT(PLAYER0,120,120,240,240)
 
         REVEAL_MAP_RECT(PLAYER0,61,199,39,21)
