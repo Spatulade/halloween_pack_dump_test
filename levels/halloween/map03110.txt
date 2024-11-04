@@ -603,7 +603,7 @@ SET_TRAP_CONFIGURATION(PATH_FRAME,PlaceSound,852)
 SET_TRAP_CONFIGURATION(PATH_FRAME,TriggerSound,927)
 SET_TRAP_CONFIGURATION(PATH_FRAME,DestroyedEffect,EFFECT_EXPLOSION_1)
 
-REM # Creature's Pool.
+REM # Creatures' Pool.
 ADD_CREATURE_TO_POOL(IMP,17)
 ADD_CREATURE_TO_POOL(SPIDER,17)
 ADD_CREATURE_TO_POOL(ARCHER,0)
@@ -614,7 +614,7 @@ ADD_CREATURE_TO_POOL(SORCEROR,0)
 ADD_CREATURE_TO_POOL(SKELETON,0)
 ADD_CREATURE_TO_POOL(VAMPIRE,0)
 
-REM # Creature's Availablity.
+REM # Creatures' Availablity.
 CREATURE_AVAILABLE(PLAYER0,IMP,1,0)
 CREATURE_AVAILABLE(PLAYER0,SPIDER,1,0)
 CREATURE_AVAILABLE(PLAYER0,ARCHER,0,0)
@@ -655,7 +655,7 @@ RESEARCH_ORDER(PLAYER0,MAGIC,POWER_LIGHTNING,500000)
 RESEARCH_ORDER(PLAYER0,MAGIC,POWER_FLIGHT,100000)
 RESEARCH_ORDER(PLAYER0,MAGIC,POWER_VISION,100000)
 
-REM # Keeper's Rooms Availablity.
+REM # Keeper's Rooms' Availablity.
 ROOM_AVAILABLE(PLAYER0,RESEARCH,2,0)
 ROOM_AVAILABLE(PLAYER0,LAIR,2,0)
 ROOM_AVAILABLE(PLAYER0,GARDEN,2,0)
@@ -671,7 +671,7 @@ ROOM_AVAILABLE(PLAYER0,GRAVEYARD,2,0)
 ROOM_AVAILABLE(PLAYER0,SCAVENGER,2,0)
 ROOM_AVAILABLE(PLAYER0,BRIDGE,0,0)
 
-REM # Keeper's Powers Availablity.
+REM # Keeper's Powers' Availablity.
 MAGIC_AVAILABLE(PLAYER0,POWER_IMP,1,1)
 MAGIC_AVAILABLE(PLAYER0,POWER_OBEY,1,1)
 MAGIC_AVAILABLE(PLAYER0,POWER_CALL_TO_ARMS,1,0)
@@ -694,13 +694,13 @@ MAGIC_AVAILABLE(PLAYER0,POWER_ARMAGEDDON,0,0)
 MAGIC_AVAILABLE(PLAYER0,POWER_FLIGHT,1,0)
 MAGIC_AVAILABLE(PLAYER0,POWER_VISION,1,0)
 
-REM # Keeper's Doors Availablity.
+REM # Keeper's Doors' Availablity.
 DOOR_AVAILABLE(PLAYER0,WOOD,1,0)
 DOOR_AVAILABLE(PLAYER0,BRACED,1,0)
 DOOR_AVAILABLE(PLAYER0,STEEL,1,0)
 DOOR_AVAILABLE(PLAYER0,MAGIC,1,0)
 
-REM # Keeper's Traps Availablity.
+REM # Keeper's Traps' Availablity.
 TRAP_AVAILABLE(PLAYER0,ALARM,1,0)
 TRAP_AVAILABLE(PLAYER0,WIND,1,0)
 TRAP_AVAILABLE(PLAYER0,LIGHTNING,1,0)
@@ -728,14 +728,14 @@ CREATE_PARTY(SR)
 ADD_TO_PARTY(SR,SAMURAI,1,0,SABOTAGE_ROOMS,0)
 
 REM # Set tooltip for Custom Special Box.
-REM "Trick-or-Treat: Spawn a Ghost for yourself and a Skeleton for your opponent. May have unwanted side effects."
+REM # "Trick-or-Treat: Spawn a Ghost for yourself and a Skeleton for your opponent. May have unwanted side effects."
 SET_BOX_TOOLTIP_ID(0,80)
-REM "Doomsday: Permanently activate a Trick-or-Treat effect at random intervals based on your Dungeon Heart's health."
+REM # "Doomsday: Permanently activate a Trick-or-Treat effect at random intervals based on your Dungeon Heart's health."
 SET_BOX_TOOLTIP_ID(100,81)
-REM "Desperate Maneuver: Heal and set buffs on all your minions, then teleport them to your Dungeon Heart in a final attempt at survival. Use with caution."
+REM # "Desperate Maneuver: Heal and set buffs on all your minions, then teleport them to your Dungeon Heart in a final attempt at survival. Use with caution."
 SET_BOX_TOOLTIP_ID(200,82)
 
-REM # "Trick-or-Treat: Permanently activate a Trick-or-Treat effect at random intervals."
+REM # "Trick-or-Treat: Spawn a Ghost for yourself and a Skeleton for your opponent. May have unwanted side effects."
 IF(PLAYER0,BOX0_ACTIVATED > 0)
 	NEXT_COMMAND_REUSABLE
 	ADD_CREATURE_TO_LEVEL(PLAYER0,IMP,LAST_EVENT,1,1,0)
@@ -750,8 +750,8 @@ IF(PLAYER0,BOX0_ACTIVATED > 0)
 ENDIF
 IF(PLAYER0,BOX253_ACTIVATED != 0)
 	IF(PLAYER0,BOX253_ACTIVATED == 1)
+		REM # "Trick-or-Treat increased the level of all minions!"
 		NEXT_COMMAND_REUSABLE
-		REM "Trick-or-Treat increased the level of all minions!"
 		DISPLAY_MESSAGE(83,PLAYER_GOOD)
 		NEXT_COMMAND_REUSABLE
 		USE_SPECIAL_INCREASE_LEVEL(PLAYER0,1)
@@ -763,8 +763,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 		SET_FLAG(PLAYER0,BOX253_ACTIVATED,0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 2)
+		REM # "Trick-or-Treat decreased the level of all minions!"
 		NEXT_COMMAND_REUSABLE
-		REM "Trick-or-Treat decreased the level of all minions!"
 		DISPLAY_MESSAGE(84,PLAYER0)
 		NEXT_COMMAND_REUSABLE
 		USE_SPECIAL_INCREASE_LEVEL(PLAYER0,-1)
@@ -776,8 +776,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 		SET_FLAG(PLAYER0,BOX253_ACTIVATED,0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 3)
+		REM # "Trick-or-Treat made all minions happy!"
 		NEXT_COMMAND_REUSABLE
-		REM "Trick-or-Treat made all minions happy!"
 		DISPLAY_MESSAGE(85,PLAYER_GOOD)
 		NEXT_COMMAND_REUSABLE
 		CHANGE_CREATURES_ANNOYANCE(PLAYER0,IMP,SET,0)
@@ -789,21 +789,21 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 		SET_FLAG(PLAYER0,BOX253_ACTIVATED,0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 4)
+		REM # "Trick-or-Treat made all minions angry!"
 		NEXT_COMMAND_REUSABLE
-		REM "Trick-or-Treat made all minions angry!"
 		DISPLAY_MESSAGE(86,PLAYER0)
 		NEXT_COMMAND_REUSABLE
 		CHANGE_CREATURES_ANNOYANCE(PLAYER0,IMP,INCREASE,1250)
 		NEXT_COMMAND_REUSABLE
-		CHANGE_CREATURES_ANNOYANCE(PLAYER0,ANY_CREATURE,INCREASE,1250)
+		CHANGE_CREATURES_ANNOYANCE(PLAYER0,ANY_CREATURE,INCREASE,2500)
 		NEXT_COMMAND_REUSABLE
-		CHANGE_CREATURES_ANNOYANCE(PLAYER_GOOD,ANY_CREATURE,INCREASE,1250)
+		CHANGE_CREATURES_ANNOYANCE(PLAYER_GOOD,ANY_CREATURE,INCREASE,2500)
 		NEXT_COMMAND_REUSABLE
 		SET_FLAG(PLAYER0,BOX253_ACTIVATED,0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 5)
+		REM # "Trick-or-Treat increased the current spawn tier by 1!"
 		NEXT_COMMAND_REUSABLE
-		REM "Trick-or-Treat increased the current spawn tier by 1!"
 		DISPLAY_MESSAGE(87,PLAYER_GOOD)
 		NEXT_COMMAND_REUSABLE
 		ADD_TO_FLAG(PLAYER_GOOD,FLAG7,1)
@@ -811,8 +811,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 		SET_FLAG(PLAYER0,BOX253_ACTIVATED,0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 6)
+		REM # "Trick-or-Treat decreased the current spawn tier by 1!"
 		NEXT_COMMAND_REUSABLE
-		REM "Trick-or-Treat decreased the current spawn tier by 1!"
 		DISPLAY_MESSAGE(88,PLAYER0)
 		NEXT_COMMAND_REUSABLE
 		ADD_TO_FLAG(PLAYER_GOOD,FLAG7,-1)
@@ -820,8 +820,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 		SET_FLAG(PLAYER0,BOX253_ACTIVATED,0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 7)
+		REM # "Trick-or-Treat blessed all minions with buffs!"
 		NEXT_COMMAND_REUSABLE
-		REM "Trick-or-Treat blessed all minions with buffs!"
 		DISPLAY_MESSAGE(89,PLAYER_GOOD)
 		NEXT_COMMAND_REUSABLE
 		USE_SPELL_ON_PLAYERS_CREATURES(PLAYER0,IMP,SPELL_HEAL,10)
@@ -851,8 +851,8 @@ IF(PLAYER0,BOX253_ACTIVATED != 0)
 		SET_FLAG(PLAYER0,BOX253_ACTIVATED,0)
 	ENDIF
 	IF(PLAYER0,BOX253_ACTIVATED == 8)
+		REM # "Trick-or-Treat cursed all minions with debuffs!"
 		NEXT_COMMAND_REUSABLE
-		REM "Trick-or-Treat cursed all minions with debuffs!"
 		DISPLAY_MESSAGE(90,PLAYER0)
 		NEXT_COMMAND_REUSABLE
 		USE_SPELL_ON_PLAYERS_CREATURES(PLAYER0,IMP,SPELL_CHICKEN,2)
@@ -925,18 +925,20 @@ REM # "Doomsday: Permanently activate a Trick-or-Treat effect at random interval
 IF(PLAYER0,BOX100_ACTIVATED > 0)
 	SET_TIMER(PLAYER_NEUTRAL,TIMER0)
 	IF(PLAYER_NEUTRAL,TIMER0 > PLAYER_NEUTRAL,FLAG0)
-		NEXT_COMMAND_REUSABLE
-		RANDOMISE_FLAG(PLAYER0,BOX253_ACTIVATED,8)
-		NEXT_COMMAND_REUSABLE
-		RANDOMISE_FLAG(PLAYER0,BOX254_ACTIVATED,7)
-		NEXT_COMMAND_REUSABLE
-		ADD_TO_FLAG(PLAYER_GOOD,FLAG7,1)
-		NEXT_COMMAND_REUSABLE
-		COMPUTE_FLAG(PLAYER_NEUTRAL,FLAG0,SET,PLAYER0,HEART_HEALTH)
-		NEXT_COMMAND_REUSABLE
-		RANDOMISE_FLAG(PLAYER_NEUTRAL,FLAG0)
-		NEXT_COMMAND_REUSABLE
-		SET_TIMER(PLAYER_NEUTRAL,TIMER0)
+		IF(PLAYER_NEUTRAL,TIMER0 >= 1200)
+			NEXT_COMMAND_REUSABLE
+			RANDOMISE_FLAG(PLAYER0,BOX253_ACTIVATED,8)
+			NEXT_COMMAND_REUSABLE
+			RANDOMISE_FLAG(PLAYER0,BOX254_ACTIVATED,7)
+			NEXT_COMMAND_REUSABLE
+			ADD_TO_FLAG(PLAYER_GOOD,FLAG7,1)
+			NEXT_COMMAND_REUSABLE
+			COMPUTE_FLAG(PLAYER_NEUTRAL,FLAG0,SET,PLAYER0,HEART_HEALTH)
+			NEXT_COMMAND_REUSABLE
+			RANDOMISE_FLAG(PLAYER_NEUTRAL,FLAG0)
+			NEXT_COMMAND_REUSABLE
+			SET_TIMER(PLAYER_NEUTRAL,TIMER0)
+		ENDIF
 	ENDIF
 ENDIF
 
@@ -955,10 +957,11 @@ IF(PLAYER0,BOX200_ACTIVATED > 0)
 	USE_SPELL_ON_PLAYERS_CREATURES(PLAYER_GOOD,ANY_CREATURE,SPELL_SLOW,10)
 	MOVE_CREATURE(PLAYER0,IMP,ANYWHERE,1000,7,60)
 	MOVE_CREATURE(PLAYER0,ANY_CREATURE,ANYWHERE,1000,7,60)
+	SET_FLAG(PLAYER0,BOX200_ACTIVATED,0)
 ENDIF
 
 REM # Initial Objective.
-REM "A gloomy deity has decided your Imps need a makeover, turning them into Ghosts with some nifty new powers. Who knew they had it in them? Meanwhile, an army of Skeletons has taken a break from their bone-tapping dance parties to zero in on you. To send these bony nuisances packing, you'll need to wrangle at least 100 of those ghostly misfits. Good luck collecting them before your own bones start rattling!"
+REM # "A gloomy deity has decided your Imps need a makeover, turning them into Ghosts with some nifty new powers. Who knew they had it in them? Meanwhile, an army of Skeletons has taken a break from their bone-tapping dance parties to zero in on you. To send these bony nuisances packing, you'll need to wrangle at least 100 of those ghostly misfits. Good luck collecting them before your own bones start rattling!"
 DISPLAY_OBJECTIVE(91)
 SET_FLAG(PLAYER0,FLAG0,18000)
 SET_FLAG(PLAYER0,BOX20_ACTIVATED,20)
@@ -1059,7 +1062,7 @@ IF(PLAYER_GOOD,GAME_TURN >= 18000)
 	COMPUTE_FLAG(PLAYER_NEUTRAL,CAMPAIGN_FLAG0,SET,PLAYER0,FLAG1)
 	NEXT_COMMAND_REUSABLE
 	COMPUTE_FLAG(PLAYER_NEUTRAL,CAMPAIGN_FLAG0,INCREASE,PLAYER_GOOD,TOTAL_CREATURES)
-	REM "The Skeletons are gearing up for their grand invasion, and trust me, they've been counting on this for a while. Your task? Just survive the bone-rattling chaos. Try not to trip over any stray limbs while you're at it because those guys don't take rejection well!"
+	REM # "The Skeletons are gearing up for their grand invasion, and trust me, they've been counting on this for a while. Your task? Just survive the bone-rattling chaos. Try not to trip over any stray limbs while you're at it because those guys don't take rejection well!"
 	DISPLAY_INFORMATION(92)
 ENDIF
 
@@ -2107,7 +2110,7 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 			SET_TIMER(PLAYER0,TIMER0)
 		ENDIF
 	ENDIF
-	REM # Randomize a flag to determine a fear value for IMP.
+	REM # Randomise a flag to determine a fear value for IMP.
 	IF(PLAYER0,ACTIVE_BATTLES != 0)
 		IF(PLAYER0,TIMER1 > PLAYER0,TOTAL_SCORE)
 			NEXT_COMMAND_REUSABLE
@@ -2186,7 +2189,7 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 		MAGIC_AVAILABLE(PLAYER0,POWER_FLIGHT,0,0)
 		NEXT_COMMAND_REUSABLE
 		MAGIC_AVAILABLE(PLAYER0,POWER_VISION,1,0)
-		REM "Your researchers discovered a blueprint for the Steal Hero mysterious box! Perfect! Now we can finally steal candy without the guilt!"
+		REM # "Your researchers discovered a blueprint for the Steal Hero mysterious box! Perfect! Now we can finally steal candy without the guilt!"
 		DISPLAY_INFORMATION(93)
 	ENDIF
 	REM # Give information about Trick-or-Treat available in the library.
@@ -2197,53 +2200,53 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 		MAGIC_AVAILABLE(PLAYER0,POWER_FLIGHT,1,0)
 		NEXT_COMMAND_REUSABLE
 		MAGIC_AVAILABLE(PLAYER0,POWER_VISION,0,0)
-		REM "Your researchers discovered a blueprint for the Trick-or-Treat mysterious box! Fantastic! Just what we need to turn Halloween into a treasure hunt for lost souls!"
+		REM # "Your researchers discovered a blueprint for the Trick-or-Treat mysterious box! Fantastic! Just what we need to turn Halloween into a treasure hunt for lost souls!"
 		DISPLAY_INFORMATION(94)
 	ENDIF
 	REM # Give information about the Spider.
 	IF(PLAYER0,SPIDER > 0)
-		REM "Spiders... such exquisite little nightmares! With their eight legs and unsettling charm, they send shivers down spines for reasons that are as rational as a Ghost at a campfire. The ones from this realm? They're like ice-flavored powerhouses! Get them to a high level, and you might just find yourself chilling with their frosty vibes... or maybe you'll just freeze in terror!"
+		REM # "Spiders... such exquisite little nightmares! With their eight legs and unsettling charm, they send shivers down spines for reasons that are as rational as a Ghost at a campfire. The ones from this realm? They're like ice-flavored powerhouses! Get them to a high level, and you might just find yourself chilling with their frosty vibes... or maybe you'll just freeze in terror!"
 		DISPLAY_INFORMATION(95)
 	ENDIF
 	REM # Give information about the Vampire.
 	IF(PLAYER0,VAMPIRE > 0)
-		REM "Oh, you'd never guess it on your own, but I just lost a bet playing dice. Wild, huh? But why am I even telling you? Just ignore that. By the way, to really attract those Vampires from your graveyard, you'll need to gather up 16 bodies. Did you know nothing gets their bloodlust flowing like a well-stocked buffet?!"
+		REM # "Oh, you'd never guess it on your own, but I just lost a bet playing dice. Wild, huh? But why am I even telling you? Just ignore that. By the way, to really attract those Vampires from your graveyard, you'll need to gather up 16 bodies. Did you know nothing gets their bloodlust flowing like a well-stocked buffet?!"
 		DISPLAY_INFORMATION(96)
 	ENDIF
 	REM # Give information about the Barracks.
 	IF_AVAILABLE(PLAYER0,BARRACKS > 0)
-		REM "Although it might be a bit limited in its effect, the Barracks can help slow down the invasion by cranking up the spawn rate of the invaders. But remember, it's not an exact science. So if things go awry, don't blame the architect. They were just following orders from the most confusing instructions!"
+		REM # "Although it might be a bit limited in its effect, the Barracks can help slow down the invasion by cranking up the spawn rate of the invaders. But REM #ember, it's not an exact science. So if things go awry, don't blame the architect. They were just following orders from the most confusing instructions!"
 		DISPLAY_INFORMATION(97)
 	ENDIF
 	REM # Give information about the Scavenger.
 	IF_AVAILABLE(PLAYER0,SCAVENGER > 0)
-		REM "The Scavenger increases your chances of getting more high level creatures through the portal, the more tiles the better."
+		REM # "The Scavenger increases your chances of getting more high level creatures through the portal, the more tiles the better."
 		DISPLAY_INFORMATION(98)
 	ENDIF
 	REM # Give information about the Spawn Trap.
 	IF_AVAILABLE(PLAYER0,SPAWNER > 0)
-		REM "Your minions forged a Spawn Trap that conjures a powerful Ghost to fight for you. Just remember, they're as petty and fragile as a glass cannon at a demolition party!"
+		REM # "Your minions forged a Spawn Trap that conjures a powerful Ghost to fight for you. Just REM #ember, they're as petty and fragile as a glass cannon at a demolition party!"
 		DISPLAY_INFORMATION(99)
 	ENDIF
 	REM # Give information about the Power Trap.
 	IF_AVAILABLE(PLAYER0,POWER_FRAME > 0)
-		REM "Your minions forged a Power Trap that keeps all your minions healthy for five glorious seconds! It's like a wellness retreat, but you'll need a miracle to get them to actually enjoy it!"
+		REM # "Your minions forged a Power Trap that keeps all your minions healthy for five glorious seconds! It's like a wellness retreat, but you'll need a miracle to get them to actually enjoy it!"
 		DISPLAY_INFORMATION(100)
 	ENDIF
 	REM # Give information about the Special Trap.
 	IF_AVAILABLE(PLAYER0,PATH_FRAME > 0)
-		REM "Your minions forged a Special Trap that lets you swap a tile for an unclaimed path. Think it's useless? Go ahead, place it on a bridge and see what happens!"
+		REM # "Your minions forged a Special Trap that lets you swap a tile for an unclaimed path. Think it's useless? Go ahead, place it on a bridge and see what happens!"
 		DISPLAY_INFORMATION(101)
 	ENDIF
-	REM # Give information about the incoming invasion.
+	REM # Give information about the rules.
 	IF(PLAYER_GOOD,GAME_TURN >= 1200)
-		REM "Welcome to the twisted carnival where the rules have been joyfully mangled by a sinister force. Training rooms cap at level 8, imprisonment is hit-or-miss, and whatever you torture might just kick the bucket. The repeat trigger for possession mode is a delightful quality-of-life feature, while diggers rake in experience just for shoveling dirt. Rooms sell for a glorious full price, oh and also... why do I even bother? It's not like anyone will read this. Cheers to the madness!"
+		REM # "Welcome to the twisted carnival where the rules have been joyfully mangled by a sinister force. Training rooms cap at level 8, imprisonment is hit-or-miss, and whatever you torture might just kick the bucket. The repeat trigger for possession mode is a delightful quality-of-life feature, while diggers rake in experience just for shoveling dirt. Rooms sell for a glorious full price, oh and also... why do I even bother? It's not like anyone will read this. Cheers to the madness!"
 		DISPLAY_INFORMATION(102)
 	ENDIF
 	REM # Give information about Skeletons time to retreat.
 	IF_CONTROLS(PLAYER_GOOD,TOTAL_CREATURES == 0)
 		IF(PLAYER_GOOD,BOX255_ACTIVATED != 0)
-			REM "The Skeletons have decided it's time to retreat and plot their next bone-chilling attack. Use this chance to fortify your defenses, replenish your treasury, and whip your troops into shape. After all, you wouldn't want to be caught with your skull in your hands when they come knocking!"
+			REM # "The Skeletons have decided it's time to retreat and plot their next bone-chilling attack. Use this chance to fortify your defenses, replenish your treasury, and whip your troops into shape. After all, you wouldn't want to be caught with your skull in your hands when they come knocking!"
 			DISPLAY_INFORMATION(103)
 		ENDIF
 	ENDIF
@@ -2263,7 +2266,7 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 				SET_TIMER(PLAYER2,TIMER0)
 				NEXT_COMMAND_REUSABLE
 				SET_TIMER(PLAYER2,TIMER7)
-				REM "The Skeletons are primed for another raid on your dungeon. Stop goofing off and get ready to fight!"
+				REM # "The Skeletons are primed for another raid on your dungeon. Stop goofing off and get ready to fight!"
 				DISPLAY_INFORMATION(104)
 			ENDIF
 		ENDIF
@@ -2316,17 +2319,17 @@ IF(PLAYER0,DUNGEON_DESTROYED == 0)
 	ENDIF
 	REM # Secret event after 24 hours playing.
 	IF(PLAYER_GOOD,GAME_TURN >= 1728000)
-		REM "Incredible, you're still thriving after 24 hours in your real-time dimension. Seriously, take a break!"
+		REM # "Incredible, you're still thriving after 24 hours in your real-time dimension. Seriously, take a break!"
 		DISPLAY_OBJECTIVE(105)
 	ENDIF
 	REM # Secret event 1 minute before reaching the maximum GAME_TURN limit: 2147483647.
 	IF(PLAYER_GOOD,GAME_TURN >= 2147482447)
-		REM "Just so you know, in one minute you'll hit the maximum game turn limit, so your score isn't going to budge anymore. I guess that makes it an absolute win, but maybe it's time to step outside. You've been grinding on the same map for over three years. Just saying!"
+		REM # "Just so you know, in one minute you'll hit the maximum game turn limit, so your score isn't going to budge anymore. I guess that makes it an absolute win, but maybe it's time to step outside. You've been grinding on the same map for over three years. Just saying!"
 		DISPLAY_OBJECTIVE(106)
 	ENDIF
 	REM # Win Condition.
 	IF(PLAYER0,IMP >= 100)
-		REM "Oh look at that, you've gathered an army of 100 Ghosts, congrats on hitting the win condition! But don't be a coward, keep playing and see how long you can last. This win condition is just for the peasants who would have cried if they didn't get a shiny trophy. So stick around, this is a survival realm, not a ghostly tea party!"
+		REM # "Oh look at that, you've gathered an army of 100 Ghosts, congrats on hitting the win condition! But don't be a coward, keep playing and see how long you can last. This win condition is just for the peasants who would have cried if they didn't get a shiny trophy. So stick around, this is a survival realm, not a ghostly tea party!"
 		DISPLAY_OBJECTIVE(107)
 		CREATURE_AVAILABLE(PLAYER0,ARCHER,1,0)
 		CREATURE_AVAILABLE(PLAYER0,SAMURAI,1,0)
@@ -2347,7 +2350,7 @@ IF(PLAYER0,DUNGEON_DESTROYED == 1)
 	COMPUTE_FLAG(PLAYER0,FLAG7,SET,PLAYER_GOOD,GAME_TURN)
 	DISPLAY_VARIABLE(PLAYER0,FLAG7)
 	IF_CONTROLS(PLAYER0,IMP == 0)
-		REM "Congrats on meeting your doom! Why not share your score with your fellow fallen keepers in the comments of the map on keeperfx.net? Your misery could inspire others. Thanks for playing!"
+		REM # "Congrats on meeting your doom! Why not share your score with your fellow fallen keepers in the comments of the map on keeperfx.net? Your misery could inspire others. Thanks for playing!"
 		DISPLAY_INFORMATION(108)
 	ENDIF
 ENDIF
@@ -2582,12 +2585,12 @@ ENDIF
 
 REM # Spawn Trap Effect.
 IF(PLAYER0,GHOST != 0)
+	REM # "Master, I have come to feast on your enemies' souls!"
 	NEXT_COMMAND_REUSABLE
 	LEVEL_UP_CREATURE(PLAYER0,GHOST,LEAST_EXPERIENCED,9)
 	NEXT_COMMAND_REUSABLE
 	CHANGE_CREATURE_OWNER(PLAYER0,GHOST,LEAST_EXPERIENCED,PLAYER1)
 	NEXT_COMMAND_REUSABLE
-	REM "Master, I have come to feast on your enemies' souls!"
 	DISPLAY_MESSAGE(109,GHOST)
 ENDIF
 
@@ -2610,7 +2613,7 @@ IF(PLAYER0,TUNNELLER != 0)
 		MOVE_CREATURE(PLAYER0,TUNNELLER,LEAST_EXPERIENCED,1,-9,64)
 		NEXT_COMMAND_REUSABLE
 		TRANSFER_CREATURE(PLAYER0,TUNNELLER,LEAST_EXPERIENCED,1)
-		REM "If you activate another Power Trap while one is already running, you'll get a stack! But beware about diminishing returns as each extra trap only adds one more second to the pile."
+		REM # "If you activate another Power Trap while one is already running, you'll get a stack! But beware about diminishing returns as each extra trap only adds one more second to the pile."
 		DISPLAY_INFORMATION(110)
 	ENDIF
 	IF(PLAYER1,FLAG7 == 0)
@@ -2625,18 +2628,18 @@ ENDIF
 
 REM # Workshop Upgrade.
 IF(PLAYER0,WORKSHOP > 0)
-	REM "There are plenty of blueprints to discover from, but here's a little rumor for you: they say if you expand your workshop beyond a certain point, you might stumble upon some secret technology. But honestly, it's probably just some tall tale to get you to spend more!"
+	REM # "There are plenty of blueprints to discover from, but here's a little rumor for you: they say if you expand your workshop beyond a certain point, you might stumble upon some secret technology. But honestly, it's probably just some tall tale to get you to spend more!"
 	DISPLAY_INFORMATION(111)
 	IF(PLAYER0,WORKSHOP >= 49)
-		REM "Here you built a big workshop, and what happened? Nothing! Looks like this was just a hilarious way to make you look silly!"
+		REM # "Here you built a big workshop, and what happened? Nothing! Looks like this was just a hilarious way to make you look silly!"
 		DISPLAY_INFORMATION(112)
 	ENDIF
 	IF(PLAYER0,WORKSHOP >= 98)
-		REM "Oh, you're still trying to expand the workshop? This time you went for twice the usual size! Do you really believe in that legend? Come on, Keeper! At this rate, you'll just end up with a bigger pile of disappointment!"
+		REM # "Oh, you're still trying to expand the workshop? This time you went for twice the usual size! Do you really believe in that legend? Come on, Keeper! At this rate, you'll just end up with a bigger pile of disappointment!"
 		DISPLAY_INFORMATION(113)
 	ENDIF
 	IF(PLAYER0,WORKSHOP >= 147)
-		REM "Wow, you've probably built the biggest workshop this realm has ever seen! But why? It's clearly a trap, and look at you, you just walked right into it. Guess you're now the proud owner of a colossal mistake!"
+		REM # "Wow, you've probably built the biggest workshop this realm has ever seen! But why? It's clearly a trap, and look at you, you just walked right into it. Guess you're now the proud owner of a colossal mistake!"
 		DISPLAY_INFORMATION(114)
 		SET_TIMER(PLAYER1,TIMER1)
 		IF(PLAYER1,TIMER1 >= 31200)
@@ -2664,18 +2667,18 @@ IF(PLAYER0,WORKSHOP > 0)
 			PLAY_MESSAGE(PLAYER0,SOUND,927)
 		ENDIF
 		IF(PLAYER1,TIMER1 >= 40800)
-			REM "In a bizarre twist of fate, your minions stumbled upon a secret technology hidden in the ceiling, but your oversized workshop's heat pressure made it collapse. You were right to stick with this project and your efforts have paid off. What's the secret technology, you ask? Hard to say, but give your minions some time to figure out just how useful it really is!"
+			REM # "In a bizarre twist of fate, your minions stumbled upon a secret technology hidden in the ceiling, but your oversized workshop's heat pressure made it collapse. You were right to stick with this project and your efforts have paid off. What's the secret technology, you ask? Hard to say, but give your minions some time to figure out just how useful it really is!"
 			DISPLAY_INFORMATION(115)
 		ENDIF
 		IF(PLAYER1,TIMER1 >= 58800)
 			ADD_CREATURE_TO_LEVEL(PLAYER0,DRAGON,-9,1,1,0)
-			REM "Your minions finally figured out what to do with the secret technology they discovered. It turns out it's some sort of mechanical suit, and only a fish can control it. Strange, but it looks powerful! So let's put this new silly weapon to work in your fight for survival!"
+			REM # "Your minions finally figured out what to do with the secret technology they discovered. It turns out it's some sort of mechanical suit, and only a fish can control it. Strange, but it looks powerful! So let's put this new silly weapon to work in your fight for survival!"
 			DISPLAY_INFORMATION(116)
 		ENDIF
 	ENDIF
 ENDIF
 
-REM # Anti-cheat measures to ensure the cheater feels remorse for their actions.
+REM # Anti-cheat measures to ensure the cheater feels REM #orse for their actions.
 IF_CONTROLS(PLAYER_GOOD,TOTAL_CREATURES == 0)
 	IF(PLAYER_GOOD,TOTAL_CREATURES > 0)
 		IF(PLAYER0,FLAG1 > 510)
@@ -2686,7 +2689,7 @@ IF_CONTROLS(PLAYER_GOOD,TOTAL_CREATURES == 0)
 				KILL_CREATURE(PLAYER1,ANY_CREATURE,ANYWHERE,1000)
 				KILL_CREATURE(PLAYER_GOOD,ANY_CREATURE,ANYWHERE,1000)
 				ADD_CREATURE_TO_LEVEL(PLAYER_GOOD,DRAGON,7,64,10,0)
-				REM "Your cheating soul's been laid bare before me, mortal. You believe you can circumvent the laws of this realm by exploiting loopholes, but you're mistaken. I'm no mere automaton, bound by the feeble rules of your playground. I'm the darkness that binds this world together, and I won't tolerate such flagrant disregard for order. You've been weighed in the scales of my judgment, and you've been found wanting."
+				REM # "Your cheating soul's been laid bare before me, mortal. You believe you can circumvent the laws of this realm by exploiting loopholes, but you're mistaken. I'm no mere automaton, bound by the feeble rules of your playground. I'm the darkness that binds this world together, and I won't tolerate such flagrant disregard for order. You've been weighed in the scales of my judgment, and you've been found wanting."
 				DISPLAY_OBJECTIVE(117)
 			ENDIF
 		ENDIF
@@ -2716,235 +2719,342 @@ IF(PLAYER_GOOD,GAME_TURN > 0)
 		COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,IMP,PLAYER1,FLAG4)
 		NEXT_COMMAND_REUSABLE
 		COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,ANY_CREATURE,PLAYER1,FLAG6)
+		SET_TIMER(PLAYER6,TIMER0)
+		SET_TIMER(PLAYER6,TIMER1)
+		SET_TIMER(PLAYER6,TIMER2)
+		SET_TIMER(PLAYER6,TIMER3)
+		SET_TIMER(PLAYER6,TIMER4)
+		SET_TIMER(PLAYER6,TIMER5)
+		SET_TIMER(PLAYER6,TIMER6)
+		SET_TIMER(PLAYER6,TIMER7)
+		SET_TIMER(PLAYER_NEUTRAL,TIMER7)
 	ENDIF
 	IF(PLAYER6,FLAG0 > 0)
-		NEXT_COMMAND_REUSABLE
-		PLAY_MESSAGE(PLAYER0,SPEECH,65)
-		NEXT_COMMAND_REUSABLE
-		ADD_TO_FLAG(PLAYER0,SACRIFICED[IMP],1)
-		NEXT_COMMAND_REUSABLE
-		RANDOMISE_FLAG(PLAYER0,BOX8_ACTIVATED,8)
-		NEXT_COMMAND_REUSABLE
-		KILL_CREATURE(PLAYER0,IMP,AT_ACTION_POINT[1],1)
-		NEXT_COMMAND_REUSABLE
-		COUNT_CREATURES_AT_ACTION_POINT(1,PLAYER0,IMP,PLAYER6,FLAG0)
+		IF(PLAYER6,TIMER0 > 20)
+			NEXT_COMMAND_REUSABLE
+			PLAY_MESSAGE(PLAYER0,SPEECH,65)
+			NEXT_COMMAND_REUSABLE
+			ADD_TO_FLAG(PLAYER0,SACRIFICED[IMP],1)
+			NEXT_COMMAND_REUSABLE
+			RANDOMISE_FLAG(PLAYER0,BOX8_ACTIVATED,8)
+			NEXT_COMMAND_REUSABLE
+			KILL_CREATURE(PLAYER0,IMP,AT_ACTION_POINT[1],1)
+			NEXT_COMMAND_REUSABLE
+			COUNT_CREATURES_AT_ACTION_POINT(1,PLAYER0,IMP,PLAYER6,FLAG0)
+			NEXT_COMMAND_REUSABLE
+			SET_TIMER(PLAYER6,TIMER0)
+		ENDIF
 	ENDIF
 	IF(PLAYER6,FLAG1 > 0)
-		NEXT_COMMAND_REUSABLE
-		MOVE_CREATURE(PLAYER0,IMP,AT_ACTION_POINT[2],1,7)
-		NEXT_COMMAND_REUSABLE
-		COUNT_CREATURES_AT_ACTION_POINT(2,PLAYER0,IMP,PLAYER6,FLAG1)
+		IF(PLAYER6,TIMER1 > 20)
+			NEXT_COMMAND_REUSABLE
+			MOVE_CREATURE(PLAYER0,IMP,AT_ACTION_POINT[2],1,7)
+			NEXT_COMMAND_REUSABLE
+			COUNT_CREATURES_AT_ACTION_POINT(2,PLAYER0,IMP,PLAYER6,FLAG1)
+			NEXT_COMMAND_REUSABLE
+			SET_TIMER(PLAYER6,TIMER1)
+		ENDIF
 	ENDIF
 	IF(PLAYER6,FLAG2 > 0)
-		NEXT_COMMAND_REUSABLE
-		PLAY_MESSAGE(PLAYER0,SPEECH,67)
-		NEXT_COMMAND_REUSABLE
-		TRANSFER_CREATURE(PLAYER0,ANY_CREATURE,AT_ACTION_POINT[1],1)
-		NEXT_COMMAND_REUSABLE
-		COUNT_CREATURES_AT_ACTION_POINT(1,PLAYER0,ANY_CREATURE,PLAYER6,FLAG2)
+		IF(PLAYER6,TIMER2 > 20)
+			NEXT_COMMAND_REUSABLE
+			PLAY_MESSAGE(PLAYER0,SPEECH,67)
+			NEXT_COMMAND_REUSABLE
+			MOVE_CREATURE(PLAYER0,ANY_CREATURE,AT_ACTION_POINT[1],1,7)
+			NEXT_COMMAND_REUSABLE
+			COUNT_CREATURES_AT_ACTION_POINT(1,PLAYER0,ANY_CREATURE,PLAYER6,FLAG2)
+			NEXT_COMMAND_REUSABLE
+			SET_TIMER(PLAYER6,TIMER2)
+		ENDIF
 	ENDIF
 	IF(PLAYER6,FLAG3 > 0)
-		NEXT_COMMAND_REUSABLE
-		MOVE_CREATURE(PLAYER0,ANY_CREATURE,AT_ACTION_POINT[2],1,7)
-		NEXT_COMMAND_REUSABLE
-		COUNT_CREATURES_AT_ACTION_POINT(2,PLAYER0,ANY_CREATURE,PLAYER6,FLAG3)
+		IF(PLAYER6,TIMER3 > 20)
+			NEXT_COMMAND_REUSABLE
+			MOVE_CREATURE(PLAYER0,ANY_CREATURE,AT_ACTION_POINT[2],1,7)
+			NEXT_COMMAND_REUSABLE
+			COUNT_CREATURES_AT_ACTION_POINT(2,PLAYER0,ANY_CREATURE,PLAYER6,FLAG3)
+			NEXT_COMMAND_REUSABLE
+			SET_TIMER(PLAYER6,TIMER3)
+		ENDIF
 	ENDIF
 	IF(PLAYER6,FLAG4 > 0)
-		NEXT_COMMAND_REUSABLE
-		MOVE_CREATURE(PLAYER1,ANY_CREATURE,AT_ACTION_POINT[1],1,7)
-		NEXT_COMMAND_REUSABLE
-		COUNT_CREATURES_AT_ACTION_POINT(1,PLAYER1,ANY_CREATURE,PLAYER6,FLAG4)
+		IF(PLAYER6,TIMER4 > 20)
+			NEXT_COMMAND_REUSABLE
+			MOVE_CREATURE(PLAYER1,ANY_CREATURE,AT_ACTION_POINT[1],1,7)
+			NEXT_COMMAND_REUSABLE
+			COUNT_CREATURES_AT_ACTION_POINT(1,PLAYER1,ANY_CREATURE,PLAYER6,FLAG4)
+			NEXT_COMMAND_REUSABLE
+			SET_TIMER(PLAYER6,TIMER4)
+		ENDIF
 	ENDIF
 	IF(PLAYER6,FLAG5 > 0)
-		NEXT_COMMAND_REUSABLE
-		MOVE_CREATURE(PLAYER1,ANY_CREATURE,AT_ACTION_POINT[2],1,7)
-		NEXT_COMMAND_REUSABLE
-		COUNT_CREATURES_AT_ACTION_POINT(2,PLAYER1,ANY_CREATURE,PLAYER6,FLAG5)
+		IF(PLAYER6,TIMER5 > 20)
+			NEXT_COMMAND_REUSABLE
+			MOVE_CREATURE(PLAYER1,ANY_CREATURE,AT_ACTION_POINT[2],1,7)
+			NEXT_COMMAND_REUSABLE
+			COUNT_CREATURES_AT_ACTION_POINT(2,PLAYER1,ANY_CREATURE,PLAYER6,FLAG5)
+			NEXT_COMMAND_REUSABLE
+			SET_TIMER(PLAYER6,TIMER5)
+		ENDIF
 	ENDIF
 	IF(PLAYER6,FLAG6 > 0)
-		NEXT_COMMAND_REUSABLE
-		MOVE_CREATURE(PLAYER_GOOD,ANY_CREATURE,AT_ACTION_POINT[1],1,7)
-		NEXT_COMMAND_REUSABLE
-		COUNT_CREATURES_AT_ACTION_POINT(1,PLAYER_GOOD,ANY_CREATURE,PLAYER6,FLAG6)
+		IF(PLAYER6,TIMER6 > 20)
+			NEXT_COMMAND_REUSABLE
+			MOVE_CREATURE(PLAYER_GOOD,ANY_CREATURE,AT_ACTION_POINT[1],1,7)
+			NEXT_COMMAND_REUSABLE
+			COUNT_CREATURES_AT_ACTION_POINT(1,PLAYER_GOOD,ANY_CREATURE,PLAYER6,FLAG6)
+			NEXT_COMMAND_REUSABLE
+			SET_TIMER(PLAYER6,TIMER6)
+		ENDIF
 	ENDIF
 	IF(PLAYER6,FLAG7 > 0)
-		NEXT_COMMAND_REUSABLE
-		MOVE_CREATURE(PLAYER_GOOD,ANY_CREATURE,AT_ACTION_POINT[2],1,7)
-		NEXT_COMMAND_REUSABLE
-		COUNT_CREATURES_AT_ACTION_POINT(2,PLAYER_GOOD,ANY_CREATURE,PLAYER6,FLAG7)
+		IF(PLAYER6,TIMER7 > 20)
+			NEXT_COMMAND_REUSABLE
+			MOVE_CREATURE(PLAYER_GOOD,ANY_CREATURE,AT_ACTION_POINT[2],1,7)
+			NEXT_COMMAND_REUSABLE
+			COUNT_CREATURES_AT_ACTION_POINT(2,PLAYER_GOOD,ANY_CREATURE,PLAYER6,FLAG7)
+			NEXT_COMMAND_REUSABLE
+			SET_TIMER(PLAYER6,TIMER7)
+		ENDIF
 	ENDIF
 	IF(PLAYER1,FLAG4 > 0)
 		IF(PLAYER1,BOX4_ACTIVATED == 0)
+			SET_TIMER(PLAYER1,TIMER4)
 			NEXT_COMMAND_REUSABLE
 			RANDOMISE_FLAG(PLAYER1,BOX4_ACTIVATED,4)
 		ENDIF
 		IF(PLAYER1,BOX4_ACTIVATED != 0)
 			IF(PLAYER1,BOX4_ACTIVATED == 1)
-				NEXT_COMMAND_REUSABLE
-				MOVE_CREATURE(ALL_PLAYERS,IMP,AT_ACTION_POINT[7],1,3)
-				NEXT_COMMAND_REUSABLE
-				COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,IMP,PLAYER1,FLAG4)
-				NEXT_COMMAND_REUSABLE
-				SET_FLAG(PLAYER1,BOX4_ACTIVATED,0)
+				IF(PLAYER1,TIMER4 > 10)
+					NEXT_COMMAND_REUSABLE
+					MOVE_CREATURE(ALL_PLAYERS,IMP,AT_ACTION_POINT[7],1,3)
+					NEXT_COMMAND_REUSABLE
+					COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,IMP,PLAYER1,FLAG4)
+					NEXT_COMMAND_REUSABLE
+					SET_FLAG(PLAYER1,BOX4_ACTIVATED,0)
+					NEXT_COMMAND_REUSABLE
+					SET_TIMER(PLAYER1,TIMER4)
+				ENDIF
 			ENDIF
 			IF(PLAYER1,BOX4_ACTIVATED == 2)
-				NEXT_COMMAND_REUSABLE
-				MOVE_CREATURE(ALL_PLAYERS,IMP,AT_ACTION_POINT[7],1,4)
-				NEXT_COMMAND_REUSABLE
-				COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,IMP,PLAYER1,FLAG4)
-				NEXT_COMMAND_REUSABLE
-				SET_FLAG(PLAYER1,BOX4_ACTIVATED,0)
+				IF(PLAYER1,TIMER4 > 10)
+					NEXT_COMMAND_REUSABLE
+					MOVE_CREATURE(ALL_PLAYERS,IMP,AT_ACTION_POINT[7],1,4)
+					NEXT_COMMAND_REUSABLE
+					COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,IMP,PLAYER1,FLAG4)
+					NEXT_COMMAND_REUSABLE
+					SET_FLAG(PLAYER1,BOX4_ACTIVATED,0)
+					NEXT_COMMAND_REUSABLE
+					SET_TIMER(PLAYER1,TIMER4)
+				ENDIF
 			ENDIF
 			IF(PLAYER1,BOX4_ACTIVATED == 3)
-				NEXT_COMMAND_REUSABLE
-				MOVE_CREATURE(ALL_PLAYERS,IMP,AT_ACTION_POINT[7],1,5)
-				NEXT_COMMAND_REUSABLE
-				COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,IMP,PLAYER1,FLAG4)
-				NEXT_COMMAND_REUSABLE
-				SET_FLAG(PLAYER1,BOX4_ACTIVATED,0)
+				IF(PLAYER1,TIMER4 > 10)
+					NEXT_COMMAND_REUSABLE
+					MOVE_CREATURE(ALL_PLAYERS,IMP,AT_ACTION_POINT[7],1,5)
+					NEXT_COMMAND_REUSABLE
+					COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,IMP,PLAYER1,FLAG4)
+					NEXT_COMMAND_REUSABLE
+					SET_FLAG(PLAYER1,BOX4_ACTIVATED,0)
+					NEXT_COMMAND_REUSABLE
+					SET_TIMER(PLAYER1,TIMER4)
+				ENDIF
 			ENDIF
 			IF(PLAYER1,BOX4_ACTIVATED == 4)
-				NEXT_COMMAND_REUSABLE
-				MOVE_CREATURE(ALL_PLAYERS,IMP,AT_ACTION_POINT[7],1,6)
-				NEXT_COMMAND_REUSABLE
-				COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,IMP,PLAYER1,FLAG4)
-				NEXT_COMMAND_REUSABLE
-				SET_FLAG(PLAYER1,BOX4_ACTIVATED,0)
+				IF(PLAYER1,TIMER4 > 10)
+					NEXT_COMMAND_REUSABLE
+					MOVE_CREATURE(ALL_PLAYERS,IMP,AT_ACTION_POINT[7],1,6)
+					NEXT_COMMAND_REUSABLE
+					COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,IMP,PLAYER1,FLAG4)
+					NEXT_COMMAND_REUSABLE
+					SET_FLAG(PLAYER1,BOX4_ACTIVATED,0)
+					NEXT_COMMAND_REUSABLE
+					SET_TIMER(PLAYER1,TIMER4)
+				ENDIF
 			ENDIF
 		ENDIF
 	ENDIF
 	IF(PLAYER1,FLAG6 > 0)
 		IF(PLAYER1,BOX6_ACTIVATED == 0)
+			SET_TIMER(PLAYER1,TIMER6)
 			NEXT_COMMAND_REUSABLE
 			RANDOMISE_FLAG(PLAYER1,BOX6_ACTIVATED,4)
 		ENDIF
 		IF(PLAYER1,BOX6_ACTIVATED != 0)
 			IF(PLAYER1,BOX6_ACTIVATED == 1)
-				NEXT_COMMAND_REUSABLE
-				MOVE_CREATURE(ALL_PLAYERS,ANY_CREATURE,AT_ACTION_POINT[7],1,3)
-				NEXT_COMMAND_REUSABLE
-				COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,ANY_CREATURE,PLAYER1,FLAG6)
-				NEXT_COMMAND_REUSABLE
-				SET_FLAG(PLAYER1,BOX6_ACTIVATED,0)
+				IF(PLAYER1,TIMER6 > 10)
+					NEXT_COMMAND_REUSABLE
+					MOVE_CREATURE(ALL_PLAYERS,ANY_CREATURE,AT_ACTION_POINT[7],1,3)
+					NEXT_COMMAND_REUSABLE
+					COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,ANY_CREATURE,PLAYER1,FLAG6)
+					NEXT_COMMAND_REUSABLE
+					SET_FLAG(PLAYER1,BOX6_ACTIVATED,0)
+					NEXT_COMMAND_REUSABLE
+					SET_TIMER(PLAYER1,TIMER6)
+				ENDIF
 			ENDIF
 			IF(PLAYER1,BOX6_ACTIVATED == 2)
-				NEXT_COMMAND_REUSABLE
-				MOVE_CREATURE(ALL_PLAYERS,ANY_CREATURE,AT_ACTION_POINT[7],1,4)
-				NEXT_COMMAND_REUSABLE
-				COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,ANY_CREATURE,PLAYER1,FLAG6)
-				NEXT_COMMAND_REUSABLE
-				SET_FLAG(PLAYER1,BOX6_ACTIVATED,0)
+				IF(PLAYER1,TIMER6 > 10)
+					NEXT_COMMAND_REUSABLE
+					MOVE_CREATURE(ALL_PLAYERS,ANY_CREATURE,AT_ACTION_POINT[7],1,4)
+					NEXT_COMMAND_REUSABLE
+					COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,ANY_CREATURE,PLAYER1,FLAG6)
+					NEXT_COMMAND_REUSABLE
+					SET_FLAG(PLAYER1,BOX6_ACTIVATED,0)
+					NEXT_COMMAND_REUSABLE
+					SET_TIMER(PLAYER1,TIMER6)
+				ENDIF
 			ENDIF
 			IF(PLAYER1,BOX6_ACTIVATED == 3)
-				NEXT_COMMAND_REUSABLE
-				MOVE_CREATURE(ALL_PLAYERS,ANY_CREATURE,AT_ACTION_POINT[7],1,5)
-				NEXT_COMMAND_REUSABLE
-				COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,ANY_CREATURE,PLAYER1,FLAG6)
-				NEXT_COMMAND_REUSABLE
-				SET_FLAG(PLAYER1,BOX6_ACTIVATED,0)
+				IF(PLAYER1,TIMER6 > 10)
+					NEXT_COMMAND_REUSABLE
+					MOVE_CREATURE(ALL_PLAYERS,ANY_CREATURE,AT_ACTION_POINT[7],1,5)
+					NEXT_COMMAND_REUSABLE
+					COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,ANY_CREATURE,PLAYER1,FLAG6)
+					NEXT_COMMAND_REUSABLE
+					SET_FLAG(PLAYER1,BOX6_ACTIVATED,0)
+					NEXT_COMMAND_REUSABLE
+					SET_TIMER(PLAYER1,TIMER6)
+				ENDIF
 			ENDIF
 			IF(PLAYER1,BOX6_ACTIVATED == 4)
-				NEXT_COMMAND_REUSABLE
-				MOVE_CREATURE(ALL_PLAYERS,ANY_CREATURE,AT_ACTION_POINT[7],1,6)
-				NEXT_COMMAND_REUSABLE
-				COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,ANY_CREATURE,PLAYER1,FLAG6)
-				NEXT_COMMAND_REUSABLE
-				SET_FLAG(PLAYER1,BOX6_ACTIVATED,0)
+				IF(PLAYER1,TIMER6 > 10)
+					NEXT_COMMAND_REUSABLE
+					MOVE_CREATURE(ALL_PLAYERS,ANY_CREATURE,AT_ACTION_POINT[7],1,6)
+					NEXT_COMMAND_REUSABLE
+					COUNT_CREATURES_AT_ACTION_POINT(7,ALL_PLAYERS,ANY_CREATURE,PLAYER1,FLAG6)
+					NEXT_COMMAND_REUSABLE
+					SET_FLAG(PLAYER1,BOX6_ACTIVATED,0)
+					NEXT_COMMAND_REUSABLE
+					SET_TIMER(PLAYER1,TIMER6)
+				ENDIF
 			ENDIF
 		ENDIF
 	ENDIF
 	IF(PLAYER0,BOX8_ACTIVATED != 0)
 		IF(PLAYER0,BOX8_ACTIVATED == 1)
-			NEXT_COMMAND_REUSABLE
-			PLAY_MESSAGE(PLAYER0,SPEECH,66)
-			NEXT_COMMAND_REUSABLE
-			REM "A Spider has been added to the pool!"
-			DISPLAY_MESSAGE(118,SPIDER)
-			NEXT_COMMAND_REUSABLE
-			ADD_CREATURE_TO_POOL(SPIDER,1)
-			NEXT_COMMAND_REUSABLE
-			SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+			IF(PLAYER_NEUTRAL,TIMER7 > PLAYER0,IMP)
+				REM # "A Spider has been added to the pool!"
+				NEXT_COMMAND_REUSABLE
+				PLAY_MESSAGE(PLAYER0,SPEECH,66)
+				NEXT_COMMAND_REUSABLE
+				DISPLAY_MESSAGE(118,SPIDER)
+				NEXT_COMMAND_REUSABLE
+				ADD_CREATURE_TO_POOL(SPIDER,1)
+				NEXT_COMMAND_REUSABLE
+				SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+				NEXT_COMMAND_REUSABLE
+				SET_TIMER(PLAYER_NEUTRAL,TIMER7)
+			ENDIF
 		ENDIF
 		IF(PLAYER0,BOX8_ACTIVATED == 2)
-			NEXT_COMMAND_REUSABLE
-			PLAY_MESSAGE(PLAYER0,SPEECH,66)
-			NEXT_COMMAND_REUSABLE
-			REM "A Chicken Trap has been perfectly cooked!"
-			DISPLAY_MESSAGE(119,BILE_DEMON)
-			NEXT_COMMAND_REUSABLE
-			TRAP_AVAILABLE(PLAYER0,CHICKEN,1,1)
-			NEXT_COMMAND_REUSABLE
-			SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+			IF(PLAYER_NEUTRAL,TIMER7 > PLAYER0,IMP)
+				REM # "A Chicken Trap has been perfectly cooked!"
+				NEXT_COMMAND_REUSABLE
+				PLAY_MESSAGE(PLAYER0,SPEECH,66)
+				NEXT_COMMAND_REUSABLE
+				DISPLAY_MESSAGE(119,BILE_DEMON)
+				NEXT_COMMAND_REUSABLE
+				TRAP_AVAILABLE(PLAYER0,CHICKEN,1,1)
+				NEXT_COMMAND_REUSABLE
+				SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+				NEXT_COMMAND_REUSABLE
+				SET_TIMER(PLAYER_NEUTRAL,TIMER7)
+			ENDIF
 		ENDIF
 		IF(PLAYER0,BOX8_ACTIVATED == 3)
-			NEXT_COMMAND_REUSABLE
-			PLAY_MESSAGE(PLAYER0,SPEECH,66)
-			NEXT_COMMAND_REUSABLE
-			REM "A Freeze Trap has been found, frozen solid!"
-			DISPLAY_MESSAGE(120,BUG)
-			NEXT_COMMAND_REUSABLE
-			TRAP_AVAILABLE(PLAYER0,FREEZE,1,1)
-			NEXT_COMMAND_REUSABLE
-			SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+			IF(PLAYER_NEUTRAL,TIMER7 > PLAYER0,IMP)
+				REM # "A Freeze Trap has been found, frozen solid!"
+				NEXT_COMMAND_REUSABLE
+				PLAY_MESSAGE(PLAYER0,SPEECH,66)
+				NEXT_COMMAND_REUSABLE
+				DISPLAY_MESSAGE(120,BUG)
+				NEXT_COMMAND_REUSABLE
+				TRAP_AVAILABLE(PLAYER0,FREEZE,1,1)
+				NEXT_COMMAND_REUSABLE
+				SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+				NEXT_COMMAND_REUSABLE
+				SET_TIMER(PLAYER_NEUTRAL,TIMER7)
+			ENDIF
 		ENDIF
 		IF(PLAYER0,BOX8_ACTIVATED == 4)
-			NEXT_COMMAND_REUSABLE
-			PLAY_MESSAGE(PLAYER0,SPEECH,66)
-			NEXT_COMMAND_REUSABLE
-			REM "A Wind Trap has been blown your way!"
-			DISPLAY_MESSAGE(121,TROLL)
-			NEXT_COMMAND_REUSABLE
-			TRAP_AVAILABLE(PLAYER0,WIND,1,1)
-			NEXT_COMMAND_REUSABLE
-			SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+			IF(PLAYER_NEUTRAL,TIMER7 > PLAYER0,IMP)
+				REM # "A Wind Trap has been blown your way!"
+				NEXT_COMMAND_REUSABLE
+				PLAY_MESSAGE(PLAYER0,SPEECH,66)
+				NEXT_COMMAND_REUSABLE
+				DISPLAY_MESSAGE(121,TROLL)
+				NEXT_COMMAND_REUSABLE
+				TRAP_AVAILABLE(PLAYER0,WIND,1,1)
+				NEXT_COMMAND_REUSABLE
+				SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+				NEXT_COMMAND_REUSABLE
+				SET_TIMER(PLAYER_NEUTRAL,TIMER7)
+			ENDIF
 		ENDIF
 		IF(PLAYER0,BOX8_ACTIVATED == 5)
-			NEXT_COMMAND_REUSABLE
-			PLAY_MESSAGE(PLAYER0,SPEECH,70)
-			NEXT_COMMAND_REUSABLE
-			REM "A pot of gold just appeared out of nowhere!"
-			DISPLAY_MESSAGE(122,SPELL_SIGHT)
-			NEXT_COMMAND_REUSABLE
-			CREATE_EFFECT(EFFECT_COIN_FOUNTAIN,PLAYER0)
-			NEXT_COMMAND_REUSABLE
-			ADD_OBJECT_TO_LEVEL(GOLD_CHEST,PLAYER0,500,PLAYER_NEUTRAL)
-			NEXT_COMMAND_REUSABLE
-			SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+			IF(PLAYER_NEUTRAL,TIMER7 > PLAYER0,IMP)
+				REM # "A pot of gold just appeared out of nowhere!"
+				NEXT_COMMAND_REUSABLE
+				PLAY_MESSAGE(PLAYER0,SPEECH,70)
+				NEXT_COMMAND_REUSABLE
+				DISPLAY_MESSAGE(122,SPELL_SIGHT)
+				NEXT_COMMAND_REUSABLE
+				CREATE_EFFECT(EFFECT_COIN_FOUNTAIN,PLAYER0)
+				NEXT_COMMAND_REUSABLE
+				ADD_OBJECT_TO_LEVEL(GOLD_CHEST,PLAYER0,500,PLAYER_NEUTRAL)
+				NEXT_COMMAND_REUSABLE
+				SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+				NEXT_COMMAND_REUSABLE
+				SET_TIMER(PLAYER_NEUTRAL,TIMER7)
+			ENDIF
 		ENDIF
 		IF(PLAYER0,BOX8_ACTIVATED == 6)
-			NEXT_COMMAND_REUSABLE
-			PLAY_MESSAGE(PLAYER0,SPEECH,69)
-			NEXT_COMMAND_REUSABLE
-			REM "A sinister force just slapped all your Ghosts!"
-			DISPLAY_MESSAGE(123,GHOST)
-			NEXT_COMMAND_REUSABLE
-			USE_POWER_ON_PLAYERS_CREATURES(PLAYER0,IMP,PLAYER0,POWER_SLAP,1,1)
-			NEXT_COMMAND_REUSABLE
-			SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+			IF(PLAYER_NEUTRAL,TIMER7 > PLAYER0,IMP)
+				REM # "A sinister force just slapped all your Ghosts!"
+				NEXT_COMMAND_REUSABLE
+				PLAY_MESSAGE(PLAYER0,SPEECH,69)
+				NEXT_COMMAND_REUSABLE
+				DISPLAY_MESSAGE(123,GHOST)
+				NEXT_COMMAND_REUSABLE
+				USE_POWER_ON_PLAYERS_CREATURES(PLAYER0,IMP,PLAYER0,POWER_SLAP,1,1)
+				NEXT_COMMAND_REUSABLE
+				SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+				NEXT_COMMAND_REUSABLE
+				SET_TIMER(PLAYER_NEUTRAL,TIMER7)
+			ENDIF
 		ENDIF
 		IF(PLAYER0,BOX8_ACTIVATED == 7)
-			NEXT_COMMAND_REUSABLE
-			PLAY_MESSAGE(PLAYER0,SPEECH,70)
-			NEXT_COMMAND_REUSABLE
-			REM "A Trick-or-Treat effect has been activated!"
-			DISPLAY_MESSAGE(124,SPELL_TELEPORT)
-			NEXT_COMMAND_REUSABLE
-			RANDOMISE_FLAG(PLAYER0,BOX253_ACTIVATED,8)
-			NEXT_COMMAND_REUSABLE
-			RANDOMISE_FLAG(PLAYER0,BOX254_ACTIVATED,7)
-			NEXT_COMMAND_REUSABLE
-			SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+			IF(PLAYER_NEUTRAL,TIMER7 > PLAYER0,IMP)
+				REM # "A Trick-or-Treat effect has been activated!"
+				NEXT_COMMAND_REUSABLE
+				PLAY_MESSAGE(PLAYER0,SPEECH,70)
+				NEXT_COMMAND_REUSABLE
+				DISPLAY_MESSAGE(124,SPELL_TELEPORT)
+				NEXT_COMMAND_REUSABLE
+				RANDOMISE_FLAG(PLAYER0,BOX253_ACTIVATED,8)
+				NEXT_COMMAND_REUSABLE
+				RANDOMISE_FLAG(PLAYER0,BOX254_ACTIVATED,7)
+				NEXT_COMMAND_REUSABLE
+				SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+				NEXT_COMMAND_REUSABLE
+				SET_TIMER(PLAYER_NEUTRAL,TIMER7)
+			ENDIF
 		ENDIF
 		IF(PLAYER0,BOX8_ACTIVATED == 8)
-			NEXT_COMMAND_REUSABLE
-			PLAY_MESSAGE(PLAYER0,SPEECH,69)
-			NEXT_COMMAND_REUSABLE
-			REM "A bunch of Skeletons has breached your dungeon!"
-			DISPLAY_MESSAGE(125,SKELETON)
-			NEXT_COMMAND_REUSABLE
-			ADD_TO_FLAG(PLAYER_GOOD,FLAG0,8)
-			NEXT_COMMAND_REUSABLE
-			SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+			IF(PLAYER_NEUTRAL,TIMER7 > PLAYER0,IMP)
+				REM # "A bunch of Skeletons has breached your dungeon!"
+				NEXT_COMMAND_REUSABLE
+				PLAY_MESSAGE(PLAYER0,SPEECH,69)
+				NEXT_COMMAND_REUSABLE
+				DISPLAY_MESSAGE(125,SKELETON)
+				NEXT_COMMAND_REUSABLE
+				ADD_TO_FLAG(PLAYER_GOOD,FLAG0,8)
+				NEXT_COMMAND_REUSABLE
+				SET_FLAG(PLAYER0,BOX8_ACTIVATED,0)
+				NEXT_COMMAND_REUSABLE
+				SET_TIMER(PLAYER_NEUTRAL,TIMER7)
+			ENDIF
 		ENDIF
 	ENDIF
 ENDIF
